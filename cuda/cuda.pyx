@@ -1216,19 +1216,12 @@ cdef class CUcontext:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUcontext *>calloc(1, sizeof(ccuda.CUcontext))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUcontext)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUcontext>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUcontext *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUcontext ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1250,19 +1243,12 @@ cdef class CUmodule:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmodule *>calloc(1, sizeof(ccuda.CUmodule))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmodule)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUmodule>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmodule *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUmodule ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1284,19 +1270,12 @@ cdef class CUfunction:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUfunction *>calloc(1, sizeof(ccuda.CUfunction))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUfunction)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUfunction>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUfunction *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUfunction ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1318,19 +1297,12 @@ cdef class CUarray:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUarray *>calloc(1, sizeof(ccuda.CUarray))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUarray)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUarray>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUarray *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUarray ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1352,19 +1324,12 @@ cdef class CUmipmappedArray:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmipmappedArray *>calloc(1, sizeof(ccuda.CUmipmappedArray))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmipmappedArray)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUmipmappedArray>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmipmappedArray *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUmipmappedArray ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1386,19 +1351,12 @@ cdef class CUtexref:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUtexref *>calloc(1, sizeof(ccuda.CUtexref))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUtexref)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUtexref>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUtexref *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUtexref ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1420,19 +1378,12 @@ cdef class CUsurfref:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUsurfref *>calloc(1, sizeof(ccuda.CUsurfref))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUsurfref)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUsurfref>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUsurfref *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUsurfref ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1454,19 +1405,12 @@ cdef class CUevent:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUevent *>calloc(1, sizeof(ccuda.CUevent))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUevent)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUevent>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUevent *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUevent ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1488,19 +1432,12 @@ cdef class CUstream:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstream *>calloc(1, sizeof(ccuda.CUstream))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstream)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUstream>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstream *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUstream ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1522,19 +1459,12 @@ cdef class CUgraphicsResource:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUgraphicsResource *>calloc(1, sizeof(ccuda.CUgraphicsResource))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUgraphicsResource)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUgraphicsResource>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUgraphicsResource *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUgraphicsResource ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1556,19 +1486,12 @@ cdef class CUexternalMemory:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUexternalMemory *>calloc(1, sizeof(ccuda.CUexternalMemory))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUexternalMemory)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUexternalMemory>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUexternalMemory *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUexternalMemory ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1590,19 +1513,12 @@ cdef class CUexternalSemaphore:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUexternalSemaphore *>calloc(1, sizeof(ccuda.CUexternalSemaphore))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUexternalSemaphore)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUexternalSemaphore>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUexternalSemaphore *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUexternalSemaphore ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1624,19 +1540,12 @@ cdef class CUgraph:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUgraph *>calloc(1, sizeof(ccuda.CUgraph))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUgraph)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUgraph>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUgraph *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUgraph ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1658,19 +1567,12 @@ cdef class CUgraphNode:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUgraphNode *>calloc(1, sizeof(ccuda.CUgraphNode))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUgraphNode)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUgraphNode>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUgraphNode *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUgraphNode ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1692,19 +1594,12 @@ cdef class CUgraphExec:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUgraphExec *>calloc(1, sizeof(ccuda.CUgraphExec))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUgraphExec)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUgraphExec>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUgraphExec *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUgraphExec ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1726,19 +1621,12 @@ cdef class CUmemoryPool:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemoryPool *>calloc(1, sizeof(ccuda.CUmemoryPool))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemoryPool)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUmemoryPool>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemoryPool *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUmemoryPool ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1760,19 +1648,12 @@ cdef class CUuserObject:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUuserObject *>calloc(1, sizeof(ccuda.CUuserObject))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUuserObject)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUuserObject>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUuserObject *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUuserObject ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1794,19 +1675,12 @@ cdef class CUlinkState:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUlinkState *>calloc(1, sizeof(ccuda.CUlinkState))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUlinkState)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUlinkState>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUlinkState *>_ptr
     def __init__(self, *args, **kwargs):
         self._keepalive = []
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUlinkState ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1828,19 +1702,12 @@ cdef class EGLImageKHR:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.EGLImageKHR *>calloc(1, sizeof(ccuda.EGLImageKHR))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.EGLImageKHR)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.EGLImageKHR>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.EGLImageKHR *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<EGLImageKHR ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1862,19 +1729,12 @@ cdef class EGLStreamKHR:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.EGLStreamKHR *>calloc(1, sizeof(ccuda.EGLStreamKHR))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.EGLStreamKHR)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.EGLStreamKHR>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.EGLStreamKHR *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<EGLStreamKHR ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1896,19 +1756,12 @@ cdef class EGLSyncKHR:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.EGLSyncKHR *>calloc(1, sizeof(ccuda.EGLSyncKHR))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.EGLSyncKHR)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.EGLSyncKHR>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.EGLSyncKHR *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<EGLSyncKHR ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1930,19 +1783,12 @@ cdef class CUeglStreamConnection:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUeglStreamConnection *>calloc(1, sizeof(ccuda.CUeglStreamConnection))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUeglStreamConnection)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUeglStreamConnection>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUeglStreamConnection *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUeglStreamConnection ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1964,19 +1810,12 @@ cdef class CUhostFn:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUhostFn *>calloc(1, sizeof(ccuda.CUhostFn))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUhostFn)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUhostFn>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUhostFn *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUhostFn ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -1998,19 +1837,12 @@ cdef class CUstreamCallback:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstreamCallback *>calloc(1, sizeof(ccuda.CUstreamCallback))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstreamCallback)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUstreamCallback>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstreamCallback *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUstreamCallback ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -2032,19 +1864,12 @@ cdef class CUoccupancyB2DSize:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUoccupancyB2DSize *>calloc(1, sizeof(ccuda.CUoccupancyB2DSize))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUoccupancyB2DSize)))
+            self._ptr = &self._val
             self._ptr[0] = <ccuda.CUoccupancyB2DSize>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUoccupancyB2DSize *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<CUoccupancyB2DSize ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -2070,18 +1895,12 @@ cdef class CUuuid_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUuuid_st *>calloc(1, sizeof(ccuda.CUuuid_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUuuid_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUuuid_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2114,18 +1933,12 @@ cdef class CUipcEventHandle_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUipcEventHandle_st *>calloc(1, sizeof(ccuda.CUipcEventHandle_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUipcEventHandle_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUipcEventHandle_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2166,18 +1979,12 @@ cdef class CUipcMemHandle_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUipcMemHandle_st *>calloc(1, sizeof(ccuda.CUipcMemHandle_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUipcMemHandle_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUipcMemHandle_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2225,20 +2032,14 @@ cdef class CUstreamMemOpWaitValueParams_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstreamMemOpWaitValueParams_st *>calloc(1, sizeof(ccuda.CUstreamMemOpWaitValueParams_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstreamMemOpWaitValueParams_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstreamMemOpWaitValueParams_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._address = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].address)
         self._value64 = cuuint64_t(_ptr=<void_ptr>&self._ptr[0].value64)
         self._alias = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].alias)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2338,20 +2139,14 @@ cdef class CUstreamMemOpWriteValueParams_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstreamMemOpWriteValueParams_st *>calloc(1, sizeof(ccuda.CUstreamMemOpWriteValueParams_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstreamMemOpWriteValueParams_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstreamMemOpWriteValueParams_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._address = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].address)
         self._value64 = cuuint64_t(_ptr=<void_ptr>&self._ptr[0].value64)
         self._alias = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].alias)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2445,18 +2240,12 @@ cdef class CUstreamMemOpFlushRemoteWritesParams_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstreamMemOpFlushRemoteWritesParams_st *>calloc(1, sizeof(ccuda.CUstreamMemOpFlushRemoteWritesParams_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstreamMemOpFlushRemoteWritesParams_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstreamMemOpFlushRemoteWritesParams_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2508,20 +2297,14 @@ cdef class CUstreamBatchMemOpParams_union:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstreamBatchMemOpParams_union *>calloc(1, sizeof(ccuda.CUstreamBatchMemOpParams_union))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstreamBatchMemOpParams_union)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstreamBatchMemOpParams_union *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._waitValue = CUstreamMemOpWaitValueParams_st(_ptr=<void_ptr>&self._ptr[0].waitValue)
         self._writeValue = CUstreamMemOpWriteValueParams_st(_ptr=<void_ptr>&self._ptr[0].writeValue)
         self._flushRemoteWrites = CUstreamMemOpFlushRemoteWritesParams_st(_ptr=<void_ptr>&self._ptr[0].flushRemoteWrites)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2620,18 +2403,12 @@ cdef class CUdevprop_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUdevprop_st *>calloc(1, sizeof(ccuda.CUdevprop_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUdevprop_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUdevprop_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2760,18 +2537,12 @@ cdef class CUaccessPolicyWindow_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUaccessPolicyWindow_st *>calloc(1, sizeof(ccuda.CUaccessPolicyWindow_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUaccessPolicyWindow_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUaccessPolicyWindow_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2858,18 +2629,12 @@ cdef class CUDA_KERNEL_NODE_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_KERNEL_NODE_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_KERNEL_NODE_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_KERNEL_NODE_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_KERNEL_NODE_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._func = CUfunction(_ptr=<void_ptr>&self._ptr[0].func)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -2995,18 +2760,12 @@ cdef class CUDA_MEMSET_NODE_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_MEMSET_NODE_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_MEMSET_NODE_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_MEMSET_NODE_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_MEMSET_NODE_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._dst = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].dst)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3093,18 +2852,12 @@ cdef class CUDA_HOST_NODE_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_HOST_NODE_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_HOST_NODE_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_HOST_NODE_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_HOST_NODE_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._fn = CUhostFn(_ptr=<void_ptr>&self._ptr[0].fn)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3158,18 +2911,12 @@ cdef class CUkernelNodeAttrValue_union:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUkernelNodeAttrValue_union *>calloc(1, sizeof(ccuda.CUkernelNodeAttrValue_union))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUkernelNodeAttrValue_union)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUkernelNodeAttrValue_union *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._accessPolicyWindow = CUaccessPolicyWindow(_ptr=<void_ptr>&self._ptr[0].accessPolicyWindow)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3219,18 +2966,12 @@ cdef class CUstreamAttrValue_union:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUstreamAttrValue_union *>calloc(1, sizeof(ccuda.CUstreamAttrValue_union))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUstreamAttrValue_union)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUstreamAttrValue_union *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._accessPolicyWindow = CUaccessPolicyWindow(_ptr=<void_ptr>&self._ptr[0].accessPolicyWindow)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3279,18 +3020,12 @@ cdef class CUexecAffinitySmCount_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUexecAffinitySmCount_st *>calloc(1, sizeof(ccuda.CUexecAffinitySmCount_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUexecAffinitySmCount_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUexecAffinitySmCount_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3369,18 +3104,12 @@ cdef class CUexecAffinityParam_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUexecAffinityParam_st *>calloc(1, sizeof(ccuda.CUexecAffinityParam_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUexecAffinityParam_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUexecAffinityParam_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._param = _CUexecAffinityParam_v1_CUexecAffinityParam_v1_CUexecAffinityParam_st_param_u(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3459,12 +3188,8 @@ cdef class CUDA_MEMCPY2D_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_MEMCPY2D_st *>calloc(1, sizeof(ccuda.CUDA_MEMCPY2D_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_MEMCPY2D_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_MEMCPY2D_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._srcDevice = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].srcDevice)
@@ -3472,8 +3197,6 @@ cdef class CUDA_MEMCPY2D_st:
         self._dstDevice = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].dstDevice)
         self._dstArray = CUarray(_ptr=<void_ptr>&self._ptr[0].dstArray)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -3711,12 +3434,8 @@ cdef class CUDA_MEMCPY3D_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_MEMCPY3D_st *>calloc(1, sizeof(ccuda.CUDA_MEMCPY3D_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_MEMCPY3D_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_MEMCPY3D_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._srcDevice = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].srcDevice)
@@ -3724,8 +3443,6 @@ cdef class CUDA_MEMCPY3D_st:
         self._dstDevice = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].dstDevice)
         self._dstArray = CUarray(_ptr=<void_ptr>&self._ptr[0].dstArray)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -4036,12 +3753,8 @@ cdef class CUDA_MEMCPY3D_PEER_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_MEMCPY3D_PEER_st *>calloc(1, sizeof(ccuda.CUDA_MEMCPY3D_PEER_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_MEMCPY3D_PEER_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_MEMCPY3D_PEER_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._srcDevice = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].srcDevice)
@@ -4051,8 +3764,6 @@ cdef class CUDA_MEMCPY3D_PEER_st:
         self._dstArray = CUarray(_ptr=<void_ptr>&self._ptr[0].dstArray)
         self._dstContext = CUcontext(_ptr=<void_ptr>&self._ptr[0].dstContext)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -4335,18 +4046,12 @@ cdef class CUDA_ARRAY_DESCRIPTOR_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_ARRAY_DESCRIPTOR_st *>calloc(1, sizeof(ccuda.CUDA_ARRAY_DESCRIPTOR_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_ARRAY_DESCRIPTOR_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_ARRAY_DESCRIPTOR_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -4417,18 +4122,12 @@ cdef class CUDA_ARRAY3D_DESCRIPTOR_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_ARRAY3D_DESCRIPTOR_st *>calloc(1, sizeof(ccuda.CUDA_ARRAY3D_DESCRIPTOR_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_ARRAY3D_DESCRIPTOR_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_ARRAY3D_DESCRIPTOR_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -4570,18 +4269,12 @@ cdef class CUDA_ARRAY_SPARSE_PROPERTIES_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_ARRAY_SPARSE_PROPERTIES_st *>calloc(1, sizeof(ccuda.CUDA_ARRAY_SPARSE_PROPERTIES_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_ARRAY_SPARSE_PROPERTIES_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_ARRAY_SPARSE_PROPERTIES_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._tileExtent = _CUDA_ARRAY_SPARSE_PROPERTIES_v1_CUDA_ARRAY_SPARSE_PROPERTIES_v1_CUDA_ARRAY_SPARSE_PROPERTIES_st_tileExtent_s(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -4658,18 +4351,12 @@ cdef class CUDA_ARRAY_MEMORY_REQUIREMENTS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_ARRAY_MEMORY_REQUIREMENTS_st *>calloc(1, sizeof(ccuda.CUDA_ARRAY_MEMORY_REQUIREMENTS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_ARRAY_MEMORY_REQUIREMENTS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_ARRAY_MEMORY_REQUIREMENTS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5118,18 +4805,12 @@ cdef class CUDA_RESOURCE_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_RESOURCE_DESC_st *>calloc(1, sizeof(ccuda.CUDA_RESOURCE_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_RESOURCE_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_RESOURCE_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._res = _CUDA_RESOURCE_DESC_v1_CUDA_RESOURCE_DESC_v1_CUDA_RESOURCE_DESC_st_res_u(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5204,18 +4885,12 @@ cdef class CUDA_TEXTURE_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_TEXTURE_DESC_st *>calloc(1, sizeof(ccuda.CUDA_TEXTURE_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_TEXTURE_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_TEXTURE_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5339,18 +5014,12 @@ cdef class CUDA_RESOURCE_VIEW_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_RESOURCE_VIEW_DESC_st *>calloc(1, sizeof(ccuda.CUDA_RESOURCE_VIEW_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_RESOURCE_VIEW_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_RESOURCE_VIEW_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5453,18 +5122,12 @@ cdef class CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st *>calloc(1, sizeof(ccuda.CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5527,19 +5190,13 @@ cdef class CUDA_LAUNCH_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_LAUNCH_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_LAUNCH_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_LAUNCH_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_LAUNCH_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._function = CUfunction(_ptr=<void_ptr>&self._ptr[0].function)
         self._hStream = CUstream(_ptr=<void_ptr>&self._ptr[0].hStream)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5778,18 +5435,12 @@ cdef class CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st *>calloc(1, sizeof(ccuda.CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._handle = _CUDA_EXTERNAL_MEMORY_HANDLE_DESC_v1_CUDA_EXTERNAL_MEMORY_HANDLE_DESC_v1_CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st_handle_u(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5868,18 +5519,12 @@ cdef class CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st *>calloc(1, sizeof(ccuda.CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -5947,18 +5592,12 @@ cdef class CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st *>calloc(1, sizeof(ccuda.CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._arrayDesc = CUDA_ARRAY3D_DESCRIPTOR(_ptr=<void_ptr>&self._ptr[0].arrayDesc)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -6135,18 +5774,12 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st *>calloc(1, sizeof(ccuda.CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._handle = _CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_v1_CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_v1_CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st_handle_u(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -6420,18 +6053,12 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._params = _CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st_params_s(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -6707,18 +6334,12 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._params = _CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st_params_s(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -6780,18 +6401,12 @@ cdef class CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         if self._extSemArray is not NULL:
             free(self._extSemArray)
         if self._paramsArray is not NULL:
@@ -6878,18 +6493,12 @@ cdef class CUDA_EXT_SEM_WAIT_NODE_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_EXT_SEM_WAIT_NODE_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_EXT_SEM_WAIT_NODE_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_EXT_SEM_WAIT_NODE_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_EXT_SEM_WAIT_NODE_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         if self._extSemArray is not NULL:
             free(self._extSemArray)
         if self._paramsArray is not NULL:
@@ -7316,20 +6925,14 @@ cdef class CUarrayMapInfo_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUarrayMapInfo_st *>calloc(1, sizeof(ccuda.CUarrayMapInfo_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUarrayMapInfo_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUarrayMapInfo_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._resource = _CUarrayMapInfo_v1_CUarrayMapInfo_v1_CUarrayMapInfo_st_resource_u(_ptr=<void_ptr>self._ptr)
         self._subresource = _CUarrayMapInfo_v1_CUarrayMapInfo_v1_CUarrayMapInfo_st_subresource_u(_ptr=<void_ptr>self._ptr)
         self._memHandle = _CUarrayMapInfo_v1_CUarrayMapInfo_v1_CUarrayMapInfo_st_memHandle_u(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -7460,18 +7063,12 @@ cdef class CUmemLocation_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemLocation_st *>calloc(1, sizeof(ccuda.CUmemLocation_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemLocation_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemLocation_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -7596,19 +7193,13 @@ cdef class CUmemAllocationProp_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemAllocationProp_st *>calloc(1, sizeof(ccuda.CUmemAllocationProp_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemAllocationProp_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemAllocationProp_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._location = CUmemLocation(_ptr=<void_ptr>&self._ptr[0].location)
         self._allocFlags = _CUmemAllocationProp_v1_CUmemAllocationProp_v1_CUmemAllocationProp_st_allocFlags_s(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -7687,18 +7278,12 @@ cdef class CUmemAccessDesc_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemAccessDesc_st *>calloc(1, sizeof(ccuda.CUmemAccessDesc_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemAccessDesc_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemAccessDesc_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._location = CUmemLocation(_ptr=<void_ptr>&self._ptr[0].location)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -7760,18 +7345,12 @@ cdef class CUmemPoolProps_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemPoolProps_st *>calloc(1, sizeof(ccuda.CUmemPoolProps_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemPoolProps_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemPoolProps_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._location = CUmemLocation(_ptr=<void_ptr>&self._ptr[0].location)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -7846,18 +7425,12 @@ cdef class CUmemPoolPtrExportData_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemPoolPtrExportData_st *>calloc(1, sizeof(ccuda.CUmemPoolPtrExportData_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemPoolPtrExportData_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemPoolPtrExportData_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         pass
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -7908,19 +7481,13 @@ cdef class CUDA_MEM_ALLOC_NODE_PARAMS_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUDA_MEM_ALLOC_NODE_PARAMS_st *>calloc(1, sizeof(ccuda.CUDA_MEM_ALLOC_NODE_PARAMS_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUDA_MEM_ALLOC_NODE_PARAMS_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUDA_MEM_ALLOC_NODE_PARAMS_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._poolProps = CUmemPoolProps(_ptr=<void_ptr>&self._ptr[0].poolProps)
         self._dptr = CUdeviceptr(_ptr=<void_ptr>&self._ptr[0].dptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         if self._accessDescs is not NULL:
             free(self._accessDescs)
     def getPtr(self):
@@ -8087,18 +7654,12 @@ cdef class CUeglFrame_st:
     """
     def __cinit__(self, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUeglFrame_st *>calloc(1, sizeof(ccuda.CUeglFrame_st))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUeglFrame_st)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUeglFrame_st *>_ptr
     def __init__(self, void_ptr _ptr = 0):
         self._frame = _CUeglFrame_v1_CUeglFrame_v1_CUeglFrame_st_frame_u(_ptr=<void_ptr>self._ptr)
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
         pass
     def getPtr(self):
         return <void_ptr>self._ptr
@@ -8206,18 +7767,13 @@ cdef class cuuint32_t:
     """
     def __cinit__(self, uint32_t init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.cuuint32_t *>calloc(1, sizeof(ccuda.cuuint32_t))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.cuuint32_t)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.cuuint32_t *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<cuuint32_t ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8237,18 +7793,13 @@ cdef class cuuint64_t:
     """
     def __cinit__(self, uint64_t init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.cuuint64_t *>calloc(1, sizeof(ccuda.cuuint64_t))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.cuuint64_t)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.cuuint64_t *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<cuuint64_t ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8268,18 +7819,13 @@ cdef class CUdeviceptr_v2:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUdeviceptr_v2 *>calloc(1, sizeof(ccuda.CUdeviceptr_v2))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUdeviceptr_v2)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUdeviceptr_v2 *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUdeviceptr_v2 ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8299,18 +7845,13 @@ cdef class CUdeviceptr:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUdeviceptr *>calloc(1, sizeof(ccuda.CUdeviceptr))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUdeviceptr)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUdeviceptr *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUdeviceptr ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8330,18 +7871,13 @@ cdef class CUdevice_v1:
     """
     def __cinit__(self, int init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUdevice_v1 *>calloc(1, sizeof(ccuda.CUdevice_v1))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUdevice_v1)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUdevice_v1 *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUdevice_v1 ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8361,18 +7897,13 @@ cdef class CUdevice:
     """
     def __cinit__(self, int init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUdevice *>calloc(1, sizeof(ccuda.CUdevice))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUdevice)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUdevice *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUdevice ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8392,18 +7923,13 @@ cdef class CUtexObject_v1:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUtexObject_v1 *>calloc(1, sizeof(ccuda.CUtexObject_v1))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUtexObject_v1)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUtexObject_v1 *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUtexObject_v1 ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8423,18 +7949,13 @@ cdef class CUtexObject:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUtexObject *>calloc(1, sizeof(ccuda.CUtexObject))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUtexObject)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUtexObject *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUtexObject ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8454,18 +7975,13 @@ cdef class CUsurfObject_v1:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUsurfObject_v1 *>calloc(1, sizeof(ccuda.CUsurfObject_v1))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUsurfObject_v1)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUsurfObject_v1 *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUsurfObject_v1 ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8485,18 +8001,13 @@ cdef class CUsurfObject:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUsurfObject *>calloc(1, sizeof(ccuda.CUsurfObject))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUsurfObject)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUsurfObject *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUsurfObject ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8516,18 +8027,13 @@ cdef class CUmemGenericAllocationHandle_v1:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemGenericAllocationHandle_v1 *>calloc(1, sizeof(ccuda.CUmemGenericAllocationHandle_v1))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemGenericAllocationHandle_v1)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemGenericAllocationHandle_v1 *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUmemGenericAllocationHandle_v1 ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8547,18 +8053,13 @@ cdef class CUmemGenericAllocationHandle:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.CUmemGenericAllocationHandle *>calloc(1, sizeof(ccuda.CUmemGenericAllocationHandle))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.CUmemGenericAllocationHandle)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.CUmemGenericAllocationHandle *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<CUmemGenericAllocationHandle ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8578,18 +8079,13 @@ cdef class GLenum:
     """
     def __cinit__(self, unsigned int init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.GLenum *>calloc(1, sizeof(ccuda.GLenum))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.GLenum)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.GLenum *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<GLenum ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8609,18 +8105,13 @@ cdef class GLuint:
     """
     def __cinit__(self, unsigned int init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.GLuint *>calloc(1, sizeof(ccuda.GLuint))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.GLuint)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.GLuint *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<GLuint ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8640,18 +8131,13 @@ cdef class EGLint:
     """
     def __cinit__(self, unsigned int init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.EGLint *>calloc(1, sizeof(ccuda.EGLint))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.EGLint)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.EGLint *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<EGLint ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8671,18 +8157,13 @@ cdef class VdpDevice:
     """
     def __cinit__(self, uint32_t init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.VdpDevice *>calloc(1, sizeof(ccuda.VdpDevice))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.VdpDevice)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.VdpDevice *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<VdpDevice ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8702,18 +8183,13 @@ cdef class VdpGetProcAddress:
     """
     def __cinit__(self, unsigned long long init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.VdpGetProcAddress *>calloc(1, sizeof(ccuda.VdpGetProcAddress))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.VdpGetProcAddress)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.VdpGetProcAddress *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<VdpGetProcAddress ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8733,18 +8209,13 @@ cdef class VdpVideoSurface:
     """
     def __cinit__(self, uint32_t init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.VdpVideoSurface *>calloc(1, sizeof(ccuda.VdpVideoSurface))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.VdpVideoSurface)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.VdpVideoSurface *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<VdpVideoSurface ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8764,18 +8235,13 @@ cdef class VdpOutputSurface:
     """
     def __cinit__(self, uint32_t init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <ccuda.VdpOutputSurface *>calloc(1, sizeof(ccuda.VdpOutputSurface))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(ccuda.VdpOutputSurface)))
+            self._ptr = &self._val
         else:
-            self._ptr_owner = False
             self._ptr = <ccuda.VdpOutputSurface *>_ptr
         if init_value:
             self._ptr[0] = init_value
     def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
+        pass
     def __repr__(self):
         return '<VdpOutputSurface ' + str(self.__int__()) + '>'
     def __int__(self):
@@ -8870,8 +8336,6 @@ def cuInit(unsigned int Flags):
         CUDA_ERROR_INVALID_DEVICE
         CUDA_ERROR_SYSTEM_DRIVER_MISMATCH
         CUDA_ERROR_COMPAT_NOT_SUPPORTED_ON_DEVICE
-    None
-        None
     """
     err = ccuda.cuInit(Flags)
     return (CUresult(err),)
@@ -8983,7 +8447,7 @@ def cuDeviceGetName(int length, dev):
     ----------
     length : int
         Maximum length of string to store in `name`
-    dev : Any
+    dev : CUdevice
         Device to get identifier string for
 
     Returns
@@ -9037,7 +8501,7 @@ def cuDeviceGetUuid(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device to get identifier string for
 
     Returns
@@ -9087,7 +8551,7 @@ def cuDeviceGetUuid_v2(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device to get identifier string for
 
     Returns
@@ -9134,7 +8598,7 @@ def cuDeviceGetLuid(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device to get identifier string for
 
     Returns
@@ -9184,7 +8648,7 @@ def cuDeviceTotalMem(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device handle
 
     Returns
@@ -9237,7 +8701,7 @@ def cuDeviceGetTexture1DLinearMaxWidth(pformat not None : CUarray_format, unsign
         Texture format.
     numChannels : unsigned
         Number of channels per texture element.
-    dev : Any
+    dev : CUdevice
         Device handle.
 
     Returns
@@ -9506,7 +8970,7 @@ def cuDeviceGetAttribute(attrib not None : CUdevice_attribute, dev):
     ----------
     attrib : CUdevice_attribute
         Device attribute to query
-    dev : Any
+    dev : CUdevice
         Device handle
 
     Returns
@@ -9577,7 +9041,7 @@ def cuDeviceGetNvSciSyncAttributes(dev, int flags):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Valid Cuda Device to get NvSciSync attributes for.
     flags : int
         flags describing NvSciSync usage.
@@ -9586,7 +9050,7 @@ def cuDeviceGetNvSciSyncAttributes(dev, int flags):
     -------
     CUresult
 
-    nvSciSyncAttrList : int
+    nvSciSyncAttrList : Any
         Return NvSciSync attributes supported.
 
     See Also
@@ -9619,13 +9083,18 @@ def cuDeviceSetMemPool(dev, pool):
     allocates from the current mempool of the provided stream's device. By
     default, a device's current memory pool is its default memory pool.
 
+    Parameters
+    ----------
+    dev : CUdevice
+        None
+    pool : CUmemoryPool or cudaMemPool_t
+        None
+
     Returns
     -------
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -9673,12 +9142,17 @@ def cuDeviceGetMemPool(dev):
     device. Otherwise the returned pool must have been set with
     cuDeviceSetMemPool.
 
+    Parameters
+    ----------
+    dev : CUdevice
+        None
+
     Returns
     -------
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
+    pool : CUmemoryPool
         None
 
     See Also
@@ -9708,6 +9182,11 @@ def cuDeviceGetDefaultMemPool(dev):
     The default mempool of a device contains device memory from that
     device.
 
+    Parameters
+    ----------
+    dev : CUdevice
+        None
+
     Returns
     -------
     CUresult
@@ -9717,7 +9196,7 @@ def cuDeviceGetDefaultMemPool(dev):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_DEVICE
         CUDA_ERROR_NOT_SUPPORTED
-    None
+    pool_out : CUmemoryPool
         None
 
     See Also
@@ -9777,8 +9256,6 @@ def cuFlushGPUDirectRDMAWrites(target not None : CUflushGPUDirectRDMAWritesTarge
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
     """
     cdef ccuda.CUflushGPUDirectRDMAWritesTarget ctarget = target.value
     cdef ccuda.CUflushGPUDirectRDMAWritesScope cscope = scope.value
@@ -9818,7 +9295,7 @@ def cuDeviceGetProperties(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device to get properties for
 
     Returns
@@ -9870,7 +9347,7 @@ def cuDeviceComputeCapability(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device handle
 
     Returns
@@ -9936,7 +9413,7 @@ def cuDevicePrimaryCtxRetain(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device for which primary context is requested
 
     Returns
@@ -10002,7 +9479,7 @@ def cuDevicePrimaryCtxRelease(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device which primary context is released
 
     Returns
@@ -10013,8 +9490,6 @@ def cuDevicePrimaryCtxRelease(dev):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_DEVICE
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -10087,7 +9562,7 @@ def cuDevicePrimaryCtxSetFlags(dev, unsigned int flags):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device for which the primary context flags are set
     flags : unsigned int
         New flags for the device
@@ -10100,8 +9575,6 @@ def cuDevicePrimaryCtxSetFlags(dev, unsigned int flags):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_DEVICE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -10134,7 +9607,7 @@ def cuDevicePrimaryCtxGetState(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device to get primary context flags for
 
     Returns
@@ -10188,7 +9661,7 @@ def cuDevicePrimaryCtxReset(dev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device for which primary context is destroyed
 
     Returns
@@ -10199,8 +9672,6 @@ def cuDevicePrimaryCtxReset(dev):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_DEVICE
         CUDA_ERROR_PRIMARY_CONTEXT_ACTIVE
-    None
-        None
 
     See Also
     --------
@@ -10244,7 +9715,7 @@ def cuDeviceGetExecAffinitySupport(typename not None : CUexecAffinityType, dev):
     ----------
     typename : CUexecAffinityType
         Execution affinity type to query
-    dev : Any
+    dev : CUdevice
         Device handle
 
     Returns
@@ -10338,7 +9809,7 @@ def cuCtxCreate(unsigned int flags, dev):
     ----------
     flags : unsigned int
         Context creation flags
-    dev : Any
+    dev : CUdevice
         Device to create context on
 
     Returns
@@ -10468,7 +9939,7 @@ def cuCtxCreate_v3(paramsArray : List[CUexecAffinityParam], int numParams, unsig
         Number of execution affinity parameters
     flags : unsigned int
         Context creation flags
-    dev : Any
+    dev : CUdevice
         Device to create context on
 
     Returns
@@ -10555,7 +10026,7 @@ def cuCtxDestroy(ctx):
 
     Parameters
     ----------
-    ctx : Any
+    ctx : CUcontext
         Context to destroy
 
     Returns
@@ -10566,8 +10037,6 @@ def cuCtxDestroy(ctx):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -10610,7 +10079,7 @@ def cuCtxPushCurrent(ctx):
 
     Parameters
     ----------
-    ctx : Any
+    ctx : CUcontext
         Context to push
 
     Returns
@@ -10621,8 +10090,6 @@ def cuCtxPushCurrent(ctx):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -10707,7 +10174,7 @@ def cuCtxSetCurrent(ctx):
 
     Parameters
     ----------
-    ctx : Any
+    ctx : CUcontext
         Context to bind to the calling CPU thread
 
     Returns
@@ -10717,8 +10184,6 @@ def cuCtxSetCurrent(ctx):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -10855,8 +10320,6 @@ def cuCtxSynchronize():
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -10959,8 +10422,6 @@ def cuCtxSetLimit(limit not None : CUlimit, size_t value):
         CUDA_ERROR_UNSUPPORTED_LIMIT
         CUDA_ERROR_OUT_OF_MEMORY
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -11124,8 +10585,6 @@ def cuCtxSetCacheConfig(config not None : CUfunc_cache):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -11237,8 +10696,6 @@ def cuCtxSetSharedMemConfig(config not None : CUsharedconfig):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -11277,7 +10734,7 @@ def cuCtxGetApiVersion(ctx):
 
     Parameters
     ----------
-    ctx : Any
+    ctx : CUcontext
         Context to check
 
     Returns
@@ -11378,8 +10835,6 @@ def cuCtxResetPersistingL2Cache():
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
     """
     err = ccuda.cuCtxResetPersistingL2Cache()
     return (CUresult(err),)
@@ -11481,7 +10936,7 @@ def cuCtxDetach(ctx):
 
     Parameters
     ----------
-    ctx : Any
+    ctx : CUcontext
         Context to destroy
 
     Returns
@@ -11491,8 +10946,6 @@ def cuCtxDetach(ctx):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -11754,7 +11207,7 @@ def cuModuleUnload(hmod):
 
     Parameters
     ----------
-    hmod : Any
+    hmod : CUmodule
         Module to unload
 
     Returns
@@ -11765,8 +11218,6 @@ def cuModuleUnload(hmod):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -11801,7 +11252,7 @@ def cuModuleGetFunction(hmod, char* name):
 
     Parameters
     ----------
-    hmod : Any
+    hmod : CUmodule
         Module to retrieve function from
     name : bytes
         Name of function to retrieve
@@ -11854,7 +11305,7 @@ def cuModuleGetGlobal(hmod, char* name):
 
     Parameters
     ----------
-    hmod : Any
+    hmod : CUmodule
         Module to retrieve global from
     name : bytes
         Name of global to retrieve
@@ -11912,7 +11363,7 @@ def cuModuleGetTexRef(hmod, char* name):
 
     Parameters
     ----------
-    hmod : Any
+    hmod : CUmodule
         Module to retrieve texture reference from
     name : bytes
         Name of texture reference to retrieve
@@ -11965,7 +11416,7 @@ def cuModuleGetSurfRef(hmod, char* name):
 
     Parameters
     ----------
-    hmod : Any
+    hmod : CUmodule
         Module to retrieve surface reference from
     name : bytes
         Name of surface reference to retrieve
@@ -12087,7 +11538,7 @@ def cuLinkAddData(state, typename not None : CUjitInputType, data, size_t size, 
 
     Parameters
     ----------
-    state : Any
+    state : CUlinkState
         A pending linker action.
     typename : CUjitInputType
         The type of the input data.
@@ -12116,8 +11567,6 @@ def cuLinkAddData(state, typename not None : CUjitInputType, data, size_t size, 
         CUDA_ERROR_UNSUPPORTED_PTX_VERSION
         CUDA_ERROR_OUT_OF_MEMORY
         CUDA_ERROR_NO_BINARY_FOR_GPU
-    None
-        None
 
     See Also
     --------
@@ -12167,7 +11616,7 @@ def cuLinkAddFile(state, typename not None : CUjitInputType, char* path, unsigne
 
     Parameters
     ----------
-    state : Any
+    state : CUlinkState
         A pending linker action
     typename : CUjitInputType
         The type of the input data
@@ -12193,8 +11642,6 @@ def cuLinkAddFile(state, typename not None : CUjitInputType, char* path, unsigne
         CUDA_ERROR_UNSUPPORTED_PTX_VERSION
         CUDA_ERROR_OUT_OF_MEMORY
         CUDA_ERROR_NO_BINARY_FOR_GPU
-    None
-        None
 
     See Also
     --------
@@ -12237,7 +11684,7 @@ def cuLinkComplete(state):
 
     Parameters
     ----------
-    state : Any
+    state : CUlinkState
         A pending linker invocation
 
     Returns
@@ -12246,7 +11693,7 @@ def cuLinkComplete(state):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_OUT_OF_MEMORY
-    cubinOut : int
+    cubinOut : Any
         On success, this will point to the output image
     sizeOut : int
         Optional parameter to receive the size of the generated image
@@ -12280,7 +11727,7 @@ def cuLinkDestroy(state):
 
     Parameters
     ----------
-    state : Any
+    state : CUlinkState
         State object for the linker invocation
 
     Returns
@@ -12288,8 +11735,6 @@ def cuLinkDestroy(state):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -12570,7 +12015,7 @@ def cuMemFree(dptr):
 
     Parameters
     ----------
-    dptr : Any
+    dptr : CUdeviceptr
         Pointer to memory to free
 
     Returns
@@ -12581,8 +12026,6 @@ def cuMemFree(dptr):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -12649,7 +12092,7 @@ def cuMemGetAddressRange(dptr):
 
     Parameters
     ----------
-    dptr : Any
+    dptr : CUdeviceptr
         Device pointer to query
 
     Returns
@@ -12759,7 +12202,7 @@ def cuMemAllocHost(size_t bytesize):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_OUT_OF_MEMORY
-    pp : int
+    pp : Any
         Returned host pointer to page-locked memory
 
     See Also
@@ -12827,8 +12270,6 @@ def cuMemFreeHost(p):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -12947,7 +12388,7 @@ def cuMemHostAlloc(size_t bytesize, unsigned int Flags):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_OUT_OF_MEMORY
-    pp : int
+    pp : Any
         Returned host pointer to page-locked memory
 
     See Also
@@ -13337,7 +12778,7 @@ def cuDeviceGetPCIBusId(int length, dev):
     ----------
     length : int
         Maximum length of string to store in `name`
-    dev : Any
+    dev : CUdevice
         Device to get identifier string for
 
     Returns
@@ -13507,7 +12948,7 @@ def cuIpcGetMemHandle(dptr):
 
     Parameters
     ----------
-    dptr : Any
+    dptr : CUdeviceptr
         Base pointer to previously allocated device memory
 
     Returns
@@ -13635,7 +13076,7 @@ def cuIpcCloseMemHandle(dptr):
 
     Parameters
     ----------
-    dptr : Any
+    dptr : CUdeviceptr
         Device pointer returned by cuIpcOpenMemHandle
 
     Returns
@@ -13646,8 +13087,6 @@ def cuIpcCloseMemHandle(dptr):
         CUDA_ERROR_MAP_FAILED
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -13760,8 +13199,6 @@ def cuMemHostRegister(p, size_t bytesize, unsigned int Flags):
         CUDA_ERROR_HOST_MEMORY_ALREADY_REGISTERED
         CUDA_ERROR_NOT_PERMITTED
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -13799,8 +13236,6 @@ def cuMemHostUnregister(p):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_OUT_OF_MEMORY
         CUDA_ERROR_HOST_MEMORY_NOT_REGISTERED
-    None
-        None
 
     See Also
     --------
@@ -13825,9 +13260,9 @@ def cuMemcpy(dst, src, size_t ByteCount):
 
     Parameters
     ----------
-    dst : Any
+    dst : CUdeviceptr
         Destination unified virtual address space pointer
-    src : Any
+    src : CUdeviceptr
         Source unified virtual address space pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -13840,8 +13275,6 @@ def cuMemcpy(dst, src, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -13920,13 +13353,13 @@ def cuMemcpyPeer(dstDevice, dstContext, srcDevice, srcContext, size_t ByteCount)
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
-    dstContext : Any
+    dstContext : CUcontext
         Destination context
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
-    srcContext : Any
+    srcContext : CUcontext
         Source context
     ByteCount : size_t
         Size of memory copy in bytes
@@ -13939,8 +13372,6 @@ def cuMemcpyPeer(dstDevice, dstContext, srcDevice, srcContext, size_t ByteCount)
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14004,7 +13435,7 @@ def cuMemcpyHtoD(dstDevice, srcHost, size_t ByteCount):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     srcHost : Any
         Source host pointer
@@ -14019,8 +13450,6 @@ def cuMemcpyHtoD(dstDevice, srcHost, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14091,7 +13520,7 @@ def cuMemcpyDtoH(dstHost, srcDevice, size_t ByteCount):
     ----------
     dstHost : Any
         Destination host pointer
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -14104,8 +13533,6 @@ def cuMemcpyDtoH(dstHost, srcDevice, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14174,9 +13601,9 @@ def cuMemcpyDtoD(dstDevice, srcDevice, size_t ByteCount):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -14189,8 +13616,6 @@ def cuMemcpyDtoD(dstDevice, srcDevice, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14268,11 +13693,11 @@ def cuMemcpyDtoA(dstArray, size_t dstOffset, srcDevice, size_t ByteCount):
 
     Parameters
     ----------
-    dstArray : Any
+    dstArray : CUarray
         Destination array
     dstOffset : size_t
         Offset in bytes of destination array
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -14285,8 +13710,6 @@ def cuMemcpyDtoA(dstArray, size_t dstOffset, srcDevice, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14365,9 +13788,9 @@ def cuMemcpyAtoD(dstDevice, srcArray, size_t srcOffset, size_t ByteCount):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
-    srcArray : Any
+    srcArray : CUarray
         Source array
     srcOffset : size_t
         Offset in bytes of source array
@@ -14382,8 +13805,6 @@ def cuMemcpyAtoD(dstDevice, srcArray, size_t srcOffset, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14460,7 +13881,7 @@ def cuMemcpyHtoA(dstArray, size_t dstOffset, srcHost, size_t ByteCount):
 
     Parameters
     ----------
-    dstArray : Any
+    dstArray : CUarray
         Destination array
     dstOffset : size_t
         Offset in bytes of destination array
@@ -14477,8 +13898,6 @@ def cuMemcpyHtoA(dstArray, size_t dstOffset, srcHost, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14549,7 +13968,7 @@ def cuMemcpyAtoH(dstHost, srcArray, size_t srcOffset, size_t ByteCount):
     ----------
     dstHost : Any
         Destination device pointer
-    srcArray : Any
+    srcArray : CUarray
         Source array
     srcOffset : size_t
         Offset in bytes of source array
@@ -14564,8 +13983,6 @@ def cuMemcpyAtoH(dstHost, srcArray, size_t srcOffset, size_t ByteCount):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14637,11 +14054,11 @@ def cuMemcpyAtoA(dstArray, size_t dstOffset, srcArray, size_t srcOffset, size_t 
 
     Parameters
     ----------
-    dstArray : Any
+    dstArray : CUarray
         Destination array
     dstOffset : size_t
         Offset in bytes of destination array
-    srcArray : Any
+    srcArray : CUarray
         Source array
     srcOffset : size_t
         Offset in bytes of source array
@@ -14656,8 +14073,6 @@ def cuMemcpyAtoA(dstArray, size_t dstOffset, srcArray, size_t srcOffset, size_t 
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14817,8 +14232,6 @@ def cuMemcpy2D(pCopy : CUDA_MEMCPY2D):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -14961,8 +14374,6 @@ def cuMemcpy2DUnaligned(pCopy : CUDA_MEMCPY2D):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -15108,8 +14519,6 @@ def cuMemcpy3D(pCopy : CUDA_MEMCPY3D):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -15177,8 +14586,6 @@ def cuMemcpy3DPeer(pCopy : CUDA_MEMCPY3D_PEER):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -15206,9 +14613,9 @@ def cuMemcpyAsync(dst, src, size_t ByteCount, hStream):
 
     Parameters
     ----------
-    dst : Any
+    dst : CUdeviceptr
         Destination unified virtual address space pointer
-    src : Any
+    src : CUdeviceptr
         Source unified virtual address space pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -15224,8 +14631,6 @@ def cuMemcpyAsync(dst, src, size_t ByteCount, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -15321,13 +14726,13 @@ def cuMemcpyPeerAsync(dstDevice, dstContext, srcDevice, srcContext, size_t ByteC
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
-    dstContext : Any
+    dstContext : CUcontext
         Destination context
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
-    srcContext : Any
+    srcContext : CUcontext
         Source context
     ByteCount : size_t
         Size of memory copy in bytes
@@ -15343,8 +14748,6 @@ def cuMemcpyPeerAsync(dstDevice, dstContext, srcDevice, srcContext, size_t ByteC
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -15418,7 +14821,7 @@ def cuMemcpyHtoDAsync(dstDevice, srcHost, size_t ByteCount, hStream):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     srcHost : Any
         Source host pointer
@@ -15436,8 +14839,6 @@ def cuMemcpyHtoDAsync(dstDevice, srcHost, size_t ByteCount, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -15524,7 +14925,7 @@ def cuMemcpyDtoHAsync(dstHost, srcDevice, size_t ByteCount, hStream):
     ----------
     dstHost : Any
         Destination host pointer
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -15540,8 +14941,6 @@ def cuMemcpyDtoHAsync(dstHost, srcDevice, size_t ByteCount, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -15626,9 +15025,9 @@ def cuMemcpyDtoDAsync(dstDevice, srcDevice, size_t ByteCount, hStream):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
-    srcDevice : Any
+    srcDevice : CUdeviceptr
         Source device pointer
     ByteCount : size_t
         Size of memory copy in bytes
@@ -15644,8 +15043,6 @@ def cuMemcpyDtoDAsync(dstDevice, srcDevice, size_t ByteCount, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -15740,7 +15137,7 @@ def cuMemcpyHtoAAsync(dstArray, size_t dstOffset, srcHost, size_t ByteCount, hSt
 
     Parameters
     ----------
-    dstArray : Any
+    dstArray : CUarray
         Destination array
     dstOffset : size_t
         Offset in bytes of destination array
@@ -15760,8 +15157,6 @@ def cuMemcpyHtoAAsync(dstArray, size_t dstOffset, srcHost, size_t ByteCount, hSt
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -15848,7 +15243,7 @@ def cuMemcpyAtoHAsync(dstHost, srcArray, size_t srcOffset, size_t ByteCount, hSt
     ----------
     dstHost : Any
         Destination pointer
-    srcArray : Any
+    srcArray : CUarray
         Source array
     srcOffset : size_t
         Offset in bytes of source array
@@ -15866,8 +15261,6 @@ def cuMemcpyAtoHAsync(dstHost, srcArray, size_t srcOffset, size_t ByteCount, hSt
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -16036,8 +15429,6 @@ def cuMemcpy2DAsync(pCopy : CUDA_MEMCPY2D, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -16202,8 +15593,6 @@ def cuMemcpy3DAsync(pCopy : CUDA_MEMCPY3D, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -16289,8 +15678,6 @@ def cuMemcpy3DPeerAsync(pCopy : CUDA_MEMCPY3D_PEER, hStream):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16323,7 +15710,7 @@ def cuMemsetD8(dstDevice, unsigned char uc, size_t N):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     uc : unsigned char
         Value to set
@@ -16338,8 +15725,6 @@ def cuMemsetD8(dstDevice, unsigned char uc, size_t N):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16410,7 +15795,7 @@ def cuMemsetD16(dstDevice, unsigned short us, size_t N):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     us : unsigned short
         Value to set
@@ -16425,8 +15810,6 @@ def cuMemsetD16(dstDevice, unsigned short us, size_t N):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16497,7 +15880,7 @@ def cuMemsetD32(dstDevice, unsigned int ui, size_t N):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     ui : unsigned int
         Value to set
@@ -16512,8 +15895,6 @@ def cuMemsetD32(dstDevice, unsigned int ui, size_t N):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16587,7 +15968,7 @@ def cuMemsetD2D8(dstDevice, size_t dstPitch, unsigned char uc, size_t Width, siz
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     dstPitch : size_t
         Pitch of destination device pointer(Unused if `Height` is 1)
@@ -16606,8 +15987,6 @@ def cuMemsetD2D8(dstDevice, size_t dstPitch, unsigned char uc, size_t Width, siz
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16682,7 +16061,7 @@ def cuMemsetD2D16(dstDevice, size_t dstPitch, unsigned short us, size_t Width, s
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     dstPitch : size_t
         Pitch of destination device pointer(Unused if `Height` is 1)
@@ -16701,8 +16080,6 @@ def cuMemsetD2D16(dstDevice, size_t dstPitch, unsigned short us, size_t Width, s
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16777,7 +16154,7 @@ def cuMemsetD2D32(dstDevice, size_t dstPitch, unsigned int ui, size_t Width, siz
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     dstPitch : size_t
         Pitch of destination device pointer(Unused if `Height` is 1)
@@ -16796,8 +16173,6 @@ def cuMemsetD2D32(dstDevice, size_t dstPitch, unsigned int ui, size_t Width, siz
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16867,7 +16242,7 @@ def cuMemsetD8Async(dstDevice, unsigned char uc, size_t N, hStream):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     uc : unsigned char
         Value to set
@@ -16884,8 +16259,6 @@ def cuMemsetD8Async(dstDevice, unsigned char uc, size_t N, hStream):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -16966,7 +16339,7 @@ def cuMemsetD16Async(dstDevice, unsigned short us, size_t N, hStream):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     us : unsigned short
         Value to set
@@ -16983,8 +16356,6 @@ def cuMemsetD16Async(dstDevice, unsigned short us, size_t N, hStream):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -17065,7 +16436,7 @@ def cuMemsetD32Async(dstDevice, unsigned int ui, size_t N, hStream):
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     ui : unsigned int
         Value to set
@@ -17082,8 +16453,6 @@ def cuMemsetD32Async(dstDevice, unsigned int ui, size_t N, hStream):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -17167,7 +16536,7 @@ def cuMemsetD2D8Async(dstDevice, size_t dstPitch, unsigned char uc, size_t Width
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     dstPitch : size_t
         Pitch of destination device pointer(Unused if `Height` is 1)
@@ -17188,8 +16557,6 @@ def cuMemsetD2D8Async(dstDevice, size_t dstPitch, unsigned char uc, size_t Width
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -17274,7 +16641,7 @@ def cuMemsetD2D16Async(dstDevice, size_t dstPitch, unsigned short us, size_t Wid
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     dstPitch : size_t
         Pitch of destination device pointer(Unused if `Height` is 1)
@@ -17295,8 +16662,6 @@ def cuMemsetD2D16Async(dstDevice, size_t dstPitch, unsigned short us, size_t Wid
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -17381,7 +16746,7 @@ def cuMemsetD2D32Async(dstDevice, size_t dstPitch, unsigned int ui, size_t Width
 
     Parameters
     ----------
-    dstDevice : Any
+    dstDevice : CUdeviceptr
         Destination device pointer
     dstPitch : size_t
         Pitch of destination device pointer(Unused if `Height` is 1)
@@ -17402,8 +16767,6 @@ def cuMemsetD2D32Async(dstDevice, size_t dstPitch, unsigned int ui, size_t Width
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -17592,7 +16955,7 @@ def cuArrayGetDescriptor(hArray):
 
     Parameters
     ----------
-    hArray : Any
+    hArray : CUarray
         Array to get descriptor of
 
     Returns
@@ -17684,7 +17047,7 @@ def cuArrayGetSparseProperties(array):
 
     Parameters
     ----------
-    array : Any
+    array : CUarray
         CUDA array to get the sparse properties of
 
     Returns
@@ -17737,7 +17100,7 @@ def cuMipmappedArrayGetSparseProperties(mipmap):
 
     Parameters
     ----------
-    mipmap : Any
+    mipmap : CUmipmappedArray
         CUDA mipmapped array to get the sparse properties of
 
     Returns
@@ -17783,9 +17146,9 @@ def cuArrayGetMemoryRequirements(array, device):
 
     Parameters
     ----------
-    array : Any
+    array : CUarray
         CUDA array to get the memory requirements of
-    device : Any
+    device : CUdevice
         Device to get the memory requirements for
 
     Returns
@@ -17841,9 +17204,9 @@ def cuMipmappedArrayGetMemoryRequirements(mipmap, device):
 
     Parameters
     ----------
-    mipmap : Any
+    mipmap : CUmipmappedArray
         CUDA mipmapped array to get the memory requirements of
-    device : Any
+    device : CUdevice
         Device to get the memory requirements for
 
     Returns
@@ -17903,7 +17266,7 @@ def cuArrayGetPlane(hArray, unsigned int planeIdx):
 
     Parameters
     ----------
-    hArray : Any
+    hArray : CUarray
         Multiplanar CUDA array
     planeIdx : unsigned int
         Plane index
@@ -17947,7 +17310,7 @@ def cuArrayDestroy(hArray):
 
     Parameters
     ----------
-    hArray : Any
+    hArray : CUarray
         Array to destroy
 
     Returns
@@ -17960,8 +17323,6 @@ def cuArrayDestroy(hArray):
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_ARRAY_IS_MAPPED
         CUDA_ERROR_CONTEXT_IS_DESTROYED
-    None
-        None
 
     See Also
     --------
@@ -18201,7 +17562,7 @@ def cuArray3DGetDescriptor(hArray):
 
     Parameters
     ----------
-    hArray : Any
+    hArray : CUarray
         3D array to get descriptor of
 
     Returns
@@ -18407,7 +17768,7 @@ def cuMipmappedArrayGetLevel(hMipmappedArray, unsigned int level):
 
     Parameters
     ----------
-    hMipmappedArray : Any
+    hMipmappedArray : CUmipmappedArray
         CUDA mipmapped array
     level : unsigned int
         Mipmap level
@@ -18453,7 +17814,7 @@ def cuMipmappedArrayDestroy(hMipmappedArray):
 
     Parameters
     ----------
-    hMipmappedArray : Any
+    hMipmappedArray : CUmipmappedArray
         Mipmapped array to destroy
 
     Returns
@@ -18466,8 +17827,6 @@ def cuMipmappedArrayDestroy(hMipmappedArray):
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_ARRAY_IS_MAPPED
         CUDA_ERROR_CONTEXT_IS_DESTROYED
-    None
-        None
 
     See Also
     --------
@@ -18505,7 +17864,7 @@ def cuMemAddressReserve(size_t size, size_t alignment, addr, unsigned long long 
         Size of the reserved virtual address range requested
     alignment : size_t
         Alignment of the reserved virtual address range requested
-    addr : Any
+    addr : CUdeviceptr
         Fixed starting address range requested
     flags : unsigned long long
         Currently unused, must be zero
@@ -18551,7 +17910,7 @@ def cuMemAddressFree(ptr, size_t size):
 
     Parameters
     ----------
-    ptr : Any
+    ptr : CUdeviceptr
         Starting address of the virtual address range to free
     size : size_t
         Size of the virtual address region to free
@@ -18565,8 +17924,6 @@ def cuMemAddressFree(ptr, size_t size):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_PERMITTED
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -18657,7 +18014,7 @@ def cuMemRelease(handle):
 
     Parameters
     ----------
-    handle : Any
+    handle : CUmemGenericAllocationHandle
         Value of handle which was returned previously by cuMemCreate.
 
     Returns
@@ -18669,8 +18026,6 @@ def cuMemRelease(handle):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_PERMITTED
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -18715,14 +18070,14 @@ def cuMemMap(ptr, size_t size, size_t offset, handle, unsigned long long flags):
 
     Parameters
     ----------
-    ptr : Any
+    ptr : CUdeviceptr
         Address where memory will be mapped.
     size : size_t
         Size of the memory mapping.
     offset : size_t
         Offset into the memory represented by - `handle` from which to
         start mapping    - Note: currently must be zero.
-    handle : Any
+    handle : CUmemGenericAllocationHandle
         Handle to a shareable memory
     flags : unsigned long long
         flags for future use, must be zero now.
@@ -18738,8 +18093,6 @@ def cuMemMap(ptr, size_t size, size_t offset, handle, unsigned long long flags):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_PERMITTED
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -18913,8 +18266,6 @@ def cuMemMapArrayAsync(mapInfoList : List[CUarrayMapInfo], unsigned int count, h
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -18971,7 +18322,7 @@ def cuMemUnmap(ptr, size_t size):
 
     Parameters
     ----------
-    ptr : Any
+    ptr : CUdeviceptr
         Starting address for the virtual address range to unmap
     size : size_t
         Size of the virtual address range to unmap
@@ -18985,8 +18336,6 @@ def cuMemUnmap(ptr, size_t size):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_PERMITTED
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -19017,7 +18366,7 @@ def cuMemSetAccess(ptr, size_t size, desc : List[CUmemAccessDesc], size_t count)
 
     Parameters
     ----------
-    ptr : Any
+    ptr : CUdeviceptr
         Starting address for the virtual address range
     size : size_t
         Length of the virtual address range
@@ -19034,8 +18383,6 @@ def cuMemSetAccess(ptr, size_t size, desc : List[CUmemAccessDesc], size_t count)
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_DEVICE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -19079,7 +18426,7 @@ def cuMemGetAccess(location : CUmemLocation, ptr):
     ----------
     location : CUmemLocation
         Location in which to check the flags for
-    ptr : Any
+    ptr : CUdeviceptr
         Address in which to check the access flags for
 
     Returns
@@ -19134,9 +18481,7 @@ def cuMemExportToShareableHandle(handle, handleType not None : CUmemAllocationHa
 
     Parameters
     ----------
-    shareableHandle : Any
-        Pointer to the location in which to store the requested handle type
-    handle : Any
+    handle : CUmemGenericAllocationHandle
         CUDA handle for the memory allocation
     handleType : CUmemAllocationHandleType
         Type of shareable handle requested (defines type and size of the
@@ -19153,8 +18498,8 @@ def cuMemExportToShareableHandle(handle, handleType not None : CUmemAllocationHa
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_PERMITTED
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
+    shareableHandle : Any
+        Pointer to the location in which to store the requested handle type
 
     See Also
     --------
@@ -19266,7 +18611,7 @@ def cuMemGetAllocationPropertiesFromHandle(handle):
 
     Parameters
     ----------
-    handle : Any
+    handle : CUmemGenericAllocationHandle
         Handle which to perform the query on
 
     Returns
@@ -19355,7 +18700,7 @@ def cuMemFreeAsync(dptr, hStream):
 
     Parameters
     ----------
-    dptr : Any
+    dptr : CUdeviceptr
         memory to free
     hStream : CUstream or cudaStream_t
         The stream establishing the stream ordering contract.
@@ -19375,8 +18720,6 @@ def cuMemFreeAsync(dptr, hStream):
         current
         context)
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     Notes
     -----
@@ -19485,7 +18828,7 @@ def cuMemPoolTrimTo(pool, size_t minBytesToKeep):
 
     Parameters
     ----------
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         The memory pool to trim
     minBytesToKeep : size_t
         If the pool has less than minBytesToKeep reserved, the TrimTo
@@ -19498,8 +18841,6 @@ def cuMemPoolTrimTo(pool, size_t minBytesToKeep):
         CUDA_SUCCESS
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -19558,7 +18899,7 @@ def cuMemPoolSetAttribute(pool, attr not None : CUmemPool_attribute, value):
 
     Parameters
     ----------
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         The memory pool to modify
     attr : CUmemPool_attribute
         The attribute to modify
@@ -19570,8 +18911,6 @@ def cuMemPoolSetAttribute(pool, attr not None : CUmemPool_attribute, value):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -19631,7 +18970,7 @@ def cuMemPoolGetAttribute(pool, attr not None : CUmemPool_attribute):
 
     Parameters
     ----------
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         The memory pool to get attributes of
     attr : CUmemPool_attribute
         The attribute to get
@@ -19675,7 +19014,7 @@ def cuMemPoolSetAccess(pool, map : List[CUmemAccessDesc], size_t count):
 
     Parameters
     ----------
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         The pool being modified
     map : List[CUmemAccessDesc]
         Array of access descriptors. Each descriptor instructs the access
@@ -19689,8 +19028,6 @@ def cuMemPoolSetAccess(pool, map : List[CUmemAccessDesc], size_t count):
         CUDA_SUCCESS
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -19783,6 +19120,11 @@ def cuMemPoolCreate(poolProps : CUmemPoolProps):
     By default, the pool's memory will be accessible from the device it is
     allocated on.
 
+    Parameters
+    ----------
+    poolProps : CUmemPoolProps
+        None
+
     Returns
     -------
     CUresult
@@ -19791,7 +19133,7 @@ def cuMemPoolCreate(poolProps : CUmemPoolProps):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_OUT_OF_MEMORY
         CUDA_ERROR_NOT_SUPPORTED
-    None
+    pool : CUmemoryPool
         None
 
     See Also
@@ -19825,13 +19167,16 @@ def cuMemPoolDestroy(pool):
     Destroying the current mempool of a device sets the default mempool of
     that device as the current mempool for that device.
 
+    Parameters
+    ----------
+    pool : CUmemoryPool or cudaMemPool_t
+        None
+
     Returns
     -------
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -19872,7 +19217,7 @@ def cuMemAllocFromPoolAsync(size_t bytesize, pool, hStream):
     ----------
     bytesize : size_t
         Number of bytes to allocate
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         The pool to allocate from
     hStream : CUstream or cudaStream_t
         The stream establishing the stream ordering semantic
@@ -19949,7 +19294,7 @@ def cuMemPoolExportToShareableHandle(pool, handleType not None : CUmemAllocation
 
     Parameters
     ----------
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         pool to export
     handleType : CUmemAllocationHandleType
         the type of handle to create
@@ -19963,7 +19308,7 @@ def cuMemPoolExportToShareableHandle(pool, handleType not None : CUmemAllocation
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_OUT_OF_MEMORY
-    handle_out : int
+    handle_out : Any
         Returned OS handle
 
     See Also
@@ -20055,7 +19400,7 @@ def cuMemPoolExportPointer(ptr):
 
     Parameters
     ----------
-    ptr : Any
+    ptr : CUdeviceptr
         pointer to memory being exported
 
     Returns
@@ -20102,7 +19447,7 @@ def cuMemPoolImportPointer(pool, shareData : CUmemPoolPtrExportData):
 
     Parameters
     ----------
-    pool : Any
+    pool : CUmemoryPool or cudaMemPool_t
         pool from which to import
     shareData : CUmemPoolPtrExportData
         data specifying the memory to import
@@ -20235,7 +19580,7 @@ def cuPointerGetAttribute(attribute not None : CUpointer_attribute, ptr):
     ----------
     attribute : CUpointer_attribute
         Pointer attribute to query
-    ptr : Any
+    ptr : CUdeviceptr
         Pointer
 
     Returns
@@ -20337,11 +19682,11 @@ def cuMemPrefetchAsync(devPtr, size_t count, dstDevice, hStream):
 
     Parameters
     ----------
-    devPtr : Any
+    devPtr : CUdeviceptr
         Pointer to be prefetched
     count : size_t
         Size in bytes
-    dstDevice : Any
+    dstDevice : CUdevice
         Destination device to prefetch to
     hStream : CUstream or cudaStream_t
         Stream to enqueue prefetch operation
@@ -20352,8 +19697,6 @@ def cuMemPrefetchAsync(devPtr, size_t count, dstDevice, hStream):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_DEVICE
-    None
-        None
 
     See Also
     --------
@@ -20523,13 +19866,13 @@ def cuMemAdvise(devPtr, size_t count, advice not None : CUmem_advise, device):
 
     Parameters
     ----------
-    devPtr : Any
+    devPtr : CUdeviceptr
         Pointer to memory to set the advice for
     count : size_t
         Size in bytes of the memory range
     advice : CUmem_advise
         Advice to be applied for the specified memory range
-    device : Any
+    device : CUdevice
         Device to apply the advice for
 
     Returns
@@ -20538,8 +19881,6 @@ def cuMemAdvise(devPtr, size_t count, advice not None : CUmem_advise, device):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_DEVICE
-    None
-        None
 
     See Also
     --------
@@ -20630,7 +19971,7 @@ def cuMemRangeGetAttribute(size_t dataSize, attribute not None : CUmem_range_att
         Array containing the size of data
     attribute : CUmem_range_attribute
         The attribute to query
-    devPtr : Any
+    devPtr : CUdeviceptr
         Start of the range to query
     count : size_t
         Size of the range to query
@@ -20696,7 +20037,7 @@ def cuMemRangeGetAttributes(dataSizes : List[int], attributes : List[CUmem_range
         attributes in this array should match)
     numAttributes : size_t
         Number of attributes to query
-    devPtr : Any
+    devPtr : CUdeviceptr
         Start of the range to query
     count : size_t
         Size of the range to query
@@ -20770,7 +20111,7 @@ def cuPointerSetAttribute(value, attribute not None : CUpointer_attribute, ptr):
         Pointer to memory containing the value to be set
     attribute : CUpointer_attribute
         Pointer attribute to set
-    ptr : Any
+    ptr : CUdeviceptr
         Pointer to a memory region allocated using CUDA memory allocation
         APIs
 
@@ -20783,8 +20124,6 @@ def cuPointerSetAttribute(value, attribute not None : CUpointer_attribute, ptr):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_DEVICE
-    None
-        None
 
     See Also
     --------
@@ -20843,7 +20182,7 @@ def cuPointerGetAttributes(unsigned int numAttributes, attributes : List[CUpoint
     attributes : List[CUpointer_attribute]
         An array of attributes to query (numAttributes and the number of
         attributes in this array should match)
-    ptr : Any
+    ptr : CUdeviceptr
         Pointer to query
 
     Returns
@@ -21177,7 +20516,7 @@ def cuStreamWaitEvent(hStream, hEvent, unsigned int Flags):
     ----------
     hStream : CUstream or cudaStream_t
         Stream to wait
-    hEvent : Any
+    hEvent : CUevent or cudaEvent_t
         Event to wait on (may not be NULL)
     Flags : unsigned int
         See CUevent_capture_flags
@@ -21190,8 +20529,6 @@ def cuStreamWaitEvent(hStream, hEvent, unsigned int Flags):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -21263,7 +20600,7 @@ def cuStreamAddCallback(hStream, callback, userData, unsigned int flags):
     ----------
     hStream : CUstream or cudaStream_t
         Stream to add callback to
-    callback : Any
+    callback : CUstreamCallback
         The function to call once preceding stream operations are complete
     userData : Any
         User specified data to be passed to the callback function
@@ -21279,8 +20616,6 @@ def cuStreamAddCallback(hStream, callback, userData, unsigned int flags):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -21357,8 +20692,6 @@ def cuStreamBeginCapture(hStream, mode not None : CUstreamCaptureMode):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -21440,8 +20773,8 @@ def cuThreadExchangeStreamCaptureMode(mode not None : CUstreamCaptureMode):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
+    mode : CUstreamCaptureMode
+        Pointer to mode value to swap with the current mode
 
     See Also
     --------
@@ -21579,12 +20912,19 @@ def cuStreamGetCaptureInfo(hStream):
     call returns CUDA_SUCCESS    - captureStatus is set to
     CU_STREAM_CAPTURE_STATUS_ACTIVE
 
+    Parameters
+    ----------
+    hStream : CUstream or cudaStream_t
+        None
+
     Returns
     -------
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_STREAM_CAPTURE_IMPLICIT
-    None
+    captureStatus_out : CUstreamCaptureStatus
+        None
+    id_out : cuuint64_t
         None
 
     See Also
@@ -21717,14 +21057,23 @@ def cuStreamUpdateCaptureDependencies(hStream, dependencies : List[CUgraphNode],
     minor versions to CUDA 11.0 should not use this API or provide a
     fallback.
 
+    Parameters
+    ----------
+    hStream : CUstream or cudaStream_t
+        None
+    dependencies : List[CUgraphNode]
+        None
+    numDependencies : size_t
+        None
+    flags : unsigned int
+        None
+
     Returns
     -------
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_ILLEGAL_STATE
-    None
-        None
 
     See Also
     --------
@@ -21830,7 +21179,7 @@ def cuStreamAttachMemAsync(hStream, dptr, size_t length, unsigned int flags):
     ----------
     hStream : CUstream or cudaStream_t
         Stream in which to enqueue the attach operation
-    dptr : Any
+    dptr : CUdeviceptr
         Pointer to memory (must be a pointer to managed memory or to a
         valid host-accessible region of system-allocated pageable memory)
     length : size_t
@@ -21847,8 +21196,6 @@ def cuStreamAttachMemAsync(hStream, dptr, size_t length, unsigned int flags):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -21907,8 +21254,6 @@ def cuStreamQuery(hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_READY
-    None
-        None
 
     See Also
     --------
@@ -21954,8 +21299,6 @@ def cuStreamSynchronize(hStream):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -22004,8 +21347,6 @@ def cuStreamDestroy(hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -22038,9 +21379,9 @@ def cuStreamCopyAttributes(dst, src):
 
     Parameters
     ----------
-    dst : Any
+    dst : CUstream or cudaStream_t
         Destination stream
-    src : Any
+    src : CUstream or cudaStream_t
         Source stream For list of attributes see CUstreamAttrID
 
     Returns
@@ -22048,8 +21389,6 @@ def cuStreamCopyAttributes(dst, src):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
     """
     cdef ccuda.CUstream csrc
     if src is None:
@@ -22135,8 +21474,6 @@ def cuStreamSetAttribute(hStream, attr not None : CUstreamAttrID, value : CUstre
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
     """
     cdef ccuda.CUstream chStream
     if hStream is None:
@@ -22222,7 +21559,7 @@ def cuEventRecord(hEvent, hStream):
 
     Parameters
     ----------
-    hEvent : Any
+    hEvent : CUevent or cudaEvent_t
         Event to record
     hStream : CUstream or cudaStream_t
         Stream to record event for
@@ -22236,8 +21573,6 @@ def cuEventRecord(hEvent, hStream):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -22299,7 +21634,7 @@ def cuEventRecordWithFlags(hEvent, hStream, unsigned int flags):
 
     Parameters
     ----------
-    hEvent : Any
+    hEvent : CUevent or cudaEvent_t
         Event to record
     hStream : CUstream or cudaStream_t
         Stream to record event for
@@ -22315,8 +21650,6 @@ def cuEventRecordWithFlags(hEvent, hStream, unsigned int flags):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -22367,7 +21700,7 @@ def cuEventQuery(hEvent):
 
     Parameters
     ----------
-    hEvent : Any
+    hEvent : CUevent or cudaEvent_t
         Event to query
 
     Returns
@@ -22379,8 +21712,6 @@ def cuEventQuery(hEvent):
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_READY
-    None
-        None
 
     See Also
     --------
@@ -22419,7 +21750,7 @@ def cuEventSynchronize(hEvent):
 
     Parameters
     ----------
-    hEvent : Any
+    hEvent : CUevent or cudaEvent_t
         Event to wait for
 
     Returns
@@ -22430,8 +21761,6 @@ def cuEventSynchronize(hEvent):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -22468,7 +21797,7 @@ def cuEventDestroy(hEvent):
 
     Parameters
     ----------
-    hEvent : Any
+    hEvent : CUevent or cudaEvent_t
         Event to destroy
 
     Returns
@@ -22479,8 +21808,6 @@ def cuEventDestroy(hEvent):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -22529,9 +21856,9 @@ def cuEventElapsedTime(hStart, hEnd):
 
     Parameters
     ----------
-    hStart : Any
+    hStart : CUevent or cudaEvent_t
         Starting event
-    hEnd : Any
+    hEnd : CUevent or cudaEvent_t
         Ending event
 
     Returns
@@ -22770,7 +22097,7 @@ def cuExternalMemoryGetMappedBuffer(extMem, bufferDesc : CUDA_EXTERNAL_MEMORY_BU
 
     Parameters
     ----------
-    extMem : Any
+    extMem : CUexternalMemory
         Handle to external memory object
     bufferDesc : CUDA_EXTERNAL_MEMORY_BUFFER_DESC
         Buffer descriptor
@@ -22843,7 +22170,7 @@ def cuExternalMemoryGetMappedMipmappedArray(extMem, mipmapDesc : CUDA_EXTERNAL_M
 
     Parameters
     ----------
-    extMem : Any
+    extMem : CUexternalMemory
         Handle to external memory object
     mipmapDesc : CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC
         CUDA array descriptor
@@ -22890,7 +22217,7 @@ def cuDestroyExternalMemory(extMem):
 
     Parameters
     ----------
-    extMem : Any
+    extMem : CUexternalMemory
         External memory object to be destroyed
 
     Returns
@@ -22899,8 +22226,6 @@ def cuDestroyExternalMemory(extMem):
         CUDA_SUCCESS
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -23143,8 +22468,6 @@ def cuSignalExternalSemaphoresAsync(extSemArray : List[CUexternalSemaphore], par
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -23276,8 +22599,6 @@ def cuWaitExternalSemaphoresAsync(extSemArray : List[CUexternalSemaphore], param
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_SUPPORTED
         CUDA_ERROR_TIMEOUT
-    None
-        None
 
     See Also
     --------
@@ -23339,7 +22660,7 @@ def cuDestroyExternalSemaphore(extSem):
 
     Parameters
     ----------
-    extSem : Any
+    extSem : CUexternalSemaphore
         External semaphore to be destroyed
 
     Returns
@@ -23348,8 +22669,6 @@ def cuDestroyExternalSemaphore(extSem):
         CUDA_SUCCESS
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -23395,7 +22714,7 @@ def cuStreamWaitValue32(stream, addr, value, unsigned int flags):
     ----------
     stream : CUstream or cudaStream_t
         The stream to synchronize on the memory location.
-    addr : Any
+    addr : CUdeviceptr
         The memory location to wait on.
     value : Any
         The value to compare with the memory location.
@@ -23408,8 +22727,6 @@ def cuStreamWaitValue32(stream, addr, value, unsigned int flags):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -23473,7 +22790,7 @@ def cuStreamWaitValue64(stream, addr, value, unsigned int flags):
     ----------
     stream : CUstream or cudaStream_t
         The stream to synchronize on the memory location.
-    addr : Any
+    addr : CUdeviceptr
         The memory location to wait on.
     value : Any
         The value to compare with the memory location.
@@ -23486,8 +22803,6 @@ def cuStreamWaitValue64(stream, addr, value, unsigned int flags):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -23552,7 +22867,7 @@ def cuStreamWriteValue32(stream, addr, value, unsigned int flags):
     ----------
     stream : CUstream or cudaStream_t
         The stream to do the write in.
-    addr : Any
+    addr : CUdeviceptr
         The device address to write to.
     value : Any
         The value to write.
@@ -23565,8 +22880,6 @@ def cuStreamWriteValue32(stream, addr, value, unsigned int flags):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -23630,7 +22943,7 @@ def cuStreamWriteValue64(stream, addr, value, unsigned int flags):
     ----------
     stream : CUstream or cudaStream_t
         The stream to do the write in.
-    addr : Any
+    addr : CUdeviceptr
         The device address to write to.
     value : Any
         The value to write.
@@ -23643,8 +22956,6 @@ def cuStreamWriteValue64(stream, addr, value, unsigned int flags):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -23724,8 +23035,6 @@ def cuStreamBatchMemOp(stream, unsigned int count, paramArray : List[CUstreamBat
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -23802,7 +23111,7 @@ def cuFuncGetAttribute(attrib not None : CUfunction_attribute, hfunc):
     ----------
     attrib : CUfunction_attribute
         Attribute requested
-    hfunc : Any
+    hfunc : CUfunction
         Function to query attribute of
 
     Returns
@@ -23870,7 +23179,7 @@ def cuFuncSetAttribute(hfunc, attrib not None : CUfunction_attribute, int value)
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Function to query attribute of
     attrib : CUfunction_attribute
         Attribute requested
@@ -23886,8 +23195,6 @@ def cuFuncSetAttribute(hfunc, attrib not None : CUfunction_attribute, int value)
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -23941,7 +23248,7 @@ def cuFuncSetCacheConfig(hfunc, config not None : CUfunc_cache):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to configure cache for
     config : CUfunc_cache
         Requested cache configuration
@@ -23954,8 +23261,6 @@ def cuFuncSetCacheConfig(hfunc, config not None : CUfunc_cache):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -24015,7 +23320,7 @@ def cuFuncSetSharedMemConfig(hfunc, config not None : CUsharedconfig):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         kernel to be given a shared memory config
     config : CUsharedconfig
         requested shared memory configuration
@@ -24028,8 +23333,6 @@ def cuFuncSetSharedMemConfig(hfunc, config not None : CUsharedconfig):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -24071,7 +23374,7 @@ def cuFuncGetModule(hfunc):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Function to retrieve module for
 
     Returns
@@ -24162,7 +23465,7 @@ def cuLaunchKernel(f, unsigned int gridDimX, unsigned int gridDimY, unsigned int
 
     Parameters
     ----------
-    f : Any
+    f : CUfunction
         Kernel to launch
     gridDimX : unsigned int
         Width of grid in blocks
@@ -24182,7 +23485,7 @@ def cuLaunchKernel(f, unsigned int gridDimX, unsigned int gridDimY, unsigned int
         Stream identifier
     kernelParams : Any
         Array of pointers to kernel parameters
-    extra : void_ptr
+    extra : List[Any]
         Extra options
 
     Returns
@@ -24200,8 +23503,6 @@ def cuLaunchKernel(f, unsigned int gridDimX, unsigned int gridDimY, unsigned int
         CUDA_ERROR_LAUNCH_TIMEOUT
         CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
         CUDA_ERROR_SHARED_OBJECT_INIT_FAILED
-    None
-        None
 
     See Also
     --------
@@ -24281,7 +23582,7 @@ def cuLaunchCooperativeKernel(f, unsigned int gridDimX, unsigned int gridDimY, u
 
     Parameters
     ----------
-    f : Any
+    f : CUfunction
         Kernel to launch
     gridDimX : unsigned int
         Width of grid in blocks
@@ -24318,8 +23619,6 @@ def cuLaunchCooperativeKernel(f, unsigned int gridDimX, unsigned int gridDimY, u
         CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
         CUDA_ERROR_COOPERATIVE_LAUNCH_TOO_LARGE
         CUDA_ERROR_SHARED_OBJECT_INIT_FAILED
-    None
-        None
 
     See Also
     --------
@@ -24488,8 +23787,6 @@ def cuLaunchCooperativeKernelMultiDevice(launchParamsList : List[CUDA_LAUNCH_PAR
         CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
         CUDA_ERROR_COOPERATIVE_LAUNCH_TOO_LARGE
         CUDA_ERROR_SHARED_OBJECT_INIT_FAILED
-    None
-        None
 
     See Also
     --------
@@ -24559,7 +23856,7 @@ def cuLaunchHostFunc(hStream, fn, userData):
     ----------
     hStream : CUstream or cudaStream_t
         Stream to enqueue function call in
-    fn : Any
+    fn : CUhostFn
         The function to call once preceding stream operations are complete
     userData : Any
         User-specified data to be passed to the function
@@ -24573,8 +23870,6 @@ def cuLaunchHostFunc(hStream, fn, userData):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_SUPPORTED
-    None
-        None
 
     See Also
     --------
@@ -24623,7 +23918,7 @@ def cuFuncSetBlockShape(hfunc, int x, int y, int z):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to specify dimensions of
     x : int
         X dimension
@@ -24641,8 +23936,6 @@ def cuFuncSetBlockShape(hfunc, int x, int y, int z):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -24683,7 +23976,7 @@ def cuFuncSetSharedSize(hfunc, unsigned int numbytes):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to specify dynamic shared-memory size for
     numbytes : unsigned int
         Dynamic shared-memory size per thread in bytes
@@ -24697,8 +23990,6 @@ def cuFuncSetSharedSize(hfunc, unsigned int numbytes):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -24738,7 +24029,7 @@ def cuParamSetSize(hfunc, unsigned int numbytes):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to set parameter size for
     numbytes : unsigned int
         Size of parameter list in bytes
@@ -24751,8 +24042,6 @@ def cuParamSetSize(hfunc, unsigned int numbytes):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -24792,7 +24081,7 @@ def cuParamSeti(hfunc, int offset, unsigned int value):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to add parameter to
     offset : int
         Offset to add parameter to argument list
@@ -24807,8 +24096,6 @@ def cuParamSeti(hfunc, int offset, unsigned int value):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -24848,7 +24135,7 @@ def cuParamSetf(hfunc, int offset, float value):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to add parameter to
     offset : int
         Offset to add parameter to argument list
@@ -24863,8 +24150,6 @@ def cuParamSetf(hfunc, int offset, float value):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -24904,7 +24189,7 @@ def cuParamSetv(hfunc, int offset, ptr, unsigned int numbytes):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to add data to
     offset : int
         Offset to add data to argument list
@@ -24921,8 +24206,6 @@ def cuParamSetv(hfunc, int offset, ptr, unsigned int numbytes):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -24975,7 +24258,7 @@ def cuLaunch(f):
 
     Parameters
     ----------
-    f : Any
+    f : CUfunction
         Kernel to launch
 
     Returns
@@ -24991,8 +24274,6 @@ def cuLaunch(f):
         CUDA_ERROR_LAUNCH_TIMEOUT
         CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
         CUDA_ERROR_SHARED_OBJECT_INIT_FAILED
-    None
-        None
 
     See Also
     --------
@@ -25043,7 +24324,7 @@ def cuLaunchGrid(f, int grid_width, int grid_height):
 
     Parameters
     ----------
-    f : Any
+    f : CUfunction
         Kernel to launch
     grid_width : int
         Width of grid in blocks
@@ -25063,8 +24344,6 @@ def cuLaunchGrid(f, int grid_width, int grid_height):
         CUDA_ERROR_LAUNCH_TIMEOUT
         CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
         CUDA_ERROR_SHARED_OBJECT_INIT_FAILED
-    None
-        None
 
     See Also
     --------
@@ -25115,7 +24394,7 @@ def cuLaunchGridAsync(f, int grid_width, int grid_height, hStream):
 
     Parameters
     ----------
-    f : Any
+    f : CUfunction
         Kernel to launch
     grid_width : int
         Width of grid in blocks
@@ -25138,8 +24417,6 @@ def cuLaunchGridAsync(f, int grid_width, int grid_height, hStream):
         CUDA_ERROR_LAUNCH_TIMEOUT
         CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
         CUDA_ERROR_SHARED_OBJECT_INIT_FAILED
-    None
-        None
 
     See Also
     --------
@@ -25195,11 +24472,11 @@ def cuParamSetTexRef(hfunc, int texunit, hTexRef):
 
     Parameters
     ----------
-    hfunc : Any
+    hfunc : CUfunction
         Kernel to add texture-reference to
     texunit : int
         Texture unit (must be CU_PARAM_TR_DEFAULT)
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture-reference to add to argument list
 
     Returns
@@ -25210,8 +24487,6 @@ def cuParamSetTexRef(hfunc, int texunit, hTexRef):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
     """
     cdef ccuda.CUtexref chTexRef
     if hTexRef is None:
@@ -25341,7 +24616,7 @@ def cuGraphAddKernelNode(hGraph, dependencies : List[CUgraphNode], size_t numDep
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -25479,8 +24754,6 @@ def cuGraphKernelNodeSetParams(hNode, nodeParams : CUDA_KERNEL_NODE_PARAMS):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_OUT_OF_MEMORY
-    None
-        None
 
     See Also
     --------
@@ -25528,7 +24801,7 @@ def cuGraphAddMemcpyNode(hGraph, dependencies : List[CUgraphNode], size_t numDep
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -25536,7 +24809,7 @@ def cuGraphAddMemcpyNode(hGraph, dependencies : List[CUgraphNode], size_t numDep
         Number of dependencies
     copyParams : CUDA_MEMCPY3D
         Parameters for the memory copy
-    ctx : Any
+    ctx : CUcontext
         Context on which to run the node
 
     Returns
@@ -25664,8 +24937,6 @@ def cuGraphMemcpyNodeSetParams(hNode, nodeParams : CUDA_MEMCPY3D):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -25703,7 +24974,7 @@ def cuGraphAddMemsetNode(hGraph, dependencies : List[CUgraphNode], size_t numDep
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -25711,7 +24982,7 @@ def cuGraphAddMemsetNode(hGraph, dependencies : List[CUgraphNode], size_t numDep
         Number of dependencies
     memsetParams : CUDA_MEMSET_NODE_PARAMS
         Parameters for the memory set
-    ctx : Any
+    ctx : CUcontext
         Context on which to run the node
 
     Returns
@@ -25840,8 +25111,6 @@ def cuGraphMemsetNodeSetParams(hNode, nodeParams : CUDA_MEMSET_NODE_PARAMS):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -25879,7 +25148,7 @@ def cuGraphAddHostNode(hGraph, dependencies : List[CUgraphNode], size_t numDepen
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26004,8 +25273,6 @@ def cuGraphHostNodeSetParams(hNode, nodeParams : CUDA_HOST_NODE_PARAMS):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -26046,7 +25313,7 @@ def cuGraphAddChildGraphNode(hGraph, dependencies : List[CUgraphNode], size_t nu
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26181,7 +25448,7 @@ def cuGraphAddEmptyNode(hGraph, dependencies : List[CUgraphNode], size_t numDepe
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26254,7 +25521,7 @@ def cuGraphAddEventRecordNode(hGraph, dependencies : List[CUgraphNode], size_t n
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26390,8 +25657,6 @@ def cuGraphEventRecordNodeSetEvent(hNode, event):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_OUT_OF_MEMORY
-    None
-        None
 
     See Also
     --------
@@ -26441,7 +25706,7 @@ def cuGraphAddEventWaitNode(hGraph, dependencies : List[CUgraphNode], size_t num
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26577,8 +25842,6 @@ def cuGraphEventWaitNodeSetEvent(hNode, event):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_OUT_OF_MEMORY
-    None
-        None
 
     See Also
     --------
@@ -26628,7 +25891,7 @@ def cuGraphAddExternalSemaphoresSignalNode(hGraph, dependencies : List[CUgraphNo
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26768,8 +26031,6 @@ def cuGraphExternalSemaphoresSignalNodeSetParams(hNode, nodeParams : CUDA_EXT_SE
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_OUT_OF_MEMORY
-    None
-        None
 
     See Also
     --------
@@ -26810,7 +26071,7 @@ def cuGraphAddExternalSemaphoresWaitNode(hGraph, dependencies : List[CUgraphNode
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -26949,8 +26210,6 @@ def cuGraphExternalSemaphoresWaitNodeSetParams(hNode, nodeParams : CUDA_EXT_SEM_
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_OUT_OF_MEMORY
-    None
-        None
 
     See Also
     --------
@@ -27015,7 +26274,7 @@ def cuGraphAddMemAllocNode(hGraph, dependencies : List[CUgraphNode], size_t numD
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
@@ -27149,13 +26408,13 @@ def cuGraphAddMemFreeNode(hGraph, dependencies : List[CUgraphNode], size_t numDe
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which to add the node
     dependencies : List[CUgraphNode]
         Dependencies of the node
     numDependencies : size_t
         Number of dependencies
-    dptr : Any
+    dptr : CUdeviceptr
         Address of memory to free
 
     Returns
@@ -27280,7 +26539,7 @@ def cuDeviceGraphMemTrim(device):
 
     Parameters
     ----------
-    device : Any
+    device : CUdevice
         The device for which cached memory should be freed.
 
     Returns
@@ -27288,8 +26547,6 @@ def cuDeviceGraphMemTrim(device):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_DEVICE
-    None
-        None
 
     See Also
     --------
@@ -27329,7 +26586,7 @@ def cuDeviceGetGraphMemAttribute(device, attr not None : CUgraphMem_attribute):
 
     Parameters
     ----------
-    device : Any
+    device : CUdevice
         Specifies the scope of the query
     attr : CUgraphMem_attribute
         attribute to get
@@ -27378,7 +26635,7 @@ def cuDeviceSetGraphMemAttribute(device, attr not None : CUgraphMem_attribute, v
 
     Parameters
     ----------
-    device : Any
+    device : CUdevice
         Specifies the scope of the query
     attr : CUgraphMem_attribute
         attribute to get
@@ -27390,8 +26647,6 @@ def cuDeviceSetGraphMemAttribute(device, attr not None : CUgraphMem_attribute, v
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_DEVICE
-    None
-        None
 
     See Also
     --------
@@ -27475,9 +26730,9 @@ def cuGraphNodeFindInClone(hOriginalNode, hClonedGraph):
 
     Parameters
     ----------
-    hOriginalNode : Any
+    hOriginalNode : CUgraphNode or cudaGraphNode_t
         Handle to the original node
-    hClonedGraph : Any
+    hClonedGraph : CUgraph or cudaGraph_t
         Cloned graph to query
 
     Returns
@@ -27578,8 +26833,10 @@ def cuGraphGetNodes(hGraph, size_t numNodes = 0):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to query
+    numNodes : int
+        See description
 
     Returns
     -------
@@ -27639,8 +26896,10 @@ def cuGraphGetRootNodes(hGraph, size_t numRootNodes = 0):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to query
+    numRootNodes : int
+        See description
 
     Returns
     -------
@@ -27702,8 +26961,10 @@ def cuGraphGetEdges(hGraph, size_t numEdges = 0):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to get the edges from
+    numEdges : int
+        See description
 
     Returns
     -------
@@ -27778,6 +27039,8 @@ def cuGraphNodeGetDependencies(hNode, size_t numDependencies = 0):
     ----------
     hNode : CUgraphNode or cudaGraphNode_t
         Node to query
+    numDependencies : int
+        See description
 
     Returns
     -------
@@ -27840,6 +27103,8 @@ def cuGraphNodeGetDependentNodes(hNode, size_t numDependentNodes = 0):
     ----------
     hNode : CUgraphNode or cudaGraphNode_t
         Node to query
+    numDependentNodes : int
+        See description
 
     Returns
     -------
@@ -27899,9 +27164,9 @@ def cuGraphAddDependencies(hGraph, from_ : List[CUgraphNode], to : List[CUgraphN
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to which dependencies are added
-    from_ : List[CUgraphNode]
+    from : List[CUgraphNode]
         Array of nodes that provide the dependencies
     to : List[CUgraphNode]
         Array of dependent nodes
@@ -27913,8 +27178,6 @@ def cuGraphAddDependencies(hGraph, from_ : List[CUgraphNode], to : List[CUgraphN
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -27983,9 +27246,9 @@ def cuGraphRemoveDependencies(hGraph, from_ : List[CUgraphNode], to : List[CUgra
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph from which to remove dependencies
-    from_ : List[CUgraphNode]
+    from : List[CUgraphNode]
         Array of nodes that provide the dependencies
     to : List[CUgraphNode]
         Array of dependent nodes
@@ -27997,8 +27260,6 @@ def cuGraphRemoveDependencies(hGraph, from_ : List[CUgraphNode], to : List[CUgra
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28070,8 +27331,6 @@ def cuGraphDestroyNode(hNode):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28112,7 +27371,7 @@ def cuGraphInstantiate(hGraph, char* logBuffer, size_t bufferSize):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to instantiate
     logBuffer : bytes
         A character buffer to store diagnostic messages
@@ -28179,7 +27438,7 @@ def cuGraphInstantiateWithFlags(hGraph, unsigned long long flags):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to instantiate
     flags : unsigned long long
         Flags to control instantiation. See CUgraphInstantiate_flags.
@@ -28251,8 +27510,6 @@ def cuGraphExecKernelNodeSetParams(hGraphExec, hNode, nodeParams : CUDA_KERNEL_N
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28324,7 +27581,7 @@ def cuGraphExecMemcpyNodeSetParams(hGraphExec, hNode, copyParams : CUDA_MEMCPY3D
         Memcpy node from the graph which was used to instantiate graphExec
     copyParams : CUDA_MEMCPY3D
         The updated parameters to set
-    ctx : Any
+    ctx : CUcontext
         Context on which to run the node
 
     Returns
@@ -28332,8 +27589,6 @@ def cuGraphExecMemcpyNodeSetParams(hGraphExec, hNode, copyParams : CUDA_MEMCPY3D
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28415,7 +27670,7 @@ def cuGraphExecMemsetNodeSetParams(hGraphExec, hNode, memsetParams : CUDA_MEMSET
         Memset node from the graph which was used to instantiate graphExec
     memsetParams : CUDA_MEMSET_NODE_PARAMS
         The updated parameters to set
-    ctx : Any
+    ctx : CUcontext
         Context on which to run the node
 
     Returns
@@ -28423,8 +27678,6 @@ def cuGraphExecMemsetNodeSetParams(hGraphExec, hNode, memsetParams : CUDA_MEMSET
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28502,8 +27755,6 @@ def cuGraphExecHostNodeSetParams(hGraphExec, hNode, nodeParams : CUDA_HOST_NODE_
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28578,8 +27829,6 @@ def cuGraphExecChildGraphNodeSetParams(hGraphExec, hNode, childGraph):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28657,8 +27906,6 @@ def cuGraphExecEventRecordNodeSetEvent(hGraphExec, hNode, event):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28739,8 +27986,6 @@ def cuGraphExecEventWaitNodeSetEvent(hGraphExec, hNode, event):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28825,8 +28070,6 @@ def cuGraphExecExternalSemaphoresSignalNodeSetParams(hGraphExec, hNode, nodePara
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28901,8 +28144,6 @@ def cuGraphExecExternalSemaphoresWaitNodeSetParams(hGraphExec, hNode, nodeParams
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -28977,8 +28218,6 @@ def cuGraphNodeSetEnabled(hGraphExec, hNode, unsigned int isEnabled):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29101,8 +28340,6 @@ def cuGraphUpload(hGraphExec, hStream):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29162,8 +28399,6 @@ def cuGraphLaunch(hGraphExec, hStream):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29214,8 +28449,6 @@ def cuGraphExecDestroy(hGraphExec):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29244,7 +28477,7 @@ def cuGraphDestroy(hGraph):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         Graph to destroy
 
     Returns
@@ -29254,8 +28487,6 @@ def cuGraphDestroy(hGraph):
         CUDA_ERROR_DEINITIALIZED
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29348,7 +28579,7 @@ def cuGraphExecUpdate(hGraphExec, hGraph):
     ----------
     hGraphExec : CUgraphExec or cudaGraphExec_t
         The instantiated graph to be updated
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         The graph containing the updated parameters
 
     Returns
@@ -29401,9 +28632,9 @@ def cuGraphKernelNodeCopyAttributes(dst, src):
 
     Parameters
     ----------
-    dst : Any
+    dst : CUgraphNode or cudaGraphNode_t
         Destination node
-    src : Any
+    src : CUgraphNode or cudaGraphNode_t
         Source node For list of attributes see CUkernelNodeAttrID
 
     Returns
@@ -29411,8 +28642,6 @@ def cuGraphKernelNodeCopyAttributes(dst, src):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
     """
     cdef ccuda.CUgraphNode csrc
     if src is None:
@@ -29497,8 +28726,6 @@ def cuGraphKernelNodeSetAttribute(hNode, attr not None : CUkernelNodeAttrID, val
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
     """
     cdef ccuda.CUgraphNode chNode
     if hNode is None:
@@ -29527,7 +28754,7 @@ def cuGraphDebugDotPrint(hGraph, char* path, unsigned int flags):
 
     Parameters
     ----------
-    hGraph : Any
+    hGraph : CUgraph or cudaGraph_t
         The graph to create a DOT file from
     path : bytes
         The path to write the DOT file to
@@ -29541,8 +28768,6 @@ def cuGraphDebugDotPrint(hGraph, char* path, unsigned int flags):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_OPERATING_SYSTEM
-    None
-        None
     """
     cdef ccuda.CUgraph chGraph
     if hGraph is None:
@@ -29576,7 +28801,7 @@ def cuUserObjectCreate(ptr, destroy, unsigned int initialRefcount, unsigned int 
     ----------
     ptr : Any
         The pointer to pass to the destroy function
-    destroy : Any
+    destroy : CUhostFn
         Callback to free the user object when it is no longer in use
     initialRefcount : unsigned int
         The initial refcount to create the object with, typically 1. The
@@ -29632,7 +28857,7 @@ def cuUserObjectRetain(object, unsigned int count):
 
     Parameters
     ----------
-    object : Any
+    object : CUuserObject
         The object to retain
     count : unsigned int
         The number of references to retain, typically 1. Must be nonzero
@@ -29643,8 +28868,6 @@ def cuUserObjectRetain(object, unsigned int count):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29682,7 +28905,7 @@ def cuUserObjectRelease(object, unsigned int count):
 
     Parameters
     ----------
-    object : Any
+    object : CUuserObject
         The object to release
     count : unsigned int
         The number of references to release, typically 1. Must be nonzero
@@ -29693,8 +28916,6 @@ def cuUserObjectRelease(object, unsigned int count):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29731,7 +28952,7 @@ def cuGraphRetainUserObject(graph, object, unsigned int count, unsigned int flag
     ----------
     graph : CUgraph or cudaGraph_t
         The graph to associate the reference with
-    object : Any
+    object : CUuserObject
         The user object to retain a reference for
     count : unsigned int
         The number of references to add to the graph, typically 1. Must be
@@ -29746,8 +28967,6 @@ def cuGraphRetainUserObject(graph, object, unsigned int count, unsigned int flag
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29793,7 +29012,7 @@ def cuGraphReleaseUserObject(graph, object, unsigned int count):
     ----------
     graph : CUgraph or cudaGraph_t
         The graph that will release the reference
-    object : Any
+    object : CUuserObject
         The user object to release a reference for
     count : unsigned int
         The number of references to release, typically 1. Must be nonzero
@@ -29804,8 +29023,6 @@ def cuGraphReleaseUserObject(graph, object, unsigned int count):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -29847,7 +29064,7 @@ def cuOccupancyMaxActiveBlocksPerMultiprocessor(func, int blockSize, size_t dyna
 
     Parameters
     ----------
-    func : Any
+    func : CUfunction
         Kernel for which occupancy is calculated
     blockSize : int
         Block size the kernel is intended to be launched with
@@ -29904,7 +29121,7 @@ def cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(func, int blockSize, si
 
     Parameters
     ----------
-    func : Any
+    func : CUfunction
         Kernel for which occupancy is calculated
     blockSize : int
         Block size the kernel is intended to be launched with
@@ -29971,9 +29188,9 @@ def cuOccupancyMaxPotentialBlockSize(func, blockSizeToDynamicSMemSize, size_t dy
 
     Parameters
     ----------
-    func : Any
+    func : CUfunction
         Kernel for which launch configuration is calculated
-    blockSizeToDynamicSMemSize : Any
+    blockSizeToDynamicSMemSize : CUoccupancyB2DSize
         A function that calculates how much per-block dynamic shared memory
         `func` uses based on the block size
     dynamicSMemSize : size_t
@@ -30045,9 +29262,9 @@ def cuOccupancyMaxPotentialBlockSizeWithFlags(func, blockSizeToDynamicSMemSize, 
 
     Parameters
     ----------
-    func : Any
+    func : CUfunction
         Kernel for which launch configuration is calculated
-    blockSizeToDynamicSMemSize : Any
+    blockSizeToDynamicSMemSize : CUoccupancyB2DSize
         A function that calculates how much per-block dynamic shared memory
         `func` uses based on the block size
     dynamicSMemSize : size_t
@@ -30105,7 +29322,7 @@ def cuOccupancyAvailableDynamicSMemPerBlock(func, int numBlocks, int blockSize):
 
     Parameters
     ----------
-    func : Any
+    func : CUfunction
         Kernel function for which occupancy is calculated
     numBlocks : int
         Number of blocks to fit on SM
@@ -30152,9 +29369,9 @@ def cuTexRefSetArray(hTexRef, hArray, unsigned int Flags):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference to bind
-    hArray : Any
+    hArray : CUarray
         Array to bind
     Flags : unsigned int
         Options (must be CU_TRSA_OVERRIDE_FORMAT)
@@ -30167,8 +29384,6 @@ def cuTexRefSetArray(hTexRef, hArray, unsigned int Flags):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30223,9 +29438,9 @@ def cuTexRefSetMipmappedArray(hTexRef, hMipmappedArray, unsigned int Flags):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference to bind
-    hMipmappedArray : Any
+    hMipmappedArray : CUmipmappedArray
         Mipmapped array to bind
     Flags : unsigned int
         Options (must be CU_TRSA_OVERRIDE_FORMAT)
@@ -30238,8 +29453,6 @@ def cuTexRefSetMipmappedArray(hTexRef, hMipmappedArray, unsigned int Flags):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30310,9 +29523,9 @@ def cuTexRefSetAddress(hTexRef, dptr, size_t numbytes):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference to bind
-    dptr : Any
+    dptr : CUdeviceptr
         Device pointer to bind
     numbytes : size_t
         Size of memory to bind in bytes
@@ -30405,11 +29618,11 @@ def cuTexRefSetAddress2D(hTexRef, desc : CUDA_ARRAY_DESCRIPTOR, dptr, size_t Pit
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference to bind
     desc : CUDA_ARRAY_DESCRIPTOR
         Descriptor of CUDA array
-    dptr : Any
+    dptr : CUdeviceptr
         Device pointer to bind
     Pitch : size_t
         Line pitch in bytes
@@ -30422,8 +29635,6 @@ def cuTexRefSetAddress2D(hTexRef, desc : CUDA_ARRAY_DESCRIPTOR, dptr, size_t Pit
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30479,7 +29690,7 @@ def cuTexRefSetFormat(hTexRef, fmt not None : CUarray_format, int NumPackedCompo
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     fmt : CUarray_format
         Format to set
@@ -30494,8 +29705,6 @@ def cuTexRefSetFormat(hTexRef, fmt not None : CUarray_format, int NumPackedCompo
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30551,7 +29760,7 @@ def cuTexRefSetAddressMode(hTexRef, int dim, am not None : CUaddress_mode):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     dim : int
         Dimension
@@ -30566,8 +29775,6 @@ def cuTexRefSetAddressMode(hTexRef, int dim, am not None : CUaddress_mode):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30620,7 +29827,7 @@ def cuTexRefSetFilterMode(hTexRef, fm not None : CUfilter_mode):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     fm : CUfilter_mode
         Filtering mode to set
@@ -30633,8 +29840,6 @@ def cuTexRefSetFilterMode(hTexRef, fm not None : CUfilter_mode):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30684,7 +29889,7 @@ def cuTexRefSetMipmapFilterMode(hTexRef, fm not None : CUfilter_mode):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     fm : CUfilter_mode
         Filtering mode to set
@@ -30697,8 +29902,6 @@ def cuTexRefSetMipmapFilterMode(hTexRef, fm not None : CUfilter_mode):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30745,7 +29948,7 @@ def cuTexRefSetMipmapLevelBias(hTexRef, float bias):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     bias : float
         Mipmap level bias
@@ -30758,8 +29961,6 @@ def cuTexRefSetMipmapLevelBias(hTexRef, float bias):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30805,7 +30006,7 @@ def cuTexRefSetMipmapLevelClamp(hTexRef, float minMipmapLevelClamp, float maxMip
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     minMipmapLevelClamp : float
         Mipmap min level clamp
@@ -30820,8 +30021,6 @@ def cuTexRefSetMipmapLevelClamp(hTexRef, float minMipmapLevelClamp, float maxMip
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30866,7 +30065,7 @@ def cuTexRefSetMaxAnisotropy(hTexRef, unsigned int maxAniso):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     maxAniso : unsigned int
         Maximum anisotropy
@@ -30879,8 +30078,6 @@ def cuTexRefSetMaxAnisotropy(hTexRef, unsigned int maxAniso):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30931,7 +30128,7 @@ def cuTexRefSetBorderColor(hTexRef, float pBorderColor):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     pBorderColor : float
         RGBA color
@@ -30944,8 +30141,6 @@ def cuTexRefSetBorderColor(hTexRef, float pBorderColor):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -30994,7 +30189,7 @@ def cuTexRefSetFlags(hTexRef, unsigned int Flags):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     Flags : unsigned int
         Optional flags to set
@@ -31007,8 +30202,6 @@ def cuTexRefSetFlags(hTexRef, unsigned int Flags):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -31054,7 +30247,7 @@ def cuTexRefGetAddress(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31109,7 +30302,7 @@ def cuTexRefGetArray(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31164,7 +30357,7 @@ def cuTexRefGetMipmappedArray(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31219,7 +30412,7 @@ def cuTexRefGetAddressMode(hTexRef, int dim):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
     dim : int
         Dimension
@@ -31275,7 +30468,7 @@ def cuTexRefGetFilterMode(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31330,7 +30523,7 @@ def cuTexRefGetFormat(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31387,7 +30580,7 @@ def cuTexRefGetMipmapFilterMode(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31442,7 +30635,7 @@ def cuTexRefGetMipmapLevelBias(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31497,7 +30690,7 @@ def cuTexRefGetMipmapLevelClamp(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31554,7 +30747,7 @@ def cuTexRefGetMaxAnisotropy(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31611,8 +30804,8 @@ def cuTexRefGetBorderColor(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
-        Texture reference
+    pBorderColor : CUtexref
+        Returned Type and Value of RGBA color
 
     Returns
     -------
@@ -31622,8 +30815,8 @@ def cuTexRefGetBorderColor(hTexRef):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    pBorderColor : float
-        Returned Type and Value of RGBA color
+    hTexRef : float
+        Texture reference
 
     See Also
     --------
@@ -31654,7 +30847,7 @@ def cuTexRefGetFlags(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference
 
     Returns
@@ -31739,7 +30932,7 @@ def cuTexRefDestroy(hTexRef):
 
     Parameters
     ----------
-    hTexRef : Any
+    hTexRef : CUtexref
         Texture reference to destroy
 
     Returns
@@ -31750,8 +30943,6 @@ def cuTexRefDestroy(hTexRef):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -31784,9 +30975,9 @@ def cuSurfRefSetArray(hSurfRef, hArray, unsigned int Flags):
 
     Parameters
     ----------
-    hSurfRef : Any
+    hSurfRef : CUsurfref
         Surface reference handle
-    hArray : Any
+    hArray : CUarray
         CUDA array handle
     Flags : unsigned int
         set to 0
@@ -31799,8 +30990,6 @@ def cuSurfRefSetArray(hSurfRef, hArray, unsigned int Flags):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -31843,7 +31032,7 @@ def cuSurfRefGetArray(hSurfRef):
 
     Parameters
     ----------
-    hSurfRef : Any
+    hSurfRef : CUsurfref
         Surface reference handle
 
     Returns
@@ -32077,7 +31266,7 @@ def cuTexObjectDestroy(texObject):
 
     Parameters
     ----------
-    texObject : Any
+    texObject : CUtexObject
         Texture object to destroy
 
     Returns
@@ -32088,8 +31277,6 @@ def cuTexObjectDestroy(texObject):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -32118,7 +31305,7 @@ def cuTexObjectGetResourceDesc(texObject):
 
     Parameters
     ----------
-    texObject : Any
+    texObject : CUtexObject
         Texture object
 
     Returns
@@ -32160,7 +31347,7 @@ def cuTexObjectGetTextureDesc(texObject):
 
     Parameters
     ----------
-    texObject : Any
+    texObject : CUtexObject
         Texture object
 
     Returns
@@ -32203,7 +31390,7 @@ def cuTexObjectGetResourceViewDesc(texObject):
 
     Parameters
     ----------
-    texObject : Any
+    texObject : CUtexObject
         Texture object
 
     Returns
@@ -32284,7 +31471,7 @@ def cuSurfObjectDestroy(surfObject):
 
     Parameters
     ----------
-    surfObject : Any
+    surfObject : CUsurfObject
         Surface object to destroy
 
     Returns
@@ -32295,8 +31482,6 @@ def cuSurfObjectDestroy(surfObject):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -32325,7 +31510,7 @@ def cuSurfObjectGetResourceDesc(surfObject):
 
     Parameters
     ----------
-    surfObject : Any
+    surfObject : CUsurfObject
         Surface object
 
     Returns
@@ -32370,10 +31555,10 @@ def cuDeviceCanAccessPeer(dev, peerDev):
 
     Parameters
     ----------
-    dev : Any
+    dev : CUdevice
         Device from which allocations on `peerDev` are to be directly
         accessed.
-    peerDev : Any
+    peerDev : CUdevice
         Device on which the allocations to be directly accessed by `dev`
         reside.
 
@@ -32455,7 +31640,7 @@ def cuCtxEnablePeerAccess(peerContext, unsigned int Flags):
 
     Parameters
     ----------
-    peerContext : Any
+    peerContext : CUcontext
         Peer context to enable direct access to from the current context
     Flags : unsigned int
         Reserved for future use and must be set to 0
@@ -32471,8 +31656,6 @@ def cuCtxEnablePeerAccess(peerContext, unsigned int Flags):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_PEER_ACCESS_UNSUPPORTED
         CUDA_ERROR_INVALID_VALUE
-    None
-        None
 
     See Also
     --------
@@ -32505,7 +31688,7 @@ def cuCtxDisablePeerAccess(peerContext):
 
     Parameters
     ----------
-    peerContext : Any
+    peerContext : CUcontext
         Peer context to disable direct access to
 
     Returns
@@ -32516,8 +31699,6 @@ def cuCtxDisablePeerAccess(peerContext):
         CUDA_ERROR_NOT_INITIALIZED
         CUDA_ERROR_PEER_ACCESS_NOT_ENABLED
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -32563,9 +31744,9 @@ def cuDeviceGetP2PAttribute(attrib not None : CUdevice_P2PAttribute, srcDevice, 
     attrib : CUdevice_P2PAttribute
         The requested attribute of the link between `srcDevice` and
         `dstDevice`.
-    srcDevice : Any
+    srcDevice : CUdevice
         The source device of the target link.
-    dstDevice : Any
+    dstDevice : CUdevice
         The destination device of the target link.
 
     Returns
@@ -32622,7 +31803,7 @@ def cuGraphicsUnregisterResource(resource):
 
     Parameters
     ----------
-    resource : Any
+    resource : CUgraphicsResource
         Resource to unregister
 
     Returns
@@ -32634,8 +31815,6 @@ def cuGraphicsUnregisterResource(resource):
         CUDA_ERROR_INVALID_CONTEXT
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_UNKNOWN
-    None
-        None
 
     See Also
     --------
@@ -32674,7 +31853,7 @@ def cuGraphicsSubResourceGetMappedArray(resource, unsigned int arrayIndex, unsig
 
     Parameters
     ----------
-    resource : Any
+    resource : CUgraphicsResource
         Mapped resource to access
     arrayIndex : unsigned int
         Array index for array textures or cubemap face index as defined by
@@ -32731,7 +31910,7 @@ def cuGraphicsResourceGetMappedMipmappedArray(resource):
 
     Parameters
     ----------
-    resource : Any
+    resource : CUgraphicsResource
         Mapped resource to access
 
     Returns
@@ -32789,11 +31968,18 @@ def cuGraphicsResourceGetMappedPointer(resource):
     cuGraphicsSubResourceGetMappedArray,
     cudaGraphicsResourceGetMappedPointer
 
+    Parameters
+    ----------
+    resource : CUgraphicsResource
+        None
+
     Returns
     -------
     CUresult
 
-    None
+    pDevPtr : CUdeviceptr
+        None
+    pSize : int
         None
     """
     cdef ccuda.CUgraphicsResource cresource
@@ -32836,7 +32022,7 @@ def cuGraphicsResourceSetMapFlags(resource, unsigned int flags):
 
     Parameters
     ----------
-    resource : Any
+    resource : CUgraphicsResource
         Registered resource to set flags for
     flags : unsigned int
         Parameters for resource mapping
@@ -32851,8 +32037,6 @@ def cuGraphicsResourceSetMapFlags(resource, unsigned int flags):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_ALREADY_MAPPED
-    None
-        None
 
     See Also
     --------
@@ -32896,7 +32080,7 @@ def cuGraphicsMapResources(unsigned int count, resources, hStream):
     ----------
     count : unsigned int
         Number of resources to map
-    resources : Any
+    resources : CUgraphicsResource
         Resources to map for CUDA usage
     hStream : CUstream or cudaStream_t
         Stream with which to synchronize
@@ -32911,8 +32095,6 @@ def cuGraphicsMapResources(unsigned int count, resources, hStream):
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_ALREADY_MAPPED
         CUDA_ERROR_UNKNOWN
-    None
-        None
 
     See Also
     --------
@@ -32967,7 +32149,7 @@ def cuGraphicsUnmapResources(unsigned int count, resources, hStream):
     ----------
     count : unsigned int
         Number of resources to unmap
-    resources : Any
+    resources : CUgraphicsResource
         Resources to unmap
     hStream : CUstream or cudaStream_t
         Stream with which to synchronize
@@ -32982,8 +32164,6 @@ def cuGraphicsUnmapResources(unsigned int count, resources, hStream):
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_NOT_MAPPED
         CUDA_ERROR_UNKNOWN
-    None
-        None
 
     See Also
     --------
@@ -33072,7 +32252,7 @@ def cuGetProcAddress(char* symbol, int cudaVersion, flags):
         CUDA_ERROR_INVALID_VALUE
         CUDA_ERROR_NOT_SUPPORTED
         CUDA_ERROR_NOT_FOUND
-    pfn : int
+    pfn : Any
         Location to return the function pointer to the requested driver
         function
     """
@@ -33094,11 +32274,16 @@ def cuGetProcAddress(char* symbol, int cudaVersion, flags):
 def cuGetExportTable(pExportTableId : CUuuid):
     """ 
 
+    Parameters
+    ----------
+    pExportTableId : CUuuid
+        None
+
     Returns
     -------
     CUresult
 
-    None
+    ppExportTable : Any
         None
     """
     cdef void_ptr ppExportTable = 0
@@ -33138,12 +32323,19 @@ def cuProfilerInitialize(char* configFile, char* outputFile, outputMode not None
     CUDA_ERROR_PROFILER_DISABLED \notefnerr  cuProfilerStart,
     cuProfilerStop, cudaProfilerInitialize
 
+    Parameters
+    ----------
+    configFile : bytes
+        None
+    outputFile : bytes
+        None
+    outputMode : CUoutput_mode
+        None
+
     Returns
     -------
     CUresult
 
-    None
-        None
     """
     cdef ccuda.CUoutput_mode coutputMode = outputMode.value
     err = ccuda.cuProfilerInitialize(configFile, outputFile, coutputMode)
@@ -33166,8 +32358,6 @@ def cuProfilerStart():
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -33195,8 +32385,6 @@ def cuProfilerStop():
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -33216,9 +32404,9 @@ def cuVDPAUGetDevice(vdpDevice, vdpGetProcAddress):
 
     Parameters
     ----------
-    vdpDevice : Any
+    vdpDevice : VdpDevice
         A VdpDevice handle
-    vdpGetProcAddress : Any
+    vdpGetProcAddress : VdpGetProcAddress
         VDPAU's VdpGetProcAddress function pointer
 
     Returns
@@ -33284,11 +32472,11 @@ def cuVDPAUCtxCreate(unsigned int flags, device, vdpDevice, vdpGetProcAddress):
     ----------
     flags : unsigned int
         Options for CUDA context creation
-    device : Any
+    device : CUdevice
         Device on which to create the context
-    vdpDevice : Any
+    vdpDevice : VdpDevice
         The VdpDevice to interop with
-    vdpGetProcAddress : Any
+    vdpGetProcAddress : VdpGetProcAddress
         VDPAU's VdpGetProcAddress function pointer
 
     Returns
@@ -33409,7 +32597,7 @@ def cuGraphicsVDPAURegisterVideoSurface(vdpSurface, unsigned int flags):
 
     Parameters
     ----------
-    vdpSurface : Any
+    vdpSurface : VdpVideoSurface
         The VdpVideoSurface to be registered
     flags : unsigned int
         Map flags
@@ -33490,7 +32678,7 @@ def cuGraphicsVDPAURegisterOutputSurface(vdpSurface, unsigned int flags):
 
     Parameters
     ----------
-    vdpSurface : Any
+    vdpSurface : VdpOutputSurface
         The VdpOutputSurface to be registered
     flags : unsigned int
         Map flags
@@ -33571,7 +32759,7 @@ def cuGraphicsEGLRegisterImage(image, unsigned int flags):
 
     Parameters
     ----------
-    image : Any
+    image : EGLImageKHR
         An EGLImageKHR image which can be used to create target resource.
     flags : unsigned int
         Map flags
@@ -33620,7 +32808,7 @@ def cuEGLStreamConsumerConnect(stream):
 
     Parameters
     ----------
-    stream : CUstream or cudaStream_t
+    stream : EGLStreamKHR
         EGLStreamKHR handle
 
     Returns
@@ -33667,7 +32855,7 @@ def cuEGLStreamConsumerConnectWithFlags(stream, unsigned int flags):
 
     Parameters
     ----------
-    stream : CUstream or cudaStream_t
+    stream : EGLStreamKHR
         EGLStreamKHR handle
     flags : unsigned int
         Flags denote intended location - system or video.
@@ -33711,7 +32899,7 @@ def cuEGLStreamConsumerDisconnect(conn):
 
     Parameters
     ----------
-    conn : Any
+    conn : CUeglStreamConnection
         Conection to disconnect.
 
     Returns
@@ -33720,8 +32908,6 @@ def cuEGLStreamConsumerDisconnect(conn):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -33758,11 +32944,11 @@ def cuEGLStreamConsumerAcquireFrame(conn, pCudaResource, pStream, unsigned int t
 
     Parameters
     ----------
-    conn : Any
+    conn : CUeglStreamConnection
         Connection on which to acquire
-    pCudaResource : Any
+    pCudaResource : CUgraphicsResource
         CUDA resource on which the stream frame will be mapped for use.
-    pStream : Any
+    pStream : CUstream
         CUDA stream for synchronization and any data migrations implied by
         CUeglResourceLocationFlags.
     timeout : unsigned int
@@ -33777,8 +32963,6 @@ def cuEGLStreamConsumerAcquireFrame(conn, pCudaResource, pStream, unsigned int t
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_LAUNCH_TIMEOUT
-    None
-        None
 
     See Also
     --------
@@ -33836,11 +33020,11 @@ def cuEGLStreamConsumerReleaseFrame(conn, pCudaResource, pStream):
 
     Parameters
     ----------
-    conn : Any
+    conn : CUeglStreamConnection
         Connection on which to release
-    pCudaResource : Any
+    pCudaResource : CUgraphicsResource
         CUDA resource whose corresponding frame is to be released
-    pStream : Any
+    pStream : CUstream
         CUDA stream on which release will be done.
 
     Returns
@@ -33848,8 +33032,6 @@ def cuEGLStreamConsumerReleaseFrame(conn, pCudaResource, pStream):
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -33905,11 +33087,11 @@ def cuEGLStreamProducerConnect(stream, width, height):
 
     Parameters
     ----------
-    stream : CUstream or cudaStream_t
+    stream : EGLStreamKHR
         EGLStreamKHR handle
-    width : Any
+    width : EGLint
         width of the image to be submitted to the stream
-    height : Any
+    height : EGLint
         height of the image to be submitted to the stream
 
     Returns
@@ -33970,7 +33152,7 @@ def cuEGLStreamProducerDisconnect(conn):
 
     Parameters
     ----------
-    conn : Any
+    conn : CUeglStreamConnection
         Conection to disconnect.
 
     Returns
@@ -33979,8 +33161,6 @@ def cuEGLStreamProducerDisconnect(conn):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_INVALID_CONTEXT
-    None
-        None
 
     See Also
     --------
@@ -34031,12 +33211,12 @@ def cuEGLStreamProducerPresentFrame(conn, eglframe not None : CUeglFrame, pStrea
 
     Parameters
     ----------
-    conn : Any
+    conn : CUeglStreamConnection
         Connection on which to present the CUDA array
     eglframe : CUeglFrame
         CUDA Eglstream Proucer Frame handle to be sent to the consumer over
         EglStream.
-    pStream : Any
+    pStream : CUstream
         CUDA stream on which to present the frame.
 
     Returns
@@ -34044,8 +33224,6 @@ def cuEGLStreamProducerPresentFrame(conn, eglframe not None : CUeglFrame, pStrea
     CUresult
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
-    None
-        None
 
     See Also
     --------
@@ -34089,12 +33267,12 @@ def cuEGLStreamProducerReturnFrame(conn, eglframe : CUeglFrame, pStream):
 
     Parameters
     ----------
-    conn : Any
+    conn : CUeglStreamConnection
         Connection on which to return
     eglframe : CUeglFrame
         CUDA Eglstream Proucer Frame handle returned from the consumer over
         EglStream.
-    pStream : Any
+    pStream : CUstream
         CUDA stream on which to return the frame.
 
     Returns
@@ -34103,8 +33281,6 @@ def cuEGLStreamProducerReturnFrame(conn, eglframe : CUeglFrame, pStream):
         CUDA_SUCCESS
         CUDA_ERROR_INVALID_HANDLE
         CUDA_ERROR_LAUNCH_TIMEOUT
-    None
-        None
 
     See Also
     --------
@@ -34165,11 +33341,20 @@ def cuGraphicsResourceGetMappedEglFrame(resource, unsigned int index, unsigned i
     cuGraphicsResourceGetMappedPointer,
     cudaGraphicsResourceGetMappedEglFrame
 
+    Parameters
+    ----------
+    resource : CUgraphicsResource
+        None
+    index : unsigned int
+        None
+    mipLevel : unsigned int
+        None
+
     Returns
     -------
     CUresult
 
-    None
+    eglFrame : CUeglFrame
         None
     """
     cdef ccuda.CUgraphicsResource cresource
@@ -34208,7 +33393,7 @@ def cuEventCreateFromEGLSync(eglSync, unsigned int flags):
 
     Parameters
     ----------
-    eglSync : Any
+    eglSync : EGLSyncKHR
         Opaque handle to EGLSync object
     flags : unsigned int
         Event creation flags
@@ -34264,7 +33449,7 @@ def cuGraphicsGLRegisterBuffer(buffer, unsigned int Flags):
 
     Parameters
     ----------
-    buffer : Any
+    buffer : GLuint
         name of buffer object to be registered
     Flags : unsigned int
         Register flags
@@ -34341,9 +33526,9 @@ def cuGraphicsGLRegisterImage(image, target, unsigned int Flags):
 
     Parameters
     ----------
-    image : Any
+    image : GLuint
         name of texture or renderbuffer object to be registered
-    target : Any
+    target : GLenum
         Identifies the type of object specified by `image`
     Flags : unsigned int
         Register flags

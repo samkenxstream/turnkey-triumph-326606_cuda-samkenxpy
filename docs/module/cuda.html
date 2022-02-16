@@ -7241,8 +7241,6 @@ CUDA_ERROR_INVALID_DEVICE
 CUDA_ERROR_SYSTEM_DRIVER_MISMATCH
 CUDA_ERROR_COMPAT_NOT_SUPPORTED_ON_DEVICE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -7363,7 +7361,7 @@ length of the string that may be returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>length</strong><span class="classifier">int</span></dt><dd><p>Maximum length of string to store in <cite>name</cite></p>
 </dd>
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to get identifier string for</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get identifier string for</p>
 </dd>
 </dl>
 </dd>
@@ -7407,7 +7405,7 @@ by the <cite>uuid</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to get identifier string for</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get identifier string for</p>
 </dd>
 </dl>
 </dd>
@@ -7449,7 +7447,7 @@ uniquely identifies the subscribed MIG compute instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to get identifier string for</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get identifier string for</p>
 </dd>
 </dl>
 </dd>
@@ -7488,7 +7486,7 @@ matching device with graphics APIs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to get identifier string for</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get identifier string for</p>
 </dd>
 </dl>
 </dd>
@@ -7529,7 +7527,7 @@ CUDA_ERROR_INVALID_DEVICE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device handle</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device handle</p>
 </dd>
 </dl>
 </dd>
@@ -7574,7 +7572,7 @@ allocatable in a 1D linear texture for given <cite>pformat</cite> and
 </dd>
 <dt><strong>numChannels</strong><span class="classifier">unsigned</span></dt><dd><p>Number of channels per texture element.</p>
 </dd>
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device handle.</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device handle.</p>
 </dd>
 </dl>
 </dd>
@@ -7834,7 +7832,7 @@ supports deferred mapping CUDA arrays and CUDA mipmapped arrays.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>attrib</strong><span class="classifier">CUdevice_attribute</span></dt><dd><p>Device attribute to query</p>
 </dd>
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device handle</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device handle</p>
 </dd>
 </dl>
 </dd>
@@ -7892,7 +7890,7 @@ signal specific attributes in the same <cite>nvSciSyncAttrList</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Valid Cuda Device to get NvSciSync attributes for.</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Valid Cuda Device to get NvSciSync attributes for.</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">int</span></dt><dd><p>flags describing NvSciSync usage.</p>
 </dd>
@@ -7901,7 +7899,7 @@ signal specific attributes in the same <cite>nvSciSyncAttrList</cite>.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd></dd>
-<dt><strong>nvSciSyncAttrList</strong><span class="classifier">int</span></dt><dd><p>Return NvSciSync attributes supported.</p>
+<dt><strong>nvSciSyncAttrList</strong><span class="classifier">Any</span></dt><dd><p>Return NvSciSync attributes supported.</p>
 </dd>
 </dl>
 </dd>
@@ -7924,12 +7922,18 @@ signal specific attributes in the same <cite>nvSciSyncAttrList</cite>.</p>
 allocates from the current mempool of the provided stream’s device. By
 default, a device’s current memory pool is its default memory pool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7957,12 +7961,18 @@ called. By default the current mempool is the default mempool for a
 device. Otherwise the returned pool must have been set with
 cuDeviceSetMemPool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7983,8 +7993,14 @@ CUDA_ERROR_INVALID_VALUE</p>
 <p>The default mempool of a device contains device memory from that
 device.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
@@ -7992,7 +8008,7 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_DEVICE
 CUDA_ERROR_NOT_SUPPORTED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>pool_out</strong><span class="classifier">CUmemoryPool</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8042,8 +8058,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -8076,7 +8090,7 @@ cuDevicePrimaryCtxSetFlags().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device for which primary context is requested</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device for which primary context is requested</p>
 </dd>
 </dl>
 </dd>
@@ -8132,7 +8146,7 @@ context from stack in any circumstances.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device which primary context is released</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device which primary context is released</p>
 </dd>
 </dl>
 </dd>
@@ -8143,8 +8157,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_DEVICE
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8210,7 +8222,7 @@ flag is now the default and cannot be disabled.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device for which the primary context flags are set</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device for which the primary context flags are set</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>New flags for the device</p>
 </dd>
@@ -8223,8 +8235,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_DEVICE
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8250,7 +8260,7 @@ values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to get primary context flags for</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get primary context flags for</p>
 </dd>
 </dl>
 </dd>
@@ -8294,7 +8304,7 @@ retained the primary context should explicitly release its usage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device for which primary context is destroyed</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device for which primary context is destroyed</p>
 </dd>
 </dl>
 </dd>
@@ -8305,8 +8315,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_DEVICE
 CUDA_ERROR_PRIMARY_CONTEXT_ACTIVE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8389,7 +8397,7 @@ option to it.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Context creation flags</p>
 </dd>
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to create context on</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to create context on</p>
 </dd>
 </dl>
 </dd>
@@ -8506,7 +8514,7 @@ option to it.</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Context creation flags</p>
 </dd>
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to create context on</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to create context on</p>
 </dd>
 </dl>
 </dd>
@@ -8569,7 +8577,7 @@ CUDA_ERROR_CONTEXT_IS_DESTROYED.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context to destroy</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -8580,8 +8588,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8616,7 +8622,7 @@ cuCtxDestroy() or cuCtxPopCurrent().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context to push</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context to push</p>
 </dd>
 </dl>
 </dd>
@@ -8627,8 +8633,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8705,7 +8709,7 @@ stack is empty).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context to bind to the calling CPU thread</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context to bind to the calling CPU thread</p>
 </dd>
 </dl>
 </dd>
@@ -8715,8 +8719,6 @@ stack is empty).</p>
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8849,8 +8851,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -8955,8 +8955,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_UNSUPPORTED_LIMIT
 CUDA_ERROR_OUT_OF_MEMORY
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9120,8 +9118,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -9231,8 +9227,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -9271,7 +9265,7 @@ for the API version to be 3020 while the driver version is 4020.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context to check</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context to check</p>
 </dd>
 </dl>
 </dd>
@@ -9362,8 +9356,6 @@ normal status. Takes effect on function return.</p>
 <dd class="field-odd"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9627,7 +9619,7 @@ CUDA_ERROR_JIT_COMPILER_NOT_FOUND</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hmod</strong><span class="classifier">Any</span></dt><dd><p>Module to unload</p>
+<dt><strong>hmod</strong><span class="classifier">CUmodule</span></dt><dd><p>Module to unload</p>
 </dd>
 </dl>
 </dd>
@@ -9638,8 +9630,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9667,7 +9657,7 @@ cuModuleGetFunction() returns CUDA_ERROR_NOT_FOUND.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hmod</strong><span class="classifier">Any</span></dt><dd><p>Module to retrieve function from</p>
+<dt><strong>hmod</strong><span class="classifier">CUmodule</span></dt><dd><p>Module to retrieve function from</p>
 </dd>
 <dt><strong>name</strong><span class="classifier">bytes</span></dt><dd><p>Name of function to retrieve</p>
 </dd>
@@ -9712,7 +9702,7 @@ it is ignored.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hmod</strong><span class="classifier">Any</span></dt><dd><p>Module to retrieve global from</p>
+<dt><strong>hmod</strong><span class="classifier">CUmodule</span></dt><dd><p>Module to retrieve global from</p>
 </dd>
 <dt><strong>name</strong><span class="classifier">bytes</span></dt><dd><p>Name of global to retrieve</p>
 </dd>
@@ -9761,7 +9751,7 @@ when the module is unloaded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hmod</strong><span class="classifier">Any</span></dt><dd><p>Module to retrieve texture reference from</p>
+<dt><strong>hmod</strong><span class="classifier">CUmodule</span></dt><dd><p>Module to retrieve texture reference from</p>
 </dd>
 <dt><strong>name</strong><span class="classifier">bytes</span></dt><dd><p>Name of texture reference to retrieve</p>
 </dd>
@@ -9806,7 +9796,7 @@ exists, cuModuleGetSurfRef() returns CUDA_ERROR_NOT_FOUND.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hmod</strong><span class="classifier">Any</span></dt><dd><p>Module to retrieve surface reference from</p>
+<dt><strong>hmod</strong><span class="classifier">CUmodule</span></dt><dd><p>Module to retrieve surface reference from</p>
 </dd>
 <dt><strong>name</strong><span class="classifier">bytes</span></dt><dd><p>Name of surface reference to retrieve</p>
 </dd>
@@ -9907,7 +9897,7 @@ CU_JIT_TARGET_FROM_CUCONTEXT, or CU_JIT_TARGET.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>state</strong><span class="classifier">Any</span></dt><dd><p>A pending linker action.</p>
+<dt><strong>state</strong><span class="classifier">CUlinkState</span></dt><dd><p>A pending linker action.</p>
 </dd>
 <dt><strong>typename</strong><span class="classifier">CUjitInputType</span></dt><dd><p>The type of the input data.</p>
 </dd>
@@ -9937,8 +9927,6 @@ CUDA_ERROR_UNSUPPORTED_PTX_VERSION
 CUDA_ERROR_OUT_OF_MEMORY
 CUDA_ERROR_NO_BINARY_FOR_GPU</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -9966,7 +9954,7 @@ the file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>state</strong><span class="classifier">Any</span></dt><dd><p>A pending linker action</p>
+<dt><strong>state</strong><span class="classifier">CUlinkState</span></dt><dd><p>A pending linker action</p>
 </dd>
 <dt><strong>typename</strong><span class="classifier">CUjitInputType</span></dt><dd><p>The type of the input data</p>
 </dd>
@@ -9993,8 +9981,6 @@ CUDA_ERROR_UNSUPPORTED_PTX_VERSION
 CUDA_ERROR_OUT_OF_MEMORY
 CUDA_ERROR_NO_BINARY_FOR_GPU</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -10019,7 +10005,7 @@ via cuLinkDestroy. This call does not destroy <cite>state</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>state</strong><span class="classifier">Any</span></dt><dd><p>A pending linker invocation</p>
+<dt><strong>state</strong><span class="classifier">CUlinkState</span></dt><dd><p>A pending linker invocation</p>
 </dd>
 </dl>
 </dd>
@@ -10029,7 +10015,7 @@ via cuLinkDestroy. This call does not destroy <cite>state</cite>.</p>
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt><strong>cubinOut</strong><span class="classifier">int</span></dt><dd><p>On success, this will point to the output image</p>
+<dt><strong>cubinOut</strong><span class="classifier">Any</span></dt><dd><p>On success, this will point to the output image</p>
 </dd>
 <dt><strong>sizeOut</strong><span class="classifier">int</span></dt><dd><p>Optional parameter to receive the size of the generated image</p>
 </dd>
@@ -10054,7 +10040,7 @@ CUDA_ERROR_OUT_OF_MEMORY</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>state</strong><span class="classifier">Any</span></dt><dd><p>State object for the linker invocation</p>
+<dt><strong>state</strong><span class="classifier">CUlinkState</span></dt><dd><p>State object for the linker invocation</p>
 </dd>
 </dl>
 </dd>
@@ -10062,8 +10048,6 @@ CUDA_ERROR_OUT_OF_MEMORY</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10341,7 +10325,7 @@ returned by a previous call to cuMemAlloc() or cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to memory to free</p>
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer to memory to free</p>
 </dd>
 </dl>
 </dd>
@@ -10352,8 +10336,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10413,7 +10395,7 @@ one of them is NULL, it is ignored.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>Device pointer to query</p>
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Device pointer to query</p>
 </dd>
 </dl>
 </dd>
@@ -10514,7 +10496,7 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt><strong>pp</strong><span class="classifier">int</span></dt><dd><p>Returned host pointer to page-locked memory</p>
+<dt><strong>pp</strong><span class="classifier">Any</span></dt><dd><p>Returned host pointer to page-locked memory</p>
 </dd>
 </dl>
 </dd>
@@ -10583,8 +10565,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10701,7 +10681,7 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt><strong>pp</strong><span class="classifier">int</span></dt><dd><p>Returned host pointer to page-locked memory</p>
+<dt><strong>pp</strong><span class="classifier">Any</span></dt><dd><p>Returned host pointer to page-locked memory</p>
 </dd>
 </dl>
 </dd>
@@ -11085,7 +11065,7 @@ maximum length of the string that may be returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>length</strong><span class="classifier">int</span></dt><dd><p>Maximum length of string to store in <cite>name</cite></p>
 </dd>
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device to get identifier string for</p>
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get identifier string for</p>
 </dd>
 </dl>
 </dd>
@@ -11234,7 +11214,7 @@ Windows is restricted to GPUs in TCC mode</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>Base pointer to previously allocated device memory</p>
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Base pointer to previously allocated device memory</p>
 </dd>
 </dl>
 </dd>
@@ -11346,7 +11326,7 @@ Windows is restricted to GPUs in TCC mode</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>Device pointer returned by cuIpcOpenMemHandle</p>
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Device pointer returned by cuIpcOpenMemHandle</p>
 </dd>
 </dl>
 </dd>
@@ -11357,8 +11337,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_MAP_FAILED
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11460,8 +11438,6 @@ CUDA_ERROR_HOST_MEMORY_ALREADY_REGISTERED
 CUDA_ERROR_NOT_PERMITTED
 CUDA_ERROR_NOT_SUPPORTED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -11499,8 +11475,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_OUT_OF_MEMORY
 CUDA_ERROR_HOST_MEMORY_NOT_REGISTERED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -11525,9 +11499,9 @@ contexts which support unified addressing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination unified virtual address space pointer</p>
+<dt><strong>dst</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination unified virtual address space pointer</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source unified virtual address space pointer</p>
+<dt><strong>src</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source unified virtual address space pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -11540,8 +11514,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11603,13 +11575,13 @@ pointer. <cite>ByteCount</cite> specifies the number of bytes to copy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
-<dt><strong>dstContext</strong><span class="classifier">Any</span></dt><dd><p>Destination context</p>
+<dt><strong>dstContext</strong><span class="classifier">CUcontext</span></dt><dd><p>Destination context</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
-<dt><strong>srcContext</strong><span class="classifier">Any</span></dt><dd><p>Source context</p>
+<dt><strong>srcContext</strong><span class="classifier">CUcontext</span></dt><dd><p>Source context</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -11622,8 +11594,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11650,7 +11620,7 @@ the base addresses of the destination and source, respectively.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>srcHost</strong><span class="classifier">Any</span></dt><dd><p>Source host pointer</p>
 </dd>
@@ -11665,8 +11635,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11728,7 +11696,7 @@ the base pointers of the destination and source, respectively.
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dstHost</strong><span class="classifier">Any</span></dt><dd><p>Destination host pointer</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -11741,8 +11709,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11802,9 +11768,9 @@ are the base pointers of the destination and source, respectively.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -11817,8 +11783,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11879,11 +11843,11 @@ destination data. <cite>srcDevice</cite> specifies the base pointer of the sourc
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstArray</strong><span class="classifier">Any</span></dt><dd><p>Destination array</p>
+<dt><strong>dstArray</strong><span class="classifier">CUarray</span></dt><dd><p>Destination array</p>
 </dd>
 <dt><strong>dstOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of destination array</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -11896,8 +11860,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11959,9 +11921,9 @@ evenly divisible by the array element size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
-<dt><strong>srcArray</strong><span class="classifier">Any</span></dt><dd><p>Source array</p>
+<dt><strong>srcArray</strong><span class="classifier">CUarray</span></dt><dd><p>Source array</p>
 </dd>
 <dt><strong>srcOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of source array</p>
 </dd>
@@ -11976,8 +11938,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12037,7 +11997,7 @@ destination data. <cite>pSrc</cite> specifies the base address of the source.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstArray</strong><span class="classifier">Any</span></dt><dd><p>Destination array</p>
+<dt><strong>dstArray</strong><span class="classifier">CUarray</span></dt><dd><p>Destination array</p>
 </dd>
 <dt><strong>dstOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of destination array</p>
 </dd>
@@ -12054,8 +12014,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12117,7 +12075,7 @@ CUDA array handle and starting offset in bytes of the source data.
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dstHost</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
 </dd>
-<dt><strong>srcArray</strong><span class="classifier">Any</span></dt><dd><p>Source array</p>
+<dt><strong>srcArray</strong><span class="classifier">CUarray</span></dt><dd><p>Source array</p>
 </dd>
 <dt><strong>srcOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of source array</p>
 </dd>
@@ -12132,8 +12090,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12196,11 +12152,11 @@ size; and count must be evenly divisible by that size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstArray</strong><span class="classifier">Any</span></dt><dd><p>Destination array</p>
+<dt><strong>dstArray</strong><span class="classifier">CUarray</span></dt><dd><p>Destination array</p>
 </dd>
 <dt><strong>dstOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of destination array</p>
 </dd>
-<dt><strong>srcArray</strong><span class="classifier">Any</span></dt><dd><p>Source array</p>
+<dt><strong>srcArray</strong><span class="classifier">CUarray</span></dt><dd><p>Source array</p>
 </dd>
 <dt><strong>srcOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of source array</p>
 </dd>
@@ -12215,8 +12171,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12342,8 +12296,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12471,8 +12423,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12604,8 +12554,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -12675,8 +12623,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -12705,9 +12651,9 @@ contexts which support unified addressing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination unified virtual address space pointer</p>
+<dt><strong>dst</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination unified virtual address space pointer</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source unified virtual address space pointer</p>
+<dt><strong>src</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source unified virtual address space pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -12723,8 +12669,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12793,13 +12737,13 @@ pointer. <cite>ByteCount</cite> specifies the number of bytes to copy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
-<dt><strong>dstContext</strong><span class="classifier">Any</span></dt><dd><p>Destination context</p>
+<dt><strong>dstContext</strong><span class="classifier">CUcontext</span></dt><dd><p>Destination context</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
-<dt><strong>srcContext</strong><span class="classifier">Any</span></dt><dd><p>Source context</p>
+<dt><strong>srcContext</strong><span class="classifier">CUcontext</span></dt><dd><p>Source context</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -12815,8 +12759,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12843,7 +12785,7 @@ the base addresses of the destination and source, respectively.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>srcHost</strong><span class="classifier">Any</span></dt><dd><p>Source host pointer</p>
 </dd>
@@ -12861,8 +12803,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12930,7 +12870,7 @@ the base pointers of the destination and source, respectively.
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dstHost</strong><span class="classifier">Any</span></dt><dd><p>Destination host pointer</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -12946,8 +12886,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13013,9 +12951,9 @@ are the base pointers of the destination and source, respectively.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>Source device pointer</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Source device pointer</p>
 </dd>
 <dt><strong>ByteCount</strong><span class="classifier">size_t</span></dt><dd><p>Size of memory copy in bytes</p>
 </dd>
@@ -13031,8 +12969,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13100,7 +13036,7 @@ destination data. <cite>srcHost</cite> specifies the base address of the source.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstArray</strong><span class="classifier">Any</span></dt><dd><p>Destination array</p>
+<dt><strong>dstArray</strong><span class="classifier">CUarray</span></dt><dd><p>Destination array</p>
 </dd>
 <dt><strong>dstOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of destination array</p>
 </dd>
@@ -13120,8 +13056,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13189,7 +13123,7 @@ CUDA array handle and starting offset in bytes of the source data.
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dstHost</strong><span class="classifier">Any</span></dt><dd><p>Destination pointer</p>
 </dd>
-<dt><strong>srcArray</strong><span class="classifier">Any</span></dt><dd><p>Source array</p>
+<dt><strong>srcArray</strong><span class="classifier">CUarray</span></dt><dd><p>Source array</p>
 </dd>
 <dt><strong>srcOffset</strong><span class="classifier">size_t</span></dt><dd><p>Offset in bytes of source array</p>
 </dd>
@@ -13207,8 +13141,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13341,8 +13273,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13483,8 +13413,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -13562,8 +13490,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -13587,7 +13513,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>uc</strong><span class="classifier">unsigned char</span></dt><dd><p>Value to set</p>
 </dd>
@@ -13602,8 +13528,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13667,7 +13591,7 @@ The <cite>dstDevice</cite> pointer must be two byte aligned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>us</strong><span class="classifier">unsigned short</span></dt><dd><p>Value to set</p>
 </dd>
@@ -13682,8 +13606,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13747,7 +13669,7 @@ The <cite>dstDevice</cite> pointer must be four byte aligned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>ui</strong><span class="classifier">unsigned int</span></dt><dd><p>Value to set</p>
 </dd>
@@ -13762,8 +13684,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13830,7 +13750,7 @@ cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>dstPitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination device pointer(Unused if <cite>Height</cite> is 1)</p>
 </dd>
@@ -13849,8 +13769,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13918,7 +13836,7 @@ passed back by cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>dstPitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination device pointer(Unused if <cite>Height</cite> is 1)</p>
 </dd>
@@ -13937,8 +13855,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14006,7 +13922,7 @@ passed back by cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>dstPitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination device pointer(Unused if <cite>Height</cite> is 1)</p>
 </dd>
@@ -14025,8 +13941,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14089,7 +14003,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>uc</strong><span class="classifier">unsigned char</span></dt><dd><p>Value to set</p>
 </dd>
@@ -14106,8 +14020,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14171,7 +14083,7 @@ The <cite>dstDevice</cite> pointer must be two byte aligned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>us</strong><span class="classifier">unsigned short</span></dt><dd><p>Value to set</p>
 </dd>
@@ -14188,8 +14100,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14253,7 +14163,7 @@ The <cite>dstDevice</cite> pointer must be four byte aligned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>ui</strong><span class="classifier">unsigned int</span></dt><dd><p>Value to set</p>
 </dd>
@@ -14270,8 +14180,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14338,7 +14246,7 @@ cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>dstPitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination device pointer(Unused if <cite>Height</cite> is 1)</p>
 </dd>
@@ -14359,8 +14267,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14428,7 +14334,7 @@ passed back by cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>dstPitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination device pointer(Unused if <cite>Height</cite> is 1)</p>
 </dd>
@@ -14449,8 +14355,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14518,7 +14422,7 @@ passed back by cuMemAllocPitch().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device pointer</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Destination device pointer</p>
 </dd>
 <dt><strong>dstPitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination device pointer(Unused if <cite>Height</cite> is 1)</p>
 </dd>
@@ -14539,8 +14443,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -14708,7 +14610,7 @@ CUDA array parameters for validation or other purposes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hArray</strong><span class="classifier">Any</span></dt><dd><p>Array to get descriptor of</p>
+<dt><strong>hArray</strong><span class="classifier">CUarray</span></dt><dd><p>Array to get descriptor of</p>
 </dd>
 </dl>
 </dd>
@@ -14791,7 +14693,7 @@ belongs to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>CUDA array to get the sparse properties of</p>
+<dt><strong>array</strong><span class="classifier">CUarray</span></dt><dd><p>CUDA array to get the sparse properties of</p>
 </dd>
 </dl>
 </dd>
@@ -14835,7 +14737,7 @@ CUDA_ARRAY_SPARSE_PROPERTIES::miptailSize is non-zero.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mipmap</strong><span class="classifier">Any</span></dt><dd><p>CUDA mipmapped array to get the sparse properties of</p>
+<dt><strong>mipmap</strong><span class="classifier">CUmipmappedArray</span></dt><dd><p>CUDA mipmapped array to get the sparse properties of</p>
 </dd>
 </dl>
 </dd>
@@ -14872,9 +14774,9 @@ necessary for mapping the CUDA array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>CUDA array to get the memory requirements of</p>
+<dt><strong>array</strong><span class="classifier">CUarray</span></dt><dd><p>CUDA array to get the memory requirements of</p>
 </dd>
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>Device to get the memory requirements for</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get the memory requirements for</p>
 </dd>
 </dl>
 </dd>
@@ -14911,9 +14813,9 @@ necessary for mapping the CUDA mipmapped  array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mipmap</strong><span class="classifier">Any</span></dt><dd><p>CUDA mipmapped array to get the memory requirements of</p>
+<dt><strong>mipmap</strong><span class="classifier">CUmipmappedArray</span></dt><dd><p>CUDA mipmapped array to get the memory requirements of</p>
 </dd>
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>Device to get the memory requirements for</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to get the memory requirements for</p>
 </dd>
 </dl>
 </dd>
@@ -14953,7 +14855,7 @@ as its format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hArray</strong><span class="classifier">Any</span></dt><dd><p>Multiplanar CUDA array</p>
+<dt><strong>hArray</strong><span class="classifier">CUarray</span></dt><dd><p>Multiplanar CUDA array</p>
 </dd>
 <dt><strong>planeIdx</strong><span class="classifier">unsigned int</span></dt><dd><p>Plane index</p>
 </dd>
@@ -14989,7 +14891,7 @@ CUDA_ERROR_INVALID_HANDLE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hArray</strong><span class="classifier">Any</span></dt><dd><p>Array to destroy</p>
+<dt><strong>hArray</strong><span class="classifier">CUarray</span></dt><dd><p>Array to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -15002,8 +14904,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_ARRAY_IS_MAPPED
 CUDA_ERROR_CONTEXT_IS_DESTROYED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15229,7 +15129,7 @@ CUDA array parameters for validation or other purposes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hArray</strong><span class="classifier">Any</span></dt><dd><p>3D array to get descriptor of</p>
+<dt><strong>hArray</strong><span class="classifier">CUarray</span></dt><dd><p>3D array to get descriptor of</p>
 </dd>
 </dl>
 </dd>
@@ -15424,7 +15324,7 @@ mipmapped array, CUDA_ERROR_INVALID_VALUE is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hMipmappedArray</strong><span class="classifier">Any</span></dt><dd><p>CUDA mipmapped array</p>
+<dt><strong>hMipmappedArray</strong><span class="classifier">CUmipmappedArray</span></dt><dd><p>CUDA mipmapped array</p>
 </dd>
 <dt><strong>level</strong><span class="classifier">unsigned int</span></dt><dd><p>Mipmap level</p>
 </dd>
@@ -15462,7 +15362,7 @@ CUDA_ERROR_INVALID_HANDLE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hMipmappedArray</strong><span class="classifier">Any</span></dt><dd><p>Mipmapped array to destroy</p>
+<dt><strong>hMipmappedArray</strong><span class="classifier">CUmipmappedArray</span></dt><dd><p>Mipmapped array to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -15475,8 +15375,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_ARRAY_IS_MAPPED
 CUDA_ERROR_CONTEXT_IS_DESTROYED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15511,7 +15409,7 @@ for default alignment.</p>
 </dd>
 <dt><strong>alignment</strong><span class="classifier">size_t</span></dt><dd><p>Alignment of the reserved virtual address range requested</p>
 </dd>
-<dt><strong>addr</strong><span class="classifier">Any</span></dt><dd><p>Fixed starting address range requested</p>
+<dt><strong>addr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Fixed starting address range requested</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned long long</span></dt><dd><p>Currently unused, must be zero</p>
 </dd>
@@ -15549,7 +15447,7 @@ match what was returned from memAddressReserve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Starting address of the virtual address range to free</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Starting address of the virtual address range to free</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">size_t</span></dt><dd><p>Size of the virtual address region to free</p>
 </dd>
@@ -15563,8 +15461,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_PERMITTED
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15648,7 +15544,7 @@ undefined.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>handle</strong><span class="classifier">Any</span></dt><dd><p>Value of handle which was returned previously by cuMemCreate.</p>
+<dt><strong>handle</strong><span class="classifier">CUmemGenericAllocationHandle</span></dt><dd><p>Value of handle which was returned previously by cuMemCreate.</p>
 </dd>
 </dl>
 </dd>
@@ -15660,8 +15556,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_PERMITTED
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15696,14 +15590,14 @@ currently mapped.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Address where memory will be mapped.</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Address where memory will be mapped.</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">size_t</span></dt><dd><p>Size of the memory mapping.</p>
 </dd>
 <dt><strong>offset</strong><span class="classifier">size_t</span></dt><dd><p>Offset into the memory represented by - <cite>handle</cite> from which to
 start mapping    - Note: currently must be zero.</p>
 </dd>
-<dt><strong>handle</strong><span class="classifier">Any</span></dt><dd><p>Handle to a shareable memory</p>
+<dt><strong>handle</strong><span class="classifier">CUmemGenericAllocationHandle</span></dt><dd><p>Handle to a shareable memory</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned long long</span></dt><dd><p>flags for future use, must be zero now.</p>
 </dd>
@@ -15719,8 +15613,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_PERMITTED
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15865,8 +15757,6 @@ must be set to zero.</p>
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -15899,7 +15789,7 @@ accessibility setup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Starting address for the virtual address range to unmap</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Starting address for the virtual address range to unmap</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">size_t</span></dt><dd><p>Size of the virtual address range to unmap</p>
 </dd>
@@ -15913,8 +15803,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_PERMITTED
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15938,7 +15826,7 @@ containing all allocations created by cuMemMap / cuMemCreate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Starting address for the virtual address range</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Starting address for the virtual address range</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">size_t</span></dt><dd><p>Length of the virtual address range</p>
 </dd>
@@ -15955,8 +15843,6 @@ for each location specified</p>
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_DEVICE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -15979,7 +15865,7 @@ CUDA_ERROR_NOT_SUPPORTED</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>location</strong><span class="classifier">CUmemLocation</span></dt><dd><p>Location in which to check the flags for</p>
 </dd>
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Address in which to check the access flags for</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Address in which to check the access flags for</p>
 </dd>
 </dl>
 </dd>
@@ -16023,9 +15909,7 @@ OpenGL) that support importing memory from the shareable type</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>shareableHandle</strong><span class="classifier">Any</span></dt><dd><p>Pointer to the location in which to store the requested handle type</p>
-</dd>
-<dt><strong>handle</strong><span class="classifier">Any</span></dt><dd><p>CUDA handle for the memory allocation</p>
+<dt><strong>handle</strong><span class="classifier">CUmemGenericAllocationHandle</span></dt><dd><p>CUDA handle for the memory allocation</p>
 </dd>
 <dt><strong>handleType</strong><span class="classifier">CUmemAllocationHandleType</span></dt><dd><p>Type of shareable handle requested (defines type and size of the
 <cite>shareableHandle</cite> output parameter)</p>
@@ -16043,7 +15927,7 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_PERMITTED
 CUDA_ERROR_NOT_SUPPORTED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>shareableHandle</strong><span class="classifier">Any</span></dt><dd><p>Pointer to the location in which to store the requested handle type</p>
 </dd>
 </dl>
 </dd>
@@ -16142,7 +16026,7 @@ CUDA_ERROR_NOT_SUPPORTED</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>handle</strong><span class="classifier">Any</span></dt><dd><p>Handle which to perform the query on</p>
+<dt><strong>handle</strong><span class="classifier">CUmemGenericAllocationHandle</span></dt><dd><p>Handle which to perform the query on</p>
 </dd>
 </dl>
 </dd>
@@ -16229,7 +16113,7 @@ GPU or querying its pointer attributes results in undefined behavior.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>memory to free</p>
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>memory to free</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>The stream establishing the stream ordering contract.</p>
 </dd>
@@ -16249,8 +16133,6 @@ no
 current
 context)
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -16326,7 +16208,7 @@ allocations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>The memory pool to trim</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>The memory pool to trim</p>
 </dd>
 <dt><strong>minBytesToKeep</strong><span class="classifier">size_t</span></dt><dd><p>If the pool has less than minBytesToKeep reserved, the TrimTo
 operation is a no-op. Otherwise the pool will be guaranteed to have
@@ -16339,8 +16221,6 @@ at least minBytesToKeep bytes reserved after the operation.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -16389,7 +16269,7 @@ memory that was allocated for the memory pool.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>The memory pool to modify</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>The memory pool to modify</p>
 </dd>
 <dt><strong>attr</strong><span class="classifier">CUmemPool_attribute</span></dt><dd><p>The attribute to modify</p>
 </dd>
@@ -16401,8 +16281,6 @@ memory that was allocated for the memory pool.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -16452,7 +16330,7 @@ was in use by the application.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>The memory pool to get attributes of</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>The memory pool to get attributes of</p>
 </dd>
 <dt><strong>attr</strong><span class="classifier">CUmemPool_attribute</span></dt><dd><p>The attribute to get</p>
 </dd>
@@ -16487,7 +16365,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>The pool being modified</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>The pool being modified</p>
 </dd>
 <dt><strong>map</strong><span class="classifier">List[CUmemAccessDesc]</span></dt><dd><p>Array of access descriptors. Each descriptor instructs the access
 to enable for a single gpu.</p>
@@ -16501,8 +16379,6 @@ to enable for a single gpu.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -16562,15 +16438,21 @@ device and IPC capabilities.</p>
 <p>By default, the pool’s memory will be accessible from the device it is
 allocated on.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>poolProps</strong><span class="classifier">CUmemPoolProps</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_OUT_OF_MEMORY
 CUDA_ERROR_NOT_SUPPORTED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -16600,12 +16482,16 @@ no more outstanding allocations.</p>
 <p>Destroying the current mempool of a device sets the default mempool of
 that device as the current mempool for that device.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -16636,7 +16522,7 @@ allocation comes from the specified memory pool.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bytesize</strong><span class="classifier">size_t</span></dt><dd><p>Number of bytes to allocate</p>
 </dd>
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>The pool to allocate from</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>The pool to allocate from</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>The stream establishing the stream ordering semantic</p>
 </dd>
@@ -16692,7 +16578,7 @@ requested handle type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>pool to export</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>pool to export</p>
 </dd>
 <dt><strong>handleType</strong><span class="classifier">CUmemAllocationHandleType</span></dt><dd><p>the type of handle to create</p>
 </dd>
@@ -16707,7 +16593,7 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt><strong>handle_out</strong><span class="classifier">int</span></dt><dd><p>Returned OS handle</p>
+<dt><strong>handle_out</strong><span class="classifier">Any</span></dt><dd><p>Returned OS handle</p>
 </dd>
 </dl>
 </dd>
@@ -16781,7 +16667,7 @@ handle and may be shared through any IPC mechanism.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>pointer to memory being exported</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>pointer to memory being exported</p>
 </dd>
 </dl>
 </dd>
@@ -16820,7 +16706,7 @@ process before the free operation on the exporting process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pool</strong><span class="classifier">Any</span></dt><dd><p>pool from which to import</p>
+<dt><strong>pool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>pool from which to import</p>
 </dd>
 <dt><strong>shareData</strong><span class="classifier">CUmemPoolPtrExportData</span></dt><dd><p>data specifying the memory to import</p>
 </dd>
@@ -16961,7 +16847,7 @@ obtained from.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>attribute</strong><span class="classifier">CUpointer_attribute</span></dt><dd><p>Pointer attribute to query</p>
 </dd>
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Pointer</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer</p>
 </dd>
 </dl>
 </dd>
@@ -17044,11 +16930,11 @@ all work on other devices.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to be prefetched</p>
+<dt><strong>devPtr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer to be prefetched</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">size_t</span></dt><dd><p>Size in bytes</p>
 </dd>
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>Destination device to prefetch to</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdevice</span></dt><dd><p>Destination device to prefetch to</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to enqueue prefetch operation</p>
 </dd>
@@ -17059,8 +16945,6 @@ all work on other devices.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_DEVICE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -17202,13 +17086,13 @@ this call has no effect.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to memory to set the advice for</p>
+<dt><strong>devPtr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer to memory to set the advice for</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">size_t</span></dt><dd><p>Size in bytes of the memory range</p>
 </dd>
 <dt><strong>advice</strong><span class="classifier">CUmem_advise</span></dt><dd><p>Advice to be applied for the specified memory range</p>
 </dd>
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>Device to apply the advice for</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>Device to apply the advice for</p>
 </dd>
 </dl>
 </dd>
@@ -17217,8 +17101,6 @@ this call has no effect.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_DEVICE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -17290,7 +17172,7 @@ to that location has completed or even begun.</p>
 </dd>
 <dt><strong>attribute</strong><span class="classifier">CUmem_range_attribute</span></dt><dd><p>The attribute to query</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Start of the range to query</p>
+<dt><strong>devPtr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Start of the range to query</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">size_t</span></dt><dd><p>Size of the range to query</p>
 </dd>
@@ -17346,7 +17228,7 @@ attributes in this array should match)</p>
 </dd>
 <dt><strong>numAttributes</strong><span class="classifier">size_t</span></dt><dd><p>Number of attributes to query</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Start of the range to query</p>
+<dt><strong>devPtr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Start of the range to query</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">size_t</span></dt><dd><p>Size of the range to query</p>
 </dd>
@@ -17400,7 +17282,7 @@ pointer to an unsigned integer to which this attribute is to be set.</p>
 </dd>
 <dt><strong>attribute</strong><span class="classifier">CUpointer_attribute</span></dt><dd><p>Pointer attribute to set</p>
 </dd>
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to a memory region allocated using CUDA memory allocation
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer to a memory region allocated using CUDA memory allocation
 APIs</p>
 </dd>
 </dl>
@@ -17413,8 +17295,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_DEVICE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -17463,7 +17343,7 @@ CUDA_ERROR_INVALID_CONTEXT is returned.</p>
 <dt><strong>attributes</strong><span class="classifier">List[CUpointer_attribute]</span></dt><dd><p>An array of attributes to query (numAttributes and the number of
 attributes in this array should match)</p>
 </dd>
-<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to query</p>
+<dt><strong>ptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer to query</p>
 </dd>
 </dl>
 </dd>
@@ -17758,7 +17638,7 @@ of stream capture.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to wait</p>
 </dd>
-<dt><strong>hEvent</strong><span class="classifier">Any</span></dt><dd><p>Event to wait on (may not be NULL)</p>
+<dt><strong>hEvent</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Event to wait on (may not be NULL)</p>
 </dd>
 <dt><strong>Flags</strong><span class="classifier">unsigned int</span></dt><dd><p>See CUevent_capture_flags</p>
 </dd>
@@ -17771,8 +17651,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -17825,7 +17703,7 @@ be done by signaling from a callback at the end of the stream.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to add callback to</p>
 </dd>
-<dt><strong>callback</strong><span class="classifier">Any</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
+<dt><strong>callback</strong><span class="classifier">CUstreamCallback</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
 </dd>
 <dt><strong>userData</strong><span class="classifier">Any</span></dt><dd><p>User specified data to be passed to the callback function</p>
 </dd>
@@ -17841,8 +17719,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -17896,8 +17772,6 @@ cuThreadExchangeStreamCaptureMode.</p>
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -17966,7 +17840,7 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>mode</strong><span class="classifier">CUstreamCaptureMode</span></dt><dd><p>Pointer to mode value to swap with the current mode</p>
 </dd>
 </dl>
 </dd>
@@ -18084,12 +17958,20 @@ CUDA_ERROR_STREAM_CAPTURE_IMPLICIT.</p>
 call returns CUDA_SUCCESS    - captureStatus is set to
 CU_STREAM_CAPTURE_STATUS_ACTIVE</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_STREAM_CAPTURE_IMPLICIT</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>captureStatus_out</strong><span class="classifier">CUstreamCaptureStatus</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>id_out</strong><span class="classifier">cuuint64_t</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18190,13 +18072,23 @@ from the stream at cuStreamEndCapture.</p>
 minor versions to CUDA 11.0 should not use this API or provide a
 fallback.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>numDependencies</strong><span class="classifier">size_t</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_ILLEGAL_STATE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18271,7 +18163,7 @@ happen until all work in the stream has completed.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream in which to enqueue the attach operation</p>
 </dd>
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to memory (must be a pointer to managed memory or to a
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Pointer to memory (must be a pointer to managed memory or to a
 valid host-accessible region of system-allocated pageable memory)</p>
 </dd>
 <dt><strong>length</strong><span class="classifier">size_t</span></dt><dd><p>Length of memory</p>
@@ -18288,8 +18180,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18331,8 +18221,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_READY</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -18370,8 +18258,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18413,8 +18299,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -18439,9 +18323,9 @@ Both streams must have the same context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination stream</p>
+<dt><strong>dst</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Destination stream</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source stream For list of attributes see CUstreamAttrID</p>
+<dt><strong>src</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Source stream For list of attributes see CUstreamAttrID</p>
 </dd>
 </dl>
 </dd>
@@ -18449,8 +18333,6 @@ Both streams must have the same context.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18500,8 +18382,6 @@ submitted to the stream. It will not affect previously submitted work.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18581,7 +18461,7 @@ set of work, so for example cuEventQuery() would return CUDA_SUCCESS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hEvent</strong><span class="classifier">Any</span></dt><dd><p>Event to record</p>
+<dt><strong>hEvent</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Event to record</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to record event for</p>
 </dd>
@@ -18595,8 +18475,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18639,7 +18517,7 @@ invalid outside of stream capture.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hEvent</strong><span class="classifier">Any</span></dt><dd><p>Event to record</p>
+<dt><strong>hEvent</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Event to record</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to record event for</p>
 </dd>
@@ -18655,8 +18533,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18688,7 +18564,7 @@ equivalent to having called cuEventSynchronize().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hEvent</strong><span class="classifier">Any</span></dt><dd><p>Event to query</p>
+<dt><strong>hEvent</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Event to query</p>
 </dd>
 </dl>
 </dd>
@@ -18700,8 +18576,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_READY</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18732,7 +18606,7 @@ been completed by the device.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hEvent</strong><span class="classifier">Any</span></dt><dd><p>Event to wait for</p>
+<dt><strong>hEvent</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Event to wait for</p>
 </dd>
 </dl>
 </dd>
@@ -18743,8 +18617,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18773,7 +18645,7 @@ resources will automatically be released asynchronously at completion.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hEvent</strong><span class="classifier">Any</span></dt><dd><p>Event to destroy</p>
+<dt><strong>hEvent</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Event to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -18784,8 +18656,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -18825,9 +18695,9 @@ this function will return CUDA_ERROR_INVALID_HANDLE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hStart</strong><span class="classifier">Any</span></dt><dd><p>Starting event</p>
+<dt><strong>hStart</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Starting event</p>
 </dd>
-<dt><strong>hEnd</strong><span class="classifier">Any</span></dt><dd><p>Ending event</p>
+<dt><strong>hEnd</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Ending event</p>
 </dd>
 </dl>
 </dd>
@@ -19031,7 +18901,7 @@ pointer to derive the individual buffers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extMem</strong><span class="classifier">Any</span></dt><dd><p>Handle to external memory object</p>
+<dt><strong>extMem</strong><span class="classifier">CUexternalMemory</span></dt><dd><p>Handle to external memory object</p>
 </dd>
 <dt><strong>bufferDesc</strong><span class="classifier">CUDA_EXTERNAL_MEMORY_BUFFER_DESC</span></dt><dd><p>Buffer descriptor</p>
 </dd>
@@ -19090,7 +18960,7 @@ cuMipmappedArrayDestroy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extMem</strong><span class="classifier">Any</span></dt><dd><p>Handle to external memory object</p>
+<dt><strong>extMem</strong><span class="classifier">CUexternalMemory</span></dt><dd><p>Handle to external memory object</p>
 </dd>
 <dt><strong>mipmapDesc</strong><span class="classifier">CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC</span></dt><dd><p>CUDA array descriptor</p>
 </dd>
@@ -19128,7 +18998,7 @@ cuMipmappedArrayDestroy respectively.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extMem</strong><span class="classifier">Any</span></dt><dd><p>External memory object to be destroyed</p>
+<dt><strong>extMem</strong><span class="classifier">CUexternalMemory</span></dt><dd><p>External memory object to be destroyed</p>
 </dd>
 </dl>
 </dd>
@@ -19137,8 +19007,6 @@ cuMipmappedArrayDestroy respectively.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19357,8 +19225,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_SUPPORTED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -19447,8 +19313,6 @@ CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_SUPPORTED
 CUDA_ERROR_TIMEOUT</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -19471,7 +19335,7 @@ completed before the semaphore is destroyed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extSem</strong><span class="classifier">Any</span></dt><dd><p>External semaphore to be destroyed</p>
+<dt><strong>extSem</strong><span class="classifier">CUexternalSemaphore</span></dt><dd><p>External semaphore to be destroyed</p>
 </dd>
 </dl>
 </dd>
@@ -19480,8 +19344,6 @@ completed before the semaphore is destroyed.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19528,7 +19390,7 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_STREAM_WAIT_VALUE_NOR.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>The stream to synchronize on the memory location.</p>
 </dd>
-<dt><strong>addr</strong><span class="classifier">Any</span></dt><dd><p>The memory location to wait on.</p>
+<dt><strong>addr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>The memory location to wait on.</p>
 </dd>
 <dt><strong>value</strong><span class="classifier">Any</span></dt><dd><p>The value to compare with the memory location.</p>
 </dd>
@@ -19541,8 +19403,6 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_STREAM_WAIT_VALUE_NOR.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19577,7 +19437,7 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_64_BIT_STREAM_MEM_OPS.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>The stream to synchronize on the memory location.</p>
 </dd>
-<dt><strong>addr</strong><span class="classifier">Any</span></dt><dd><p>The memory location to wait on.</p>
+<dt><strong>addr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>The memory location to wait on.</p>
 </dd>
 <dt><strong>value</strong><span class="classifier">Any</span></dt><dd><p>The value to compare with the memory location.</p>
 </dd>
@@ -19590,8 +19450,6 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_64_BIT_STREAM_MEM_OPS.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19627,7 +19485,7 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_STREAM_MEM_OPS.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>The stream to do the write in.</p>
 </dd>
-<dt><strong>addr</strong><span class="classifier">Any</span></dt><dd><p>The device address to write to.</p>
+<dt><strong>addr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>The device address to write to.</p>
 </dd>
 <dt><strong>value</strong><span class="classifier">Any</span></dt><dd><p>The value to write.</p>
 </dd>
@@ -19640,8 +19498,6 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_STREAM_MEM_OPS.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19676,7 +19532,7 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_64_BIT_STREAM_MEM_OPS.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>The stream to do the write in.</p>
 </dd>
-<dt><strong>addr</strong><span class="classifier">Any</span></dt><dd><p>The device address to write to.</p>
+<dt><strong>addr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>The device address to write to.</p>
 </dd>
 <dt><strong>value</strong><span class="classifier">Any</span></dt><dd><p>The value to write.</p>
 </dd>
@@ -19689,8 +19545,6 @@ CU_DEVICE_ATTRIBUTE_CAN_USE_64_BIT_STREAM_MEM_OPS.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19741,8 +19595,6 @@ details on querying support for specific operations.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19801,7 +19653,7 @@ memory-L1 cache split ratio in percent of total shared memory.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>attrib</strong><span class="classifier">CUfunction_attribute</span></dt><dd><p>Attribute requested</p>
 </dd>
-<dt><strong>hfunc</strong><span class="classifier">Any</span></dt><dd><p>Function to query attribute of</p>
+<dt><strong>hfunc</strong><span class="classifier">CUfunction</span></dt><dd><p>Function to query attribute of</p>
 </dd>
 </dl>
 </dd>
@@ -19859,7 +19711,7 @@ execute the function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hfunc</strong><span class="classifier">Any</span></dt><dd><p>Function to query attribute of</p>
+<dt><strong>hfunc</strong><span class="classifier">CUfunction</span></dt><dd><p>Function to query attribute of</p>
 </dd>
 <dt><strong>attrib</strong><span class="classifier">CUfunction_attribute</span></dt><dd><p>Attribute requested</p>
 </dd>
@@ -19875,8 +19727,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19919,7 +19769,7 @@ cache and shared memory</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hfunc</strong><span class="classifier">Any</span></dt><dd><p>Kernel to configure cache for</p>
+<dt><strong>hfunc</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel to configure cache for</p>
 </dd>
 <dt><strong>config</strong><span class="classifier">CUfunc_cache</span></dt><dd><p>Requested cache configuration</p>
 </dd>
@@ -19932,8 +19782,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -19981,7 +19829,7 @@ to be natively eight bytes when launching this function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hfunc</strong><span class="classifier">Any</span></dt><dd><p>kernel to be given a shared memory config</p>
+<dt><strong>hfunc</strong><span class="classifier">CUfunction</span></dt><dd><p>kernel to be given a shared memory config</p>
 </dd>
 <dt><strong>config</strong><span class="classifier">CUsharedconfig</span></dt><dd><p>requested shared memory configuration</p>
 </dd>
@@ -19994,8 +19842,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -20028,7 +19874,7 @@ result in undefined behavior.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hfunc</strong><span class="classifier">Any</span></dt><dd><p>Function to retrieve module for</p>
+<dt><strong>hfunc</strong><span class="classifier">CUfunction</span></dt><dd><p>Function to retrieve module for</p>
 </dd>
 </dl>
 </dd>
@@ -20102,7 +19948,7 @@ CUDA_ERROR_INVALID_IMAGE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>f</strong><span class="classifier">Any</span></dt><dd><p>Kernel to launch</p>
+<dt><strong>f</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel to launch</p>
 </dd>
 <dt><strong>gridDimX</strong><span class="classifier">unsigned int</span></dt><dd><p>Width of grid in blocks</p>
 </dd>
@@ -20122,7 +19968,7 @@ CUDA_ERROR_INVALID_IMAGE.</p>
 </dd>
 <dt><strong>kernelParams</strong><span class="classifier">Any</span></dt><dd><p>Array of pointers to kernel parameters</p>
 </dd>
-<dt><strong>extra</strong><span class="classifier">void_ptr</span></dt><dd><p>Extra options</p>
+<dt><strong>extra</strong><span class="classifier">List[Any]</span></dt><dd><p>Extra options</p>
 </dd>
 </dl>
 </dd>
@@ -20140,8 +19986,6 @@ CUDA_ERROR_LAUNCH_OUT_OF_RESOURCES
 CUDA_ERROR_LAUNCH_TIMEOUT
 CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
 CUDA_ERROR_SHARED_OBJECT_INIT_FAILED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -20195,7 +20039,7 @@ cuLaunchCooperativeKernel() will return CUDA_ERROR_INVALID_IMAGE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>f</strong><span class="classifier">Any</span></dt><dd><p>Kernel to launch</p>
+<dt><strong>f</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel to launch</p>
 </dd>
 <dt><strong>gridDimX</strong><span class="classifier">unsigned int</span></dt><dd><p>Width of grid in blocks</p>
 </dd>
@@ -20232,8 +20076,6 @@ CUDA_ERROR_LAUNCH_TIMEOUT
 CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
 CUDA_ERROR_COOPERATIVE_LAUNCH_TOO_LARGE
 CUDA_ERROR_SHARED_OBJECT_INIT_FAILED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -20372,8 +20214,6 @@ CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING
 CUDA_ERROR_COOPERATIVE_LAUNCH_TOO_LARGE
 CUDA_ERROR_SHARED_OBJECT_INIT_FAILED</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -20427,7 +20267,7 @@ called in the event of an error in the CUDA context.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to enqueue function call in</p>
 </dd>
-<dt><strong>fn</strong><span class="classifier">Any</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
+<dt><strong>fn</strong><span class="classifier">CUhostFn</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
 </dd>
 <dt><strong>userData</strong><span class="classifier">Any</span></dt><dd><p>User-specified data to be passed to the function</p>
 </dd>
@@ -20441,8 +20281,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_SUPPORTED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -20564,7 +20402,7 @@ points to, are copied during this call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -20666,8 +20504,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -20704,7 +20540,7 @@ depending on which memory type is specified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -20712,7 +20548,7 @@ depending on which memory type is specified.</p>
 </dd>
 <dt><strong>copyParams</strong><span class="classifier">CUDA_MEMCPY3D</span></dt><dd><p>Parameters for the memory copy</p>
 </dd>
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context on which to run the node</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context on which to run the node</p>
 </dd>
 </dl>
 </dd>
@@ -20798,8 +20634,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -20827,7 +20661,7 @@ the node will perform the memset described by <cite>memsetParams</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -20835,7 +20669,7 @@ the node will perform the memset described by <cite>memsetParams</cite>.</p>
 </dd>
 <dt><strong>memsetParams</strong><span class="classifier">CUDA_MEMSET_NODE_PARAMS</span></dt><dd><p>Parameters for the memory set</p>
 </dd>
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context on which to run the node</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context on which to run the node</p>
 </dd>
 </dl>
 </dd>
@@ -20922,8 +20756,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -20951,7 +20783,7 @@ function. Host nodes are not supported under MPS with pre-Volta GPUs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21044,8 +20876,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -21075,7 +20905,7 @@ this call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21166,7 +20996,7 @@ n^2 dependency edges.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21214,7 +21044,7 @@ the node’s dependencies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21309,8 +21139,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -21341,7 +21169,7 @@ may be from a different context or device than the launch stream.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21436,8 +21264,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -21468,7 +21294,7 @@ all of the node’s dependencies have completed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21576,8 +21402,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -21608,7 +21432,7 @@ launched until the wait operation has completed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21715,8 +21539,6 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -21767,7 +21589,7 @@ graph cannot be cloned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
@@ -21867,13 +21689,13 @@ graph cannot be cloned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which to add the node</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which to add the node</p>
 </dd>
 <dt><strong>dependencies</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Dependencies of the node</p>
 </dd>
 <dt><strong>numDependencies</strong><span class="classifier">size_t</span></dt><dd><p>Number of dependencies</p>
 </dd>
-<dt><strong>dptr</strong><span class="classifier">Any</span></dt><dd><p>Address of memory to free</p>
+<dt><strong>dptr</strong><span class="classifier">CUdeviceptr</span></dt><dd><p>Address of memory to free</p>
 </dd>
 </dl>
 </dd>
@@ -21956,7 +21778,7 @@ system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>The device for which cached memory should be freed.</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>The device for which cached memory should be freed.</p>
 </dd>
 </dl>
 </dd>
@@ -21964,8 +21786,6 @@ system.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_DEVICE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -21999,7 +21819,7 @@ allocator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>Specifies the scope of the query</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>Specifies the scope of the query</p>
 </dd>
 <dt><strong>attr</strong><span class="classifier">CUgraphMem_attribute</span></dt><dd><p>attribute to get</p>
 </dd>
@@ -22039,7 +21859,7 @@ CUDA graphs asynchronous allocator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>Specifies the scope of the query</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>Specifies the scope of the query</p>
 </dd>
 <dt><strong>attr</strong><span class="classifier">CUgraphMem_attribute</span></dt><dd><p>attribute to get</p>
 </dd>
@@ -22051,8 +21871,6 @@ CUDA graphs asynchronous allocator.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_DEVICE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22116,9 +21934,9 @@ returned via <cite>phClonedNode</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hOriginalNode</strong><span class="classifier">Any</span></dt><dd><p>Handle to the original node</p>
+<dt><strong>hOriginalNode</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Handle to the original node</p>
 </dd>
-<dt><strong>hClonedGraph</strong><span class="classifier">Any</span></dt><dd><p>Cloned graph to query</p>
+<dt><strong>hClonedGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Cloned graph to query</p>
 </dd>
 </dl>
 </dd>
@@ -22193,7 +22011,9 @@ NULL, and the number of nodes actually obtained will be returned in
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to query</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to query</p>
+</dd>
+<dt><strong>numNodes</strong><span class="classifier">int</span></dt><dd><p>See description</p>
 </dd>
 </dl>
 </dd>
@@ -22236,7 +22056,9 @@ nodes actually obtained will be returned in <cite>numRootNodes</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to query</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to query</p>
+</dd>
+<dt><strong>numRootNodes</strong><span class="classifier">int</span></dt><dd><p>See description</p>
 </dd>
 </dl>
 </dd>
@@ -22281,7 +22103,9 @@ actually returned will be written to <cite>numEdges</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to get the edges from</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to get the edges from</p>
+</dd>
+<dt><strong>numEdges</strong><span class="classifier">int</span></dt><dd><p>See description</p>
 </dd>
 </dl>
 </dd>
@@ -22329,6 +22153,8 @@ NULL, and the number of nodes actually obtained will be returned in
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hNode</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Node to query</p>
 </dd>
+<dt><strong>numDependencies</strong><span class="classifier">int</span></dt><dd><p>See description</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -22373,6 +22199,8 @@ returned in <cite>numDependentNodes</cite>.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hNode</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Node to query</p>
 </dd>
+<dt><strong>numDependentNodes</strong><span class="classifier">int</span></dt><dd><p>See description</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -22413,9 +22241,9 @@ Specifying an existing dependency will return an error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to which dependencies are added</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which dependencies are added</p>
 </dd>
-<dt><strong>from_</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
+<dt><strong>from</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
 </dd>
 <dt><strong>to</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Array of dependent nodes</p>
 </dd>
@@ -22427,8 +22255,6 @@ Specifying an existing dependency will return an error.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22458,9 +22284,9 @@ free nodes. Any attempt to do so will return an error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph from which to remove dependencies</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph from which to remove dependencies</p>
 </dd>
-<dt><strong>from_</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
+<dt><strong>from</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
 </dd>
 <dt><strong>to</strong><span class="classifier">List[CUgraphNode]</span></dt><dd><p>Array of dependent nodes</p>
 </dd>
@@ -22472,8 +22298,6 @@ free nodes. Any attempt to do so will return an error.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22508,8 +22332,6 @@ cannot be destroyed. Any attempt to do so will return an error.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -22541,7 +22363,7 @@ and the last byte can be inspected to determine if truncation occurred.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to instantiate</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to instantiate</p>
 </dd>
 <dt><strong>logBuffer</strong><span class="classifier">bytes</span></dt><dd><p>A character buffer to store diagnostic messages</p>
 </dd>
@@ -22597,7 +22419,7 @@ the first with cuGraphExecDestroy will result in an error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to instantiate</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to instantiate</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned long long</span></dt><dd><p>Flags to control instantiation. See CUgraphInstantiate_flags.</p>
 </dd>
@@ -22661,8 +22483,6 @@ call. <cite>hNode</cite> is also not modified by this call.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -22712,7 +22532,7 @@ multidimensional.</p>
 </dd>
 <dt><strong>copyParams</strong><span class="classifier">CUDA_MEMCPY3D</span></dt><dd><p>The updated parameters to set</p>
 </dd>
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context on which to run the node</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context on which to run the node</p>
 </dd>
 </dl>
 </dd>
@@ -22720,8 +22540,6 @@ multidimensional.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22772,7 +22590,7 @@ multidimensional.</p>
 </dd>
 <dt><strong>memsetParams</strong><span class="classifier">CUDA_MEMSET_NODE_PARAMS</span></dt><dd><p>The updated parameters to set</p>
 </dd>
-<dt><strong>ctx</strong><span class="classifier">Any</span></dt><dd><p>Context on which to run the node</p>
+<dt><strong>ctx</strong><span class="classifier">CUcontext</span></dt><dd><p>Context on which to run the node</p>
 </dd>
 </dl>
 </dd>
@@ -22780,8 +22598,6 @@ multidimensional.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22830,8 +22646,6 @@ call. hNode is also not modified by this call.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22887,8 +22701,6 @@ the top level child graph will also be updated.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -22937,8 +22749,6 @@ instantiated</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -22991,8 +22801,6 @@ instantiated</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23048,8 +22856,6 @@ instantiated</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -23103,8 +22909,6 @@ instantiated</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -23157,8 +22961,6 @@ call. <cite>hNode</cite> is also not modified by this call.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23239,8 +23041,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -23282,8 +23082,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -23317,8 +23115,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -23339,7 +23135,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>Graph to destroy</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -23349,8 +23145,6 @@ CUDA_ERROR_INVALID_VALUE</p>
 CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23432,7 +23226,7 @@ violated constraints specific to instantiated graph update.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hGraphExec</strong><span class="classifier">CUgraphExec or cudaGraphExec_t</span></dt><dd><p>The instantiated graph to be updated</p>
 </dd>
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>The graph containing the updated parameters</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph containing the updated parameters</p>
 </dd>
 </dl>
 </dd>
@@ -23466,9 +23260,9 @@ Both node must have the same context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination node</p>
+<dt><strong>dst</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Destination node</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source node For list of attributes see CUkernelNodeAttrID</p>
+<dt><strong>src</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Source node For list of attributes see CUkernelNodeAttrID</p>
 </dd>
 </dl>
 </dd>
@@ -23476,8 +23270,6 @@ Both node must have the same context.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23527,8 +23319,6 @@ CUDA_ERROR_INVALID_HANDLE</p>
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -23545,7 +23335,7 @@ as parameter values, kernel attributes, node and function handles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>The graph to create a DOT file from</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph to create a DOT file from</p>
 </dd>
 <dt><strong>path</strong><span class="classifier">bytes</span></dt><dd><p>The path to write the DOT file to</p>
 </dd>
@@ -23559,8 +23349,6 @@ node information to write</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_OPERATING_SYSTEM</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23583,7 +23371,7 @@ information on user objects.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>The pointer to pass to the destroy function</p>
 </dd>
-<dt><strong>destroy</strong><span class="classifier">Any</span></dt><dd><p>Callback to free the user object when it is no longer in use</p>
+<dt><strong>destroy</strong><span class="classifier">CUhostFn</span></dt><dd><p>Callback to free the user object when it is no longer in use</p>
 </dd>
 <dt><strong>initialRefcount</strong><span class="classifier">unsigned int</span></dt><dd><p>The initial refcount to create the object with, typically 1. The
 initial references are owned by the calling thread.</p>
@@ -23628,7 +23416,7 @@ information on user objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The object to retain</p>
+<dt><strong>object</strong><span class="classifier">CUuserObject</span></dt><dd><p>The object to retain</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to retain, typically 1. Must be nonzero
 and not larger than INT_MAX.</p>
@@ -23639,8 +23427,6 @@ and not larger than INT_MAX.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23669,7 +23455,7 @@ information on user objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The object to release</p>
+<dt><strong>object</strong><span class="classifier">CUuserObject</span></dt><dd><p>The object to release</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to release, typically 1. Must be nonzero
 and not larger than INT_MAX.</p>
@@ -23680,8 +23466,6 @@ and not larger than INT_MAX.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23710,7 +23494,7 @@ information on user objects.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph to associate the reference with</p>
 </dd>
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The user object to retain a reference for</p>
+<dt><strong>object</strong><span class="classifier">CUuserObject</span></dt><dd><p>The user object to retain a reference for</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to add to the graph, typically 1. Must be
 nonzero and not larger than INT_MAX.</p>
@@ -23725,8 +23509,6 @@ to create new references.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23754,7 +23536,7 @@ information on user objects.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph that will release the reference</p>
 </dd>
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The user object to release a reference for</p>
+<dt><strong>object</strong><span class="classifier">CUuserObject</span></dt><dd><p>The user object to release a reference for</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to release, typically 1. Must be nonzero
 and not larger than INT_MAX.</p>
@@ -23765,8 +23547,6 @@ and not larger than INT_MAX.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -23795,7 +23575,7 @@ streaming multiprocessor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>func</strong><span class="classifier">Any</span></dt><dd><p>Kernel for which occupancy is calculated</p>
+<dt><strong>func</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel for which occupancy is calculated</p>
 </dd>
 <dt><strong>blockSize</strong><span class="classifier">int</span></dt><dd><p>Block size the kernel is intended to be launched with</p>
 </dd>
@@ -23842,7 +23622,7 @@ guide.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>func</strong><span class="classifier">Any</span></dt><dd><p>Kernel for which occupancy is calculated</p>
+<dt><strong>func</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel for which occupancy is calculated</p>
 </dd>
 <dt><strong>blockSize</strong><span class="classifier">int</span></dt><dd><p>Block size the kernel is intended to be launched with</p>
 </dd>
@@ -23894,9 +23674,9 @@ size_tblockToSmem(intblockSize);</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>func</strong><span class="classifier">Any</span></dt><dd><p>Kernel for which launch configuration is calculated</p>
+<dt><strong>func</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel for which launch configuration is calculated</p>
 </dd>
-<dt><strong>blockSizeToDynamicSMemSize</strong><span class="classifier">Any</span></dt><dd><p>A function that calculates how much per-block dynamic shared memory
+<dt><strong>blockSizeToDynamicSMemSize</strong><span class="classifier">CUoccupancyB2DSize</span></dt><dd><p>A function that calculates how much per-block dynamic shared memory
 <cite>func</cite> uses based on the block size</p>
 </dd>
 <dt><strong>dynamicSMemSize</strong><span class="classifier">size_t</span></dt><dd><p>Dynamic shared memory usage intended, in bytes</p>
@@ -23947,9 +23727,9 @@ of occupancy. More information can be found about this feature in the
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>func</strong><span class="classifier">Any</span></dt><dd><p>Kernel for which launch configuration is calculated</p>
+<dt><strong>func</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel for which launch configuration is calculated</p>
 </dd>
-<dt><strong>blockSizeToDynamicSMemSize</strong><span class="classifier">Any</span></dt><dd><p>A function that calculates how much per-block dynamic shared memory
+<dt><strong>blockSizeToDynamicSMemSize</strong><span class="classifier">CUoccupancyB2DSize</span></dt><dd><p>A function that calculates how much per-block dynamic shared memory
 <cite>func</cite> uses based on the block size</p>
 </dd>
 <dt><strong>dynamicSMemSize</strong><span class="classifier">size_t</span></dt><dd><p>Dynamic shared memory usage intended, in bytes</p>
@@ -23986,7 +23766,7 @@ to allow <cite>numBlocks</cite> blocks per SM.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>func</strong><span class="classifier">Any</span></dt><dd><p>Kernel function for which occupancy is calculated</p>
+<dt><strong>func</strong><span class="classifier">CUfunction</span></dt><dd><p>Kernel function for which occupancy is calculated</p>
 </dd>
 <dt><strong>numBlocks</strong><span class="classifier">int</span></dt><dd><p>Number of blocks to fit on SM</p>
 </dd>
@@ -24205,7 +23985,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object to destroy</p>
+<dt><strong>texObject</strong><span class="classifier">CUtexObject</span></dt><dd><p>Texture object to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -24216,8 +23996,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24239,7 +24017,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object</p>
+<dt><strong>texObject</strong><span class="classifier">CUtexObject</span></dt><dd><p>Texture object</p>
 </dd>
 </dl>
 </dd>
@@ -24273,7 +24051,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object</p>
+<dt><strong>texObject</strong><span class="classifier">CUtexObject</span></dt><dd><p>Texture object</p>
 </dd>
 </dl>
 </dd>
@@ -24308,7 +24086,7 @@ CUDA_ERROR_INVALID_VALUE is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object</p>
+<dt><strong>texObject</strong><span class="classifier">CUtexObject</span></dt><dd><p>Texture object</p>
 </dd>
 </dl>
 </dd>
@@ -24385,7 +24163,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>surfObject</strong><span class="classifier">Any</span></dt><dd><p>Surface object to destroy</p>
+<dt><strong>surfObject</strong><span class="classifier">CUsurfObject</span></dt><dd><p>Surface object to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -24396,8 +24174,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24419,7 +24195,7 @@ CUDA_ERROR_INVALID_VALUE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>surfObject</strong><span class="classifier">Any</span></dt><dd><p>Surface object</p>
+<dt><strong>surfObject</strong><span class="classifier">CUsurfObject</span></dt><dd><p>Surface object</p>
 </dd>
 </dl>
 </dd>
@@ -24460,10 +24236,10 @@ cuCtxEnablePeerAccess().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dev</strong><span class="classifier">Any</span></dt><dd><p>Device from which allocations on <cite>peerDev</cite> are to be directly
+<dt><strong>dev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device from which allocations on <cite>peerDev</cite> are to be directly
 accessed.</p>
 </dd>
-<dt><strong>peerDev</strong><span class="classifier">Any</span></dt><dd><p>Device on which the allocations to be directly accessed by <cite>dev</cite>
+<dt><strong>peerDev</strong><span class="classifier">CUdevice</span></dt><dd><p>Device on which the allocations to be directly accessed by <cite>dev</cite>
 reside.</p>
 </dd>
 </dl>
@@ -24520,7 +24296,7 @@ exhausted.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>peerContext</strong><span class="classifier">Any</span></dt><dd><p>Peer context to enable direct access to from the current context</p>
+<dt><strong>peerContext</strong><span class="classifier">CUcontext</span></dt><dd><p>Peer context to enable direct access to from the current context</p>
 </dd>
 <dt><strong>Flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Reserved for future use and must be set to 0</p>
 </dd>
@@ -24536,8 +24312,6 @@ CUDA_ERROR_TOO_MANY_PEERS
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_PEER_ACCESS_UNSUPPORTED
 CUDA_ERROR_INVALID_VALUE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24562,7 +24336,7 @@ if <cite>peerContext</cite> is not a valid context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>peerContext</strong><span class="classifier">Any</span></dt><dd><p>Peer context to disable direct access to</p>
+<dt><strong>peerContext</strong><span class="classifier">CUcontext</span></dt><dd><p>Peer context to disable direct access to</p>
 </dd>
 </dl>
 </dd>
@@ -24573,8 +24347,6 @@ CUDA_ERROR_DEINITIALIZED
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_PEER_ACCESS_NOT_ENABLED
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24611,9 +24383,9 @@ is a null pointer.</p>
 <dt><strong>attrib</strong><span class="classifier">CUdevice_P2PAttribute</span></dt><dd><p>The requested attribute of the link between <cite>srcDevice</cite> and
 <cite>dstDevice</cite>.</p>
 </dd>
-<dt><strong>srcDevice</strong><span class="classifier">Any</span></dt><dd><p>The source device of the target link.</p>
+<dt><strong>srcDevice</strong><span class="classifier">CUdevice</span></dt><dd><p>The source device of the target link.</p>
 </dd>
-<dt><strong>dstDevice</strong><span class="classifier">Any</span></dt><dd><p>The destination device of the target link.</p>
+<dt><strong>dstDevice</strong><span class="classifier">CUdevice</span></dt><dd><p>The destination device of the target link.</p>
 </dd>
 </dl>
 </dd>
@@ -24654,7 +24426,7 @@ CUDA unless registered again.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Resource to unregister</p>
+<dt><strong>resource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>Resource to unregister</p>
 </dd>
 </dl>
 </dd>
@@ -24666,8 +24438,6 @@ CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_UNKNOWN</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24698,7 +24468,7 @@ CUDA_ERROR_NOT_MAPPED is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Mapped resource to access</p>
+<dt><strong>resource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>Mapped resource to access</p>
 </dd>
 <dt><strong>arrayIndex</strong><span class="classifier">unsigned int</span></dt><dd><p>Array index for array textures or cubemap face index as defined by
 CUarray_cubemap_face for cubemap textures for the subresource to
@@ -24746,7 +24516,7 @@ mipmapped array and CUDA_ERROR_NOT_MAPPED_AS_ARRAY is returned. If
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Mapped resource to access</p>
+<dt><strong>resource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>Mapped resource to access</p>
 </dd>
 </dl>
 </dd>
@@ -24800,10 +24570,18 @@ cudaGraphicsResourceGetMappedPointer</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>resource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><dl class="simple">
-<dt>None</dt><dd><p>None</p>
+<dt>pDevPtr<span class="classifier">CUdeviceptr</span></dt><dd><p>None</p>
+</dd>
+<dt>pSize<span class="classifier">int</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24835,7 +24613,7 @@ above values then CUDA_ERROR_INVALID_VALUE is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Registered resource to set flags for</p>
+<dt><strong>resource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>Registered resource to set flags for</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Parameters for resource mapping</p>
 </dd>
@@ -24850,8 +24628,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_ALREADY_MAPPED</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24885,7 +24661,7 @@ returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>Number of resources to map</p>
 </dd>
-<dt><strong>resources</strong><span class="classifier">Any</span></dt><dd><p>Resources to map for CUDA usage</p>
+<dt><strong>resources</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>Resources to map for CUDA usage</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream with which to synchronize</p>
 </dd>
@@ -24900,8 +24676,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_ALREADY_MAPPED
 CUDA_ERROR_UNKNOWN</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -24935,7 +24709,7 @@ returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>Number of resources to unmap</p>
 </dd>
-<dt><strong>resources</strong><span class="classifier">Any</span></dt><dd><p>Resources to unmap</p>
+<dt><strong>resources</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>Resources to unmap</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream with which to synchronize</p>
 </dd>
@@ -24950,8 +24724,6 @@ CUDA_ERROR_INVALID_CONTEXT
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_NOT_MAPPED
 CUDA_ERROR_UNKNOWN</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25023,7 +24795,7 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_SUPPORTED
 CUDA_ERROR_NOT_FOUND</p>
 </dd>
-<dt><strong>pfn</strong><span class="classifier">int</span></dt><dd><p>Location to return the function pointer to the requested driver
+<dt><strong>pfn</strong><span class="classifier">Any</span></dt><dd><p>Location to return the function pointer to the requested driver
 function</p>
 </dd>
 </dl>
@@ -25071,7 +24843,7 @@ EGLImageKHR</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>image</strong><span class="classifier">Any</span></dt><dd><p>An EGLImageKHR image which can be used to create target resource.</p>
+<dt><strong>image</strong><span class="classifier">EGLImageKHR</span></dt><dd><p>An EGLImageKHR image which can be used to create target resource.</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Map flags</p>
 </dd>
@@ -25111,7 +24883,7 @@ frames from one API to another.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>EGLStreamKHR handle</p>
+<dt><strong>stream</strong><span class="classifier">EGLStreamKHR</span></dt><dd><p>EGLStreamKHR handle</p>
 </dd>
 </dl>
 </dd>
@@ -25149,7 +24921,7 @@ CU_EGL_RESOURCE_LOCATION_VIDMEM.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>EGLStreamKHR handle</p>
+<dt><strong>stream</strong><span class="classifier">EGLStreamKHR</span></dt><dd><p>EGLStreamKHR handle</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Flags denote intended location - system or video.</p>
 </dd>
@@ -25185,7 +24957,7 @@ CUDA_ERROR_INVALID_CONTEXT</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Conection to disconnect.</p>
+<dt><strong>conn</strong><span class="classifier">CUeglStreamConnection</span></dt><dd><p>Conection to disconnect.</p>
 </dd>
 </dl>
 </dd>
@@ -25194,8 +24966,6 @@ CUDA_ERROR_INVALID_CONTEXT</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25224,11 +24994,11 @@ EGL_TRUE. cuGraphicsResourceGetMappedEglFrame can be called on
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to acquire</p>
+<dt><strong>conn</strong><span class="classifier">CUeglStreamConnection</span></dt><dd><p>Connection on which to acquire</p>
 </dd>
-<dt><strong>pCudaResource</strong><span class="classifier">Any</span></dt><dd><p>CUDA resource on which the stream frame will be mapped for use.</p>
+<dt><strong>pCudaResource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>CUDA resource on which the stream frame will be mapped for use.</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream for synchronization and any data migrations implied by
+<dt><strong>pStream</strong><span class="classifier">CUstream</span></dt><dd><p>CUDA stream for synchronization and any data migrations implied by
 CUeglResourceLocationFlags.</p>
 </dd>
 <dt><strong>timeout</strong><span class="classifier">unsigned int</span></dt><dd><p>Desired timeout in usec for a new frame to be acquired. If set as
@@ -25243,8 +25013,6 @@ EGL_SUPPORT_REUSE_NV flag is set.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_LAUNCH_TIMEOUT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25272,11 +25040,11 @@ to EGL_TRUE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to release</p>
+<dt><strong>conn</strong><span class="classifier">CUeglStreamConnection</span></dt><dd><p>Connection on which to release</p>
 </dd>
-<dt><strong>pCudaResource</strong><span class="classifier">Any</span></dt><dd><p>CUDA resource whose corresponding frame is to be released</p>
+<dt><strong>pCudaResource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>CUDA resource whose corresponding frame is to be released</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream on which release will be done.</p>
+<dt><strong>pStream</strong><span class="classifier">CUstream</span></dt><dd><p>CUDA stream on which release will be done.</p>
 </dd>
 </dl>
 </dd>
@@ -25284,8 +25052,6 @@ to EGL_TRUE.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25311,11 +25077,11 @@ frames from one API to another.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>EGLStreamKHR handle</p>
+<dt><strong>stream</strong><span class="classifier">EGLStreamKHR</span></dt><dd><p>EGLStreamKHR handle</p>
 </dd>
-<dt><strong>width</strong><span class="classifier">Any</span></dt><dd><p>width of the image to be submitted to the stream</p>
+<dt><strong>width</strong><span class="classifier">EGLint</span></dt><dd><p>width of the image to be submitted to the stream</p>
 </dd>
-<dt><strong>height</strong><span class="classifier">Any</span></dt><dd><p>height of the image to be submitted to the stream</p>
+<dt><strong>height</strong><span class="classifier">EGLint</span></dt><dd><p>height of the image to be submitted to the stream</p>
 </dd>
 </dl>
 </dd>
@@ -25348,7 +25114,7 @@ CUDA_ERROR_INVALID_CONTEXT</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Conection to disconnect.</p>
+<dt><strong>conn</strong><span class="classifier">CUeglStreamConnection</span></dt><dd><p>Conection to disconnect.</p>
 </dd>
 </dl>
 </dd>
@@ -25357,8 +25123,6 @@ CUDA_ERROR_INVALID_CONTEXT</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_INVALID_CONTEXT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25398,12 +25162,12 @@ dimensions of the sub-region.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to present the CUDA array</p>
+<dt><strong>conn</strong><span class="classifier">CUeglStreamConnection</span></dt><dd><p>Connection on which to present the CUDA array</p>
 </dd>
 <dt><strong>eglframe</strong><span class="classifier">CUeglFrame</span></dt><dd><p>CUDA Eglstream Proucer Frame handle to be sent to the consumer over
 EglStream.</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream on which to present the frame.</p>
+<dt><strong>pStream</strong><span class="classifier">CUstream</span></dt><dd><p>CUDA stream on which to present the frame.</p>
 </dd>
 </dl>
 </dd>
@@ -25411,8 +25175,6 @@ EglStream.</p>
 <dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25437,12 +25199,12 @@ the application can retry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to return</p>
+<dt><strong>conn</strong><span class="classifier">CUeglStreamConnection</span></dt><dd><p>Connection on which to return</p>
 </dd>
 <dt><strong>eglframe</strong><span class="classifier">CUeglFrame</span></dt><dd><p>CUDA Eglstream Proucer Frame handle returned from the consumer over
 EglStream.</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream on which to return the frame.</p>
+<dt><strong>pStream</strong><span class="classifier">CUstream</span></dt><dd><p>CUDA stream on which to return the frame.</p>
 </dd>
 </dl>
 </dd>
@@ -25451,8 +25213,6 @@ EglStream.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_HANDLE
 CUDA_ERROR_LAUNCH_TIMEOUT</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25491,10 +25251,20 @@ cuGraphicsMapResources, cuGraphicsSubResourceGetMappedArray,
 cuGraphicsResourceGetMappedPointer,
 cudaGraphicsResourceGetMappedEglFrame</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>resource</strong><span class="classifier">CUgraphicsResource</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>index</strong><span class="classifier">unsigned int</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>mipLevel</strong><span class="classifier">unsigned int</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>CUresult</dt><dd></dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>eglFrame</strong><span class="classifier">CUeglFrame</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -25519,7 +25289,7 @@ EGLSyncKHR</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eglSync</strong><span class="classifier">Any</span></dt><dd><p>Opaque handle to EGLSync object</p>
+<dt><strong>eglSync</strong><span class="classifier">EGLSyncKHR</span></dt><dd><p>Opaque handle to EGLSync object</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Event creation flags</p>
 </dd>
@@ -25595,7 +25365,7 @@ previously stored in the resource will be preserved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>buffer</strong><span class="classifier">Any</span></dt><dd><p>name of buffer object to be registered</p>
+<dt><strong>buffer</strong><span class="classifier">GLuint</span></dt><dd><p>name of buffer object to be registered</p>
 </dd>
 <dt><strong>Flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Register flags</p>
 </dd>
@@ -25661,9 +25431,9 @@ borders    - Multisampled renderbuffers</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>image</strong><span class="classifier">Any</span></dt><dd><p>name of texture or renderbuffer object to be registered</p>
+<dt><strong>image</strong><span class="classifier">GLuint</span></dt><dd><p>name of texture or renderbuffer object to be registered</p>
 </dd>
-<dt><strong>target</strong><span class="classifier">Any</span></dt><dd><p>Identifies the type of object specified by <cite>image</cite></p>
+<dt><strong>target</strong><span class="classifier">GLenum</span></dt><dd><p>Identifies the type of object specified by <cite>image</cite></p>
 </dd>
 <dt><strong>Flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Register flags</p>
 </dd>
@@ -25761,8 +25531,6 @@ on selective pieces of code.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_CONTEXT</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -25791,8 +25559,6 @@ on selective pieces of code.</p>
 <dt>CUresult</dt><dd><p>CUDA_SUCCESS
 CUDA_ERROR_INVALID_CONTEXT</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -25818,9 +25584,9 @@ applicable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vdpDevice</strong><span class="classifier">Any</span></dt><dd><p>A VdpDevice handle</p>
+<dt><strong>vdpDevice</strong><span class="classifier">VdpDevice</span></dt><dd><p>A VdpDevice handle</p>
 </dd>
-<dt><strong>vdpGetProcAddress</strong><span class="classifier">Any</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
+<dt><strong>vdpGetProcAddress</strong><span class="classifier">VdpGetProcAddress</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
 </dd>
 </dl>
 </dd>
@@ -25867,11 +25633,11 @@ of the <cite>flags</cite> parameter, see cuCtxCreate().</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Options for CUDA context creation</p>
 </dd>
-<dt><strong>device</strong><span class="classifier">Any</span></dt><dd><p>Device on which to create the context</p>
+<dt><strong>device</strong><span class="classifier">CUdevice</span></dt><dd><p>Device on which to create the context</p>
 </dd>
-<dt><strong>vdpDevice</strong><span class="classifier">Any</span></dt><dd><p>The VdpDevice to interop with</p>
+<dt><strong>vdpDevice</strong><span class="classifier">VdpDevice</span></dt><dd><p>The VdpDevice to interop with</p>
 </dd>
-<dt><strong>vdpGetProcAddress</strong><span class="classifier">Any</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
+<dt><strong>vdpGetProcAddress</strong><span class="classifier">VdpGetProcAddress</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
 </dd>
 </dl>
 </dd>
@@ -25965,7 +25731,7 @@ w/2 x h/2 &amp; R8G8   &amp; Bottom-field chroma hline end{tabular}</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vdpSurface</strong><span class="classifier">Any</span></dt><dd><p>The VdpVideoSurface to be registered</p>
+<dt><strong>vdpSurface</strong><span class="classifier">VdpVideoSurface</span></dt><dd><p>The VdpVideoSurface to be registered</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Map flags</p>
 </dd>
@@ -26040,7 +25806,7 @@ A2BGR10 &amp; Entire surface hline end{tabular}</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vdpSurface</strong><span class="classifier">Any</span></dt><dd><p>The VdpOutputSurface to be registered</p>
+<dt><strong>vdpSurface</strong><span class="classifier">VdpOutputSurface</span></dt><dd><p>The VdpOutputSurface to be registered</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Map flags</p>
 </dd>

@@ -224,8 +224,6 @@ profiling to be done only on selective pieces of code.</p>
 <dd class="field-odd"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -252,8 +250,6 @@ profiling to be done only on selective pieces of code.</p>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -295,8 +291,6 @@ called.</p>
 <dd class="field-odd"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -320,8 +314,6 @@ work.</p>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -412,8 +404,6 @@ cudaErrorUnsupportedLimit
 cudaErrorInvalidValue
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -478,6 +468,8 @@ allocatable in a 1D linear texture for given format descriptor
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fmtDesc</strong><span class="classifier">cudaChannelFormatDesc</span></dt><dd><p>Texture format description.</p>
+</dd>
+<dt><strong>None</strong><span class="classifier">int</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -608,8 +600,6 @@ and shared memory</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -692,8 +682,6 @@ bank width to be eight bytes natively.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -973,7 +961,7 @@ cudaErrorTooManyPeers
 cudaErrorNotSupported
 cudaErrorInvalidValue</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">int</span></dt><dd><p>Returned device pointer</p>
+<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Returned device pointer</p>
 </dd>
 </dl>
 </dd>
@@ -1025,8 +1013,6 @@ cudaErrorMapBufferObjectFailed
 cudaErrorNotSupported
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -1071,8 +1057,6 @@ cudaDevAttrGPUDirectRDMAFlushWritesOptions.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorNotSupported</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -1513,14 +1497,20 @@ cudaErrorInvalidValue</p>
 <p>The default mempool of a device contains device memory from that
 device.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>device</strong><span class="classifier">int</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidDevice
 cudaErrorInvalidValue
 cudaErrorNotSupported</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>memPool</strong><span class="classifier">cudaMemPool_t</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -1546,14 +1536,20 @@ is specified in the cudaMallocAsync call, cudaMallocAsync allocates
 from the current mempool of the provided stream’s device. By default, a
 device’s current memory pool is its default memory pool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>device</strong><span class="classifier">int</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>memPool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidDevice
 cudaErrorNotSupported</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -1581,13 +1577,19 @@ been called. By default the current mempool is the default mempool for
 a device, otherwise the returned pool must have been set with
 cuDeviceSetMemPool or cudaDeviceSetMemPool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>device</strong><span class="classifier">int</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorNotSupported</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>memPool</strong><span class="classifier">cudaMemPool_t</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -1634,7 +1636,7 @@ signal specific attributes in the same <cite>nvSciSyncAttrList</cite>.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd></dd>
-<dt><strong>nvSciSyncAttrList</strong><span class="classifier">int</span></dt><dd><p>Return NvSciSync attributes supported.</p>
+<dt><strong>nvSciSyncAttrList</strong><span class="classifier">Any</span></dt><dd><p>Return NvSciSync attributes supported.</p>
 </dd>
 </dl>
 </dd>
@@ -1758,8 +1760,6 @@ code.</p>
 cudaErrorInvalidDevice
 cudaErrorDeviceAlreadyInUse</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -1860,8 +1860,6 @@ flag is now the default and cannot be disabled.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -1973,8 +1971,6 @@ cudaErrorNoKernelImageForDevice
 cudaErrorJitCompilerNotFound
 cudaErrorJitCompilationDisabled</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -2031,8 +2027,6 @@ cudaErrorNoKernelImageForDevice
 cudaErrorJitCompilerNotFound
 cudaErrorJitCompilationDisabled</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -2062,9 +2056,9 @@ returned.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>cudaError_t</dt><dd><p><cite>char*</cite> pointer to a NULL-terminated string</p>
+<dt>cudaError_t.cudaSuccess</dt><dd><p>cudaError_t.cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt>bytes</dt><dd><p><cite>char*</cite> pointer to a NULL-terminated string</p>
 </dd>
 </dl>
 </dd>
@@ -2095,9 +2089,9 @@ not recognized, “unrecognized error code” is returned.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>cudaError_t</dt><dd><p><cite>char*</cite> pointer to a NULL-terminated string</p>
+<dt>cudaError_t.cudaSuccess</dt><dd><p>cudaError_t.cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt>bytes</dt><dd><p><cite>char*</cite> pointer to a NULL-terminated string</p>
 </dd>
 </dl>
 </dd>
@@ -2348,8 +2342,6 @@ function return.</p>
 <dd class="field-odd"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -2369,9 +2361,9 @@ Both streams must have the same context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination stream</p>
+<dt><strong>dst</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Destination stream</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source stream For attributes see cudaStreamAttrID</p>
+<dt><strong>src</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Source stream For attributes see cudaStreamAttrID</p>
 </dd>
 </dl>
 </dd>
@@ -2379,8 +2371,6 @@ Both streams must have the same context.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorNotSupported</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -2443,8 +2433,6 @@ submitted to the stream. It will not affect previously submitted work.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -2476,8 +2464,6 @@ once the device has completed all work in <cite>stream</cite>.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -2522,8 +2508,6 @@ event node when performing stream capture.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -2576,7 +2560,7 @@ callback at the end of the stream.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to add callback to</p>
 </dd>
-<dt><strong>callback</strong><span class="classifier">Any</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
+<dt><strong>callback</strong><span class="classifier">cudaStreamCallback_t</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
 </dd>
 <dt><strong>userData</strong><span class="classifier">Any</span></dt><dd><p>User specified data to be passed to the callback function</p>
 </dd>
@@ -2590,8 +2574,6 @@ callback at the end of the stream.</p>
 cudaErrorInvalidResourceHandle
 cudaErrorInvalidValue
 cudaErrorNotSupported</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -2633,8 +2615,6 @@ thread will block until the stream is finished with all of its tasks.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -2671,8 +2651,6 @@ equivalent to having called cudaStreamSynchronize().</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorNotReady
 cudaErrorInvalidResourceHandle</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -2769,8 +2747,6 @@ cudaErrorNotReady
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -2818,8 +2794,6 @@ cudaThreadExchangeStreamCaptureMode.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -2885,7 +2859,7 @@ last recorded inside a capture sequence.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>mode</strong><span class="classifier">cudaStreamCaptureMode</span></dt><dd><p>Pointer to mode value to swap with the current mode</p>
 </dd>
 </dl>
 </dd>
@@ -3114,13 +3088,23 @@ the stream at cudaStreamEndCapture.</p>
 minor versions of the CUDA driver to 11.0 should not use this API or
 provide a fallback.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>dependencies</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>numDependencies</strong><span class="classifier">size_t</span></dt><dd><p>None</p>
+</dd>
+<dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorIllegalState</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -3251,8 +3235,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorLaunchFailure</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -3309,8 +3291,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorLaunchFailure</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -3354,8 +3334,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorLaunchFailure</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -3397,8 +3375,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorLaunchFailure</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -3437,8 +3413,6 @@ resources will automatically be released asynchronously at completion.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorLaunchFailure</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -3479,9 +3453,9 @@ function will return cudaErrorInvalidResourceHandle.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>start</strong><span class="classifier">Any</span></dt><dd><p>Starting event</p>
+<dt><strong>start</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Starting event</p>
 </dd>
-<dt><strong>end</strong><span class="classifier">Any</span></dt><dd><p>Ending event</p>
+<dt><strong>end</strong><span class="classifier">CUevent or cudaEvent_t</span></dt><dd><p>Ending event</p>
 </dd>
 </dl>
 </dd>
@@ -3684,7 +3658,7 @@ pointer to derive the individual buffers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extMem</strong><span class="classifier">Any</span></dt><dd><p>Handle to external memory object</p>
+<dt><strong>extMem</strong><span class="classifier">cudaExternalMemory_t</span></dt><dd><p>Handle to external memory object</p>
 </dd>
 <dt><strong>bufferDesc</strong><span class="classifier">cudaExternalMemoryBufferDesc</span></dt><dd><p>Buffer descriptor</p>
 </dd>
@@ -3696,7 +3670,7 @@ pointer to derive the individual buffers.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">int</span></dt><dd><p>Returned device pointer to buffer</p>
+<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Returned device pointer to buffer</p>
 </dd>
 </dl>
 </dd>
@@ -3741,7 +3715,7 @@ cudaFreeMipmappedArray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extMem</strong><span class="classifier">Any</span></dt><dd><p>Handle to external memory object</p>
+<dt><strong>extMem</strong><span class="classifier">cudaExternalMemory_t</span></dt><dd><p>Handle to external memory object</p>
 </dd>
 <dt><strong>mipmapDesc</strong><span class="classifier">cudaExternalMemoryMipmappedArrayDesc</span></dt><dd><p>CUDA array descriptor</p>
 </dd>
@@ -3780,7 +3754,7 @@ respectively.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extMem</strong><span class="classifier">Any</span></dt><dd><p>External memory object to be destroyed</p>
+<dt><strong>extMem</strong><span class="classifier">cudaExternalMemory_t</span></dt><dd><p>External memory object to be destroyed</p>
 </dd>
 </dl>
 </dd>
@@ -3788,8 +3762,6 @@ respectively.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4004,8 +3976,6 @@ cudaExternalSemaphoreSignalParams::params::keyedmutex::key.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -4090,8 +4060,6 @@ used to specify infinite timeout</p>
 cudaErrorInvalidResourceHandle
 cudaErrorTimeout</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -4114,7 +4082,7 @@ completed before the semaphore is destroyed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>extSem</strong><span class="classifier">Any</span></dt><dd><p>External semaphore to be destroyed</p>
+<dt><strong>extSem</strong><span class="classifier">cudaExternalSemaphore_t</span></dt><dd><p>External semaphore to be destroyed</p>
 </dd>
 </dl>
 </dd>
@@ -4122,8 +4090,6 @@ completed before the semaphore is destroyed.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4180,8 +4146,6 @@ and shared memory</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidDeviceFunction</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4241,8 +4205,6 @@ eight bytes natively when launching this function.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidDeviceFunction
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4340,8 +4302,6 @@ function.</p>
 cudaErrorInvalidDeviceFunction
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -4363,8 +4323,6 @@ natively support doubles, then this function does nothing.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4396,8 +4354,6 @@ device does natively support doubles, then this function does nothing.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4449,7 +4405,7 @@ be called in the event of an error in the CUDA context.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream to enqueue function call in</p>
 </dd>
-<dt><strong>fn</strong><span class="classifier">Any</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
+<dt><strong>fn</strong><span class="classifier">cudaHostFn_t</span></dt><dd><p>The function to call once preceding stream operations are complete</p>
 </dd>
 <dt><strong>userData</strong><span class="classifier">Any</span></dt><dd><p>User-specified data to be passed to the function</p>
 </dd>
@@ -4461,8 +4417,6 @@ be called in the event of an error in the CUDA context.</p>
 cudaErrorInvalidResourceHandle
 cudaErrorInvalidValue
 cudaErrorNotSupported</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -4741,7 +4695,7 @@ cudaErrorMemoryAllocation
 cudaErrorNotSupported
 cudaErrorInvalidValue</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">int</span></dt><dd><p>Pointer to allocated device memory</p>
+<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to allocated device memory</p>
 </dd>
 </dl>
 </dd>
@@ -4787,7 +4741,7 @@ allocated using the host API, and vice versa.</p>
 cudaErrorInvalidValue
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">int</span></dt><dd><p>Pointer to allocated device memory</p>
+<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to allocated device memory</p>
 </dd>
 </dl>
 </dd>
@@ -4836,7 +4790,7 @@ and device.</p>
 cudaErrorInvalidValue
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt><strong>ptr</strong><span class="classifier">int</span></dt><dd><p>Pointer to allocated host memory</p>
+<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to allocated host memory</p>
 </dd>
 </dl>
 </dd>
@@ -4894,7 +4848,7 @@ arrays).</p>
 cudaErrorInvalidValue
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">int</span></dt><dd><p>Pointer to allocated pitched device memory</p>
+<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Pointer to allocated pitched device memory</p>
 </dd>
 <dt><strong>pitch</strong><span class="classifier">int</span></dt><dd><p>Pitch for allocation</p>
 </dd>
@@ -5006,8 +4960,6 @@ allocated using the host API, and vice versa.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -5045,8 +4997,6 @@ returned by a previous call to cudaMallocHost() or cudaHostAlloc().</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -5076,7 +5026,7 @@ performed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>Pointer to array to free</p>
+<dt><strong>array</strong><span class="classifier">cudaArray_t</span></dt><dd><p>Pointer to array to free</p>
 </dd>
 </dl>
 </dd>
@@ -5084,8 +5034,6 @@ performed.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -5114,7 +5062,7 @@ is 0, no operation is performed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mipmappedArray</strong><span class="classifier">Any</span></dt><dd><p>Pointer to mipmapped array to free</p>
+<dt><strong>mipmappedArray</strong><span class="classifier">cudaMipmappedArray_t</span></dt><dd><p>Pointer to mipmapped array to free</p>
 </dd>
 </dl>
 </dd>
@@ -5122,8 +5070,6 @@ is 0, no operation is performed.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -5198,7 +5144,7 @@ into other CUDA contexts via the cudaHostAllocPortable flag.</p>
 cudaErrorInvalidValue
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt><strong>pHost</strong><span class="classifier">int</span></dt><dd><p>Device pointer to allocated memory</p>
+<dt><strong>pHost</strong><span class="classifier">Any</span></dt><dd><p>Device pointer to allocated memory</p>
 </dd>
 </dl>
 </dd>
@@ -5302,8 +5248,6 @@ cudaErrorMemoryAllocation
 cudaErrorHostMemoryAlreadyRegistered
 cudaErrorNotSupported</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -5336,8 +5280,6 @@ makes it pageable again.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorHostMemoryNotRegistered</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -5392,7 +5334,7 @@ the two pointers and not both.</p>
 cudaErrorInvalidValue
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt><strong>pDevice</strong><span class="classifier">int</span></dt><dd><p>Returned device pointer for mapped memory</p>
+<dt><strong>pDevice</strong><span class="classifier">Any</span></dt><dd><p>Returned device pointer for mapped memory</p>
 </dd>
 </dl>
 </dd>
@@ -5752,7 +5694,7 @@ returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mipmappedArray</strong><span class="classifier">Any</span></dt><dd><p>CUDA mipmapped array</p>
+<dt><strong>mipmappedArray</strong><span class="classifier">cudaMipmappedArray_const_t</span></dt><dd><p>CUDA mipmapped array</p>
 </dd>
 <dt><strong>level</strong><span class="classifier">unsigned int</span></dt><dd><p>Mipmap level</p>
 </dd>
@@ -5852,8 +5794,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -5908,8 +5848,6 @@ this synchronization).</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6003,8 +5941,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -6055,8 +5991,6 @@ documentation of its parameters.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6117,7 +6051,7 @@ shape and flags of <cite>array</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>The cudaArray to get info for</p>
+<dt><strong>array</strong><span class="classifier">cudaArray_t</span></dt><dd><p>The cudaArray to get info for</p>
 </dd>
 </dl>
 </dd>
@@ -6154,7 +6088,7 @@ channels and cudaChannelFormatKindUnsigned as its format kind.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hArray</strong><span class="classifier">Any</span></dt><dd><p>CUDA array</p>
+<dt><strong>hArray</strong><span class="classifier">cudaArray_t</span></dt><dd><p>CUDA array</p>
 </dd>
 <dt><strong>planeIdx</strong><span class="classifier">unsigned int</span></dt><dd><p>Plane index</p>
 </dd>
@@ -6186,7 +6120,7 @@ necessary for mapping the CUDA array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>CUDA array to get the memory requirements of</p>
+<dt><strong>array</strong><span class="classifier">cudaArray_t</span></dt><dd><p>CUDA array to get the memory requirements of</p>
 </dd>
 <dt><strong>device</strong><span class="classifier">int</span></dt><dd><p>Device to get the memory requirements for</p>
 </dd>
@@ -6223,7 +6157,7 @@ necessary for mapping the CUDA mipmapped array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mipmap</strong><span class="classifier">Any</span></dt><dd><p>CUDA mipmapped array to get the memory requirements of</p>
+<dt><strong>mipmap</strong><span class="classifier">cudaMipmappedArray_t</span></dt><dd><p>CUDA mipmapped array to get the memory requirements of</p>
 </dd>
 <dt><strong>device</strong><span class="classifier">int</span></dt><dd><p>Device to get the memory requirements for</p>
 </dd>
@@ -6267,7 +6201,7 @@ the sparse properties of the entire CUDA mipmapped array to which
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>The CUDA array to get the sparse properties of</p>
+<dt><strong>array</strong><span class="classifier">cudaArray_t</span></dt><dd><p>The CUDA array to get the sparse properties of</p>
 </dd>
 </dl>
 </dd>
@@ -6311,7 +6245,7 @@ cudaArraySparseProperties::miptailSize is non-zero.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mipmap</strong><span class="classifier">Any</span></dt><dd><p>The CUDA mipmapped array to get the sparse properties of</p>
+<dt><strong>mipmap</strong><span class="classifier">cudaMipmappedArray_t</span></dt><dd><p>The CUDA mipmapped array to get the sparse properties of</p>
 </dd>
 </dl>
 </dd>
@@ -6365,8 +6299,6 @@ of the copy results in an undefined behavior.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidMemcpyDirection</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6427,8 +6359,6 @@ cudaMemcpyPeerAsync to avoid this synchronization).</p>
 cudaErrorInvalidValue
 cudaErrorInvalidDevice</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -6488,8 +6418,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -6534,7 +6462,7 @@ exceeds the maximum allowed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination memory address</p>
+<dt><strong>dst</strong><span class="classifier">cudaArray_t</span></dt><dd><p>Destination memory address</p>
 </dd>
 <dt><strong>wOffset</strong><span class="classifier">size_t</span></dt><dd><p>Destination starting X offset (columns in bytes)</p>
 </dd>
@@ -6558,8 +6486,6 @@ exceeds the maximum allowed.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6609,7 +6535,7 @@ exceeds the maximum allowed.</p>
 </dd>
 <dt><strong>dpitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination memory</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source memory address</p>
+<dt><strong>src</strong><span class="classifier">cudaArray_const_t</span></dt><dd><p>Source memory address</p>
 </dd>
 <dt><strong>wOffset</strong><span class="classifier">size_t</span></dt><dd><p>Source starting X offset (columns in bytes)</p>
 </dd>
@@ -6629,8 +6555,6 @@ exceeds the maximum allowed.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6675,13 +6599,13 @@ array <cite>src</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination memory address</p>
+<dt><strong>dst</strong><span class="classifier">cudaArray_t</span></dt><dd><p>Destination memory address</p>
 </dd>
 <dt><strong>wOffsetDst</strong><span class="classifier">size_t</span></dt><dd><p>Destination starting X offset (columns in bytes)</p>
 </dd>
 <dt><strong>hOffsetDst</strong><span class="classifier">size_t</span></dt><dd><p>Destination starting Y offset (rows)</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source memory address</p>
+<dt><strong>src</strong><span class="classifier">cudaArray_const_t</span></dt><dd><p>Source memory address</p>
 </dd>
 <dt><strong>wOffsetSrc</strong><span class="classifier">size_t</span></dt><dd><p>Source starting X offset (columns in bytes)</p>
 </dd>
@@ -6700,8 +6624,6 @@ array <cite>src</cite>.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidMemcpyDirection</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6770,8 +6692,6 @@ copies and cannot be given local or shared pointers.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidMemcpyDirection</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -6830,8 +6750,6 @@ all work on other devices.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -6902,8 +6820,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -6953,7 +6869,7 @@ streams.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination memory address</p>
+<dt><strong>dst</strong><span class="classifier">cudaArray_t</span></dt><dd><p>Destination memory address</p>
 </dd>
 <dt><strong>wOffset</strong><span class="classifier">size_t</span></dt><dd><p>Destination starting X offset (columns in bytes)</p>
 </dd>
@@ -6979,8 +6895,6 @@ streams.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7031,7 +6945,7 @@ streams.</p>
 </dd>
 <dt><strong>dpitch</strong><span class="classifier">size_t</span></dt><dd><p>Pitch of destination memory</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source memory address</p>
+<dt><strong>src</strong><span class="classifier">cudaArray_const_t</span></dt><dd><p>Source memory address</p>
 </dd>
 <dt><strong>wOffset</strong><span class="classifier">size_t</span></dt><dd><p>Source starting X offset (columns in bytes)</p>
 </dd>
@@ -7053,8 +6967,6 @@ streams.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidPitchValue
 cudaErrorInvalidMemcpyDirection</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7099,8 +7011,6 @@ with the constant byte value <cite>value</cite>.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -7135,8 +7045,6 @@ that has been passed back by cudaMallocPitch().</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7195,8 +7103,6 @@ bytes)</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -7244,8 +7150,6 @@ copies and cannot be given local or shared pointers.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7301,8 +7205,6 @@ copies and cannot be given local or shared pointers.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7367,8 +7269,6 @@ bytes)</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7451,8 +7351,6 @@ all work on other devices.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7607,8 +7505,6 @@ no effect.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7796,7 +7692,7 @@ cudaErrorInvalidValue
 cudaErrorNotSupported
 cudaErrorOutOfMemory</p>
 </dd>
-<dt><strong>devPtr</strong><span class="classifier">int</span></dt><dd><p>Returned device pointer</p>
+<dt><strong>devPtr</strong><span class="classifier">Any</span></dt><dd><p>Returned device pointer</p>
 </dd>
 </dl>
 </dd>
@@ -7840,8 +7736,6 @@ GPU or querying its pointer attributes results in undefined behavior.</p>
 cudaErrorInvalidValue
 cudaErrorNotSupported</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -7879,8 +7773,6 @@ at least minBytesToKeep bytes reserved after the operation.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -7942,8 +7834,6 @@ value.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8041,8 +7931,6 @@ to enable for a single gpu</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -8095,13 +7983,19 @@ device and IPC capabilities.</p>
 <p>By default, the pool’s memory will be accessible from the device it is
 allocated on.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>poolProps</strong><span class="classifier">cudaMemPoolProps</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorNotSupported</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt><strong>memPool</strong><span class="classifier">cudaMemPool_t</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8131,12 +8025,16 @@ no more outstanding allocations.</p>
 <p>Destroying the current mempool of a device sets the default mempool of
 that device as the current mempool for that device.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>memPool</strong><span class="classifier">CUmemoryPool or cudaMemPool_t</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8180,7 +8078,7 @@ cudaErrorInvalidValue
 cudaErrorNotSupported
 cudaErrorOutOfMemory</p>
 </dd>
-<dt><strong>ptr</strong><span class="classifier">int</span></dt><dd><p>Returned device pointer</p>
+<dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>Returned device pointer</p>
 </dd>
 </dl>
 </dd>
@@ -8227,7 +8125,7 @@ transferred is defined by the requested handle type.</p>
 cudaErrorInvalidValue
 cudaErrorOutOfMemory</p>
 </dd>
-<dt><strong>handle_out</strong><span class="classifier">int</span></dt><dd><p>pointer to the location in which to store the requested handle</p>
+<dt><strong>handle_out</strong><span class="classifier">Any</span></dt><dd><p>pointer to the location in which to store the requested handle</p>
 </dd>
 </dl>
 </dd>
@@ -8344,7 +8242,7 @@ CUDA_ERROR_INVALID_VALUE
 CUDA_ERROR_NOT_INITIALIZED
 CUDA_ERROR_OUT_OF_MEMORY</p>
 </dd>
-<dt><strong>ptr_out</strong><span class="classifier">int</span></dt><dd><p>pointer to imported memory</p>
+<dt><strong>ptr_out</strong><span class="classifier">Any</span></dt><dd><p>pointer to imported memory</p>
 </dd>
 </dl>
 </dd>
@@ -8522,8 +8420,6 @@ cudaErrorInvalidDevice
 cudaErrorPeerAccessAlreadyEnabled
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -8554,8 +8450,6 @@ cudaErrorInvalidValue</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorPeerAccessNotEnabled
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8683,9 +8577,9 @@ borders    - Multisampled renderbuffers</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>image</strong><span class="classifier">Any</span></dt><dd><p>name of texture or renderbuffer object to be registered</p>
+<dt><strong>image</strong><span class="classifier">GLuint</span></dt><dd><p>name of texture or renderbuffer object to be registered</p>
 </dd>
-<dt><strong>target</strong><span class="classifier">Any</span></dt><dd><p>Identifies the type of object specified by <cite>image</cite></p>
+<dt><strong>target</strong><span class="classifier">GLenum</span></dt><dd><p>Identifies the type of object specified by <cite>image</cite></p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Register flags</p>
 </dd>
@@ -8699,7 +8593,7 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
 </dd>
-<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Pointer to the returned object handle</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource</span></dt><dd><p>Pointer to the returned object handle</p>
 </dd>
 </dl>
 </dd>
@@ -8734,7 +8628,7 @@ in the resource will be preserved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>buffer</strong><span class="classifier">Any</span></dt><dd><p>name of buffer object to be registered</p>
+<dt><strong>buffer</strong><span class="classifier">GLuint</span></dt><dd><p>name of buffer object to be registered</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Register flags</p>
 </dd>
@@ -8748,7 +8642,7 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
 </dd>
-<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Pointer to the returned object handle</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource</span></dt><dd><p>Pointer to the returned object handle</p>
 </dd>
 </dl>
 </dd>
@@ -8784,9 +8678,9 @@ cudaErrorUnknown</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vdpDevice</strong><span class="classifier">Any</span></dt><dd><p>A VdpDevice handle</p>
+<dt><strong>vdpDevice</strong><span class="classifier">VdpDevice</span></dt><dd><p>A VdpDevice handle</p>
 </dd>
-<dt><strong>vdpGetProcAddress</strong><span class="classifier">Any</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
+<dt><strong>vdpGetProcAddress</strong><span class="classifier">VdpGetProcAddress</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
 </dd>
 </dl>
 </dd>
@@ -8824,9 +8718,9 @@ reset <cite>device</cite> using cudaDeviceReset() before VDPAU interoperability 
 <dd class="field-odd"><dl class="simple">
 <dt><strong>device</strong><span class="classifier">int</span></dt><dd><p>Device to use for VDPAU interoperability</p>
 </dd>
-<dt><strong>vdpDevice</strong><span class="classifier">Any</span></dt><dd><p>The VdpDevice to interoperate with</p>
+<dt><strong>vdpDevice</strong><span class="classifier">VdpDevice</span></dt><dd><p>The VdpDevice to interoperate with</p>
 </dd>
-<dt><strong>vdpGetProcAddress</strong><span class="classifier">Any</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
+<dt><strong>vdpGetProcAddress</strong><span class="classifier">VdpGetProcAddress</span></dt><dd><p>VDPAU’s VdpGetProcAddress function pointer</p>
 </dd>
 </dl>
 </dd>
@@ -8835,8 +8729,6 @@ reset <cite>device</cite> using cudaDeviceReset() before VDPAU interoperability 
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidDevice
 cudaErrorSetOnActiveProcess</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -8870,7 +8762,7 @@ resource will be preserved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vdpSurface</strong><span class="classifier">Any</span></dt><dd><p>VDPAU object to be registered</p>
+<dt><strong>vdpSurface</strong><span class="classifier">VdpVideoSurface</span></dt><dd><p>VDPAU object to be registered</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Map flags</p>
 </dd>
@@ -8884,7 +8776,7 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
 </dd>
-<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Pointer to the returned object handle</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource</span></dt><dd><p>Pointer to the returned object handle</p>
 </dd>
 </dl>
 </dd>
@@ -8919,7 +8811,7 @@ resource will be preserved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vdpSurface</strong><span class="classifier">Any</span></dt><dd><p>VDPAU object to be registered</p>
+<dt><strong>vdpSurface</strong><span class="classifier">VdpOutputSurface</span></dt><dd><p>VDPAU object to be registered</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Map flags</p>
 </dd>
@@ -8933,7 +8825,7 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
 </dd>
-<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Pointer to the returned object handle</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource</span></dt><dd><p>Pointer to the returned object handle</p>
 </dd>
 </dl>
 </dd>
@@ -8988,7 +8880,7 @@ EGLImageKHR</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>image</strong><span class="classifier">Any</span></dt><dd><p>An EGLImageKHR image which can be used to create target resource.</p>
+<dt><strong>image</strong><span class="classifier">EGLImageKHR</span></dt><dd><p>An EGLImageKHR image which can be used to create target resource.</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Map flags</p>
 </dd>
@@ -9025,7 +8917,7 @@ frames from one API to another.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eglStream</strong><span class="classifier">Any</span></dt><dd><p>EGLStreamKHR handle</p>
+<dt><strong>eglStream</strong><span class="classifier">EGLStreamKHR</span></dt><dd><p>EGLStreamKHR handle</p>
 </dd>
 </dl>
 </dd>
@@ -9062,7 +8954,7 @@ cudaEglResourceLocationVidmem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eglStream</strong><span class="classifier">Any</span></dt><dd><p>EGLStreamKHR handle</p>
+<dt><strong>eglStream</strong><span class="classifier">EGLStreamKHR</span></dt><dd><p>EGLStreamKHR handle</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Flags denote intended location - system or video.</p>
 </dd>
@@ -9097,7 +8989,7 @@ cudaErrorUnknown</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Conection to disconnect.</p>
+<dt><strong>conn</strong><span class="classifier">cudaEglStreamConnection</span></dt><dd><p>Conection to disconnect.</p>
 </dd>
 </dl>
 </dd>
@@ -9106,8 +8998,6 @@ cudaErrorUnknown</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9132,11 +9022,11 @@ to get cudaEglFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to acquire</p>
+<dt><strong>conn</strong><span class="classifier">cudaEglStreamConnection</span></dt><dd><p>Connection on which to acquire</p>
 </dd>
-<dt><strong>pCudaResource</strong><span class="classifier">Any</span></dt><dd><p>CUDA resource on which the EGLStream frame will be mapped for use.</p>
+<dt><strong>pCudaResource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>CUDA resource on which the EGLStream frame will be mapped for use.</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream for synchronization and any data migrations implied by
+<dt><strong>pStream</strong><span class="classifier">cudaStream_t</span></dt><dd><p>CUDA stream for synchronization and any data migrations implied by
 cudaEglResourceLocationFlags.</p>
 </dd>
 <dt><strong>timeout</strong><span class="classifier">unsigned int</span></dt><dd><p>Desired timeout in usec.</p>
@@ -9149,8 +9039,6 @@ cudaEglResourceLocationFlags.</p>
 cudaErrorInvalidValue
 cudaErrorUnknown
 cudaErrorLaunchTimeout</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9174,11 +9062,11 @@ EGLStreamKHR.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to release</p>
+<dt><strong>conn</strong><span class="classifier">cudaEglStreamConnection</span></dt><dd><p>Connection on which to release</p>
 </dd>
-<dt><strong>pCudaResource</strong><span class="classifier">Any</span></dt><dd><p>CUDA resource whose corresponding frame is to be released</p>
+<dt><strong>pCudaResource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>CUDA resource whose corresponding frame is to be released</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream on which release will be done.</p>
+<dt><strong>pStream</strong><span class="classifier">cudaStream_t</span></dt><dd><p>CUDA stream on which release will be done.</p>
 </dd>
 </dl>
 </dd>
@@ -9187,8 +9075,6 @@ EGLStreamKHR.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9213,11 +9099,11 @@ frames from one API to another.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eglStream</strong><span class="classifier">Any</span></dt><dd><p>EGLStreamKHR handle</p>
+<dt><strong>eglStream</strong><span class="classifier">EGLStreamKHR</span></dt><dd><p>EGLStreamKHR handle</p>
 </dd>
-<dt><strong>width</strong><span class="classifier">Any</span></dt><dd><p>width of the image to be submitted to the stream</p>
+<dt><strong>width</strong><span class="classifier">EGLint</span></dt><dd><p>width of the image to be submitted to the stream</p>
 </dd>
-<dt><strong>height</strong><span class="classifier">Any</span></dt><dd><p>height of the image to be submitted to the stream</p>
+<dt><strong>height</strong><span class="classifier">EGLint</span></dt><dd><p>height of the image to be submitted to the stream</p>
 </dd>
 </dl>
 </dd>
@@ -9250,7 +9136,7 @@ cudaErrorUnknown</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Conection to disconnect.</p>
+<dt><strong>conn</strong><span class="classifier">cudaEglStreamConnection</span></dt><dd><p>Conection to disconnect.</p>
 </dd>
 </dl>
 </dd>
@@ -9259,8 +9145,6 @@ cudaErrorUnknown</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9293,12 +9177,12 @@ sub-region.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to present the CUDA array</p>
+<dt><strong>conn</strong><span class="classifier">cudaEglStreamConnection</span></dt><dd><p>Connection on which to present the CUDA array</p>
 </dd>
 <dt><strong>eglframe</strong><span class="classifier">cudaEglFrame</span></dt><dd><p>CUDA Eglstream Proucer Frame handle to be sent to the consumer over
 EglStream.</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream on which to present the frame.</p>
+<dt><strong>pStream</strong><span class="classifier">cudaStream_t</span></dt><dd><p>CUDA stream on which to present the frame.</p>
 </dd>
 </dl>
 </dd>
@@ -9307,8 +9191,6 @@ EglStream.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9333,12 +9215,12 @@ application can retry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>conn</strong><span class="classifier">Any</span></dt><dd><p>Connection on which to present the CUDA array</p>
+<dt><strong>conn</strong><span class="classifier">cudaEglStreamConnection</span></dt><dd><p>Connection on which to present the CUDA array</p>
 </dd>
 <dt><strong>eglframe</strong><span class="classifier">cudaEglFrame</span></dt><dd><p>CUDA Eglstream Proucer Frame handle returned from the consumer over
 EglStream.</p>
 </dd>
-<dt><strong>pStream</strong><span class="classifier">Any</span></dt><dd><p>CUDA stream on which to return the frame.</p>
+<dt><strong>pStream</strong><span class="classifier">cudaStream_t</span></dt><dd><p>CUDA stream on which to return the frame.</p>
 </dd>
 </dl>
 </dd>
@@ -9348,8 +9230,6 @@ EglStream.</p>
 cudaErrorLaunchTimeout
 cudaErrorInvalidValue
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9380,7 +9260,7 @@ cudaEglFrameTypeframeType; cudaEglColorFormateglColorFormat;
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Registered resource to access.</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Registered resource to access.</p>
 </dd>
 <dt><strong>index</strong><span class="classifier">unsigned int</span></dt><dd><p>Index for cubemap surfaces.</p>
 </dd>
@@ -9427,7 +9307,7 @@ EGLSyncKHR</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eglSync</strong><span class="classifier">Any</span></dt><dd><p>Opaque handle to EGLSync object</p>
+<dt><strong>eglSync</strong><span class="classifier">EGLSyncKHR</span></dt><dd><p>Opaque handle to EGLSync object</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Event creation flags</p>
 </dd>
@@ -9470,7 +9350,7 @@ returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Resource to unregister</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Resource to unregister</p>
 </dd>
 </dl>
 </dd>
@@ -9479,8 +9359,6 @@ returned.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9514,7 +9392,7 @@ then cudaErrorInvalidValue is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Registered resource to set flags for</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Registered resource to set flags for</p>
 </dd>
 <dt><strong>flags</strong><span class="classifier">unsigned int</span></dt><dd><p>Parameters for resource mapping</p>
 </dd>
@@ -9526,8 +9404,6 @@ then cudaErrorInvalidValue is returned.</p>
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9560,7 +9436,7 @@ presently mapped for access by CUDA then cudaErrorUnknown is returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>count</strong><span class="classifier">int</span></dt><dd><p>Number of resources to map</p>
 </dd>
-<dt><strong>resources</strong><span class="classifier">Any</span></dt><dd><p>Resources to map for CUDA</p>
+<dt><strong>resources</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Resources to map for CUDA</p>
 </dd>
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream for synchronization</p>
 </dd>
@@ -9571,8 +9447,6 @@ presently mapped for access by CUDA then cudaErrorUnknown is returned.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9606,7 +9480,7 @@ returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>count</strong><span class="classifier">int</span></dt><dd><p>Number of resources to unmap</p>
 </dd>
-<dt><strong>resources</strong><span class="classifier">Any</span></dt><dd><p>Resources to unmap</p>
+<dt><strong>resources</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Resources to unmap</p>
 </dd>
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream for synchronization</p>
 </dd>
@@ -9617,8 +9491,6 @@ returned.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidResourceHandle
 cudaErrorUnknown</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9656,10 +9528,18 @@ ote_callback  cudaGraphicsMapResources,</p>
 cuGraphicsResourceGetMappedPointer</p>
 </div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><dl class="simple">
-<dt>None</dt><dd><p>None</p>
+<dt>devPtr<span class="classifier">Any</span></dt><dd><p>None</p>
+</dd>
+<dt>size<span class="classifier">int</span></dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9684,7 +9564,7 @@ cudaErrorUnknown is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Mapped resource to access</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Mapped resource to access</p>
 </dd>
 <dt><strong>arrayIndex</strong><span class="classifier">unsigned int</span></dt><dd><p>Array index for array textures or cubemap face index as defined by
 cudaGraphicsCubeFace for cubemap textures for the subresource to
@@ -9728,7 +9608,7 @@ cudaErrorUnknown is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>resource</strong><span class="classifier">Any</span></dt><dd><p>Mapped resource to access</p>
+<dt><strong>resource</strong><span class="classifier">cudaGraphicsResource_t</span></dt><dd><p>Mapped resource to access</p>
 </dd>
 </dl>
 </dd>
@@ -9764,7 +9644,7 @@ cudaErrorUnknown</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>array</strong><span class="classifier">Any</span></dt><dd><p>Memory array on device</p>
+<dt><strong>array</strong><span class="classifier">cudaArray_const_t</span></dt><dd><p>Memory array on device</p>
 </dd>
 </dl>
 </dd>
@@ -9814,9 +9694,9 @@ cudaChannelFormatKindUnsigned, or cudaChannelFormatKindFloat.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>cudaError_t</dt><dd><p>Channel descriptor with format <cite>f</cite></p>
+<dt>cudaError_t.cudaSuccess</dt><dd><p>cudaError_t.cudaSuccess</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt>cudaChannelFormatDesc</dt><dd><p>Channel descriptor with format <cite>f</cite></p>
 </dd>
 </dl>
 </dd>
@@ -9960,7 +9840,7 @@ cudaErrorInvalidValue</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object to destroy</p>
+<dt><strong>texObject</strong><span class="classifier">cudaTextureObject_t</span></dt><dd><p>Texture object to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -9968,8 +9848,6 @@ cudaErrorInvalidValue</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -9991,7 +9869,7 @@ cudaErrorInvalidValue</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object</p>
+<dt><strong>texObject</strong><span class="classifier">cudaTextureObject_t</span></dt><dd><p>Texture object</p>
 </dd>
 </dl>
 </dd>
@@ -10022,7 +9900,7 @@ cudaErrorInvalidValue</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object</p>
+<dt><strong>texObject</strong><span class="classifier">cudaTextureObject_t</span></dt><dd><p>Texture object</p>
 </dd>
 </dl>
 </dd>
@@ -10054,7 +9932,7 @@ cudaErrorInvalidValue is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>texObject</strong><span class="classifier">Any</span></dt><dd><p>Texture object</p>
+<dt><strong>texObject</strong><span class="classifier">cudaTextureObject_t</span></dt><dd><p>Texture object</p>
 </dd>
 </dl>
 </dd>
@@ -10127,7 +10005,7 @@ cudaErrorInvalidResourceHandle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>surfObject</strong><span class="classifier">Any</span></dt><dd><p>Surface object to destroy</p>
+<dt><strong>surfObject</strong><span class="classifier">cudaSurfaceObject_t</span></dt><dd><p>Surface object to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -10135,8 +10013,6 @@ cudaErrorInvalidResourceHandle</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10156,7 +10032,7 @@ cudaErrorInvalidValue</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>surfObject</strong><span class="classifier">Any</span></dt><dd><p>Surface object</p>
+<dt><strong>surfObject</strong><span class="classifier">cudaSurfaceObject_t</span></dt><dd><p>Surface object</p>
 </dd>
 </dl>
 </dd>
@@ -10434,8 +10310,6 @@ cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle
 cudaErrorMemoryAllocation</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -10457,9 +10331,9 @@ Both node must have the same context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dst</strong><span class="classifier">Any</span></dt><dd><p>Destination node</p>
+<dt><strong>dst</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Destination node</p>
 </dd>
-<dt><strong>src</strong><span class="classifier">Any</span></dt><dd><p>Source node For list of attributes see cudaKernelNodeAttrID</p>
+<dt><strong>src</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Source node For list of attributes see cudaKernelNodeAttrID</p>
 </dd>
 </dl>
 </dd>
@@ -10467,8 +10341,6 @@ Both node must have the same context.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidContext</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10529,8 +10401,6 @@ cudaErrorInvalidResourceHandle</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue
 cudaErrorInvalidResourceHandle</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10719,8 +10589,6 @@ cudaErrorInvalidValue</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -10771,8 +10639,6 @@ of the copy results in an undefined behavior.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -10888,8 +10754,6 @@ cudaErrorInvalidValue</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -11003,8 +10867,6 @@ cudaErrorInvalidValue</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11257,8 +11119,6 @@ cudaErrorInvalidValue</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -11379,8 +11239,6 @@ cudaErrorInvalidValue</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11513,8 +11371,6 @@ cudaErrorInvalidValue</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -11644,8 +11500,6 @@ cudaErrorInvalidValue</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11861,7 +11715,7 @@ cudaErrorOutOfMemory</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt><strong>dptr_out</strong><span class="classifier">int</span></dt><dd><p>Pointer to return the device address</p>
+<dt><strong>dptr_out</strong><span class="classifier">Any</span></dt><dd><p>Pointer to return the device address</p>
 </dd>
 </dl>
 </dd>
@@ -11892,8 +11746,6 @@ system.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -11983,8 +11835,6 @@ graphs asynchronous allocator.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidDevice</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12128,6 +11978,8 @@ NULL, and the number of nodes actually obtained will be returned in
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to query</p>
 </dd>
+<dt><strong>numNodes</strong><span class="classifier">int</span></dt><dd><p>See description</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -12168,6 +12020,8 @@ of nodes actually obtained will be returned in <cite>pNumRootNodes</cite>.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to query</p>
+</dd>
+<dt><strong>pNumRootNodes</strong><span class="classifier">int</span></dt><dd><p>See description</p>
 </dd>
 </dl>
 </dd>
@@ -12211,6 +12065,8 @@ actually returned will be written to <cite>numEdges</cite>.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to get the edges from</p>
+</dd>
+<dt><strong>numEdges</strong><span class="classifier">int</span></dt><dd><p>See description</p>
 </dd>
 </dl>
 </dd>
@@ -12256,6 +12112,8 @@ NULL, and the number of nodes actually obtained will be returned in
 <dd class="field-odd"><dl class="simple">
 <dt><strong>node</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Node to query</p>
 </dd>
+<dt><strong>pNumDependencies</strong><span class="classifier">int</span></dt><dd><p>See description</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -12298,6 +12156,8 @@ returned in <cite>pNumDependentNodes</cite>.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>node</strong><span class="classifier">CUgraphNode or cudaGraphNode_t</span></dt><dd><p>Node to query</p>
 </dd>
+<dt><strong>pNumDependentNodes</strong><span class="classifier">int</span></dt><dd><p>See description</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -12338,7 +12198,7 @@ ignored. Specifying an existing dependency will return an error.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph to which dependencies are added</p>
 </dd>
-<dt><strong>from_</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
+<dt><strong>from</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
 </dd>
 <dt><strong>to</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>Array of dependent nodes</p>
 </dd>
@@ -12350,8 +12210,6 @@ ignored. Specifying an existing dependency will return an error.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12381,7 +12239,7 @@ ignored. Specifying a non-existing dependency will return an error.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>Graph from which to remove dependencies</p>
 </dd>
-<dt><strong>from_</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
+<dt><strong>from</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>Array of nodes that provide the dependencies</p>
 </dd>
 <dt><strong>to</strong><span class="classifier">List[cudaGraphNode_t]</span></dt><dd><p>Array of dependent nodes</p>
 </dd>
@@ -12393,8 +12251,6 @@ ignored. Specifying a non-existing dependency will return an error.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12428,8 +12284,6 @@ free nodes. Any attempt to do so will return an error.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12573,8 +12427,6 @@ call. <cite>node</cite> is also not modified by this call.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -12629,8 +12481,6 @@ or either the original or new memory operands are multidimensional.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12695,8 +12545,6 @@ or the original memory operands are multidimensional.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -12754,8 +12602,6 @@ or either the original or new memory operand are multidimensional.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -12803,8 +12649,6 @@ call. <cite>node</cite> is also not modified by this call.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12860,8 +12704,6 @@ the top level child graph will also be updated.</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -12910,8 +12752,6 @@ instantiated</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -12964,8 +12804,6 @@ instantiated</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13021,8 +12859,6 @@ instantiated</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -13076,8 +12912,6 @@ instantiated</p>
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -13130,8 +12964,6 @@ call. <cite>hNode</cite> is also not modified by this call.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13255,7 +13087,7 @@ constraints specific to instantiated graph update.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>hGraphExec</strong><span class="classifier">CUgraphExec or cudaGraphExec_t</span></dt><dd><p>The instantiated graph to be updated</p>
 </dd>
-<dt><strong>hGraph</strong><span class="classifier">Any</span></dt><dd><p>The graph containing the updated parameters</p>
+<dt><strong>hGraph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph containing the updated parameters</p>
 </dd>
 </dl>
 </dd>
@@ -13292,7 +13124,7 @@ allocations owned by <cite>graphExec</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>hGraphExec</strong><span class="classifier">Any</span></dt><dd><p>Executable graph to upload</p>
+<dt><strong>hGraphExec</strong><span class="classifier">CUgraphExec or cudaGraphExec_t</span></dt><dd><p>Executable graph to upload</p>
 </dd>
 <dt><strong>hStream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream in which to upload the graph</p>
 </dd>
@@ -13302,8 +13134,6 @@ allocations owned by <cite>graphExec</cite>.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13333,7 +13163,7 @@ cudaErrorInvalidValue.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>graphExec</strong><span class="classifier">Any</span></dt><dd><p>Executable graph to launch</p>
+<dt><strong>graphExec</strong><span class="classifier">CUgraphExec or cudaGraphExec_t</span></dt><dd><p>Executable graph to launch</p>
 </dd>
 <dt><strong>stream</strong><span class="classifier">CUstream or cudaStream_t</span></dt><dd><p>Stream in which to launch the graph</p>
 </dd>
@@ -13343,8 +13173,6 @@ cudaErrorInvalidValue.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13366,7 +13194,7 @@ cudaErrorInvalidValue</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>graphExec</strong><span class="classifier">Any</span></dt><dd><p>Executable graph to destroy</p>
+<dt><strong>graphExec</strong><span class="classifier">CUgraphExec or cudaGraphExec_t</span></dt><dd><p>Executable graph to destroy</p>
 </dd>
 </dl>
 </dd>
@@ -13374,8 +13202,6 @@ cudaErrorInvalidValue</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13405,8 +13231,6 @@ cudaErrorInvalidValue</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13445,8 +13269,6 @@ node information to write</p>
 cudaErrorInvalidValue
 cudaErrorOperatingSystem</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -13468,7 +13290,7 @@ information on user objects.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ptr</strong><span class="classifier">Any</span></dt><dd><p>The pointer to pass to the destroy function</p>
 </dd>
-<dt><strong>destroy</strong><span class="classifier">Any</span></dt><dd><p>Callback to free the user object when it is no longer in use</p>
+<dt><strong>destroy</strong><span class="classifier">cudaHostFn_t</span></dt><dd><p>Callback to free the user object when it is no longer in use</p>
 </dd>
 <dt><strong>initialRefcount</strong><span class="classifier">unsigned int</span></dt><dd><p>The initial refcount to create the object with, typically 1. The
 initial references are owned by the calling thread.</p>
@@ -13513,7 +13335,7 @@ information on user objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The object to retain</p>
+<dt><strong>object</strong><span class="classifier">cudaUserObject_t</span></dt><dd><p>The object to retain</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to retain, typically 1. Must be nonzero
 and not larger than INT_MAX.</p>
@@ -13524,8 +13346,6 @@ and not larger than INT_MAX.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13554,7 +13374,7 @@ information on user objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The object to release</p>
+<dt><strong>object</strong><span class="classifier">cudaUserObject_t</span></dt><dd><p>The object to release</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to release, typically 1. Must be nonzero
 and not larger than INT_MAX.</p>
@@ -13565,8 +13385,6 @@ and not larger than INT_MAX.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13595,7 +13413,7 @@ information on user objects.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph to associate the reference with</p>
 </dd>
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The user object to retain a reference for</p>
+<dt><strong>object</strong><span class="classifier">cudaUserObject_t</span></dt><dd><p>The user object to retain a reference for</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to add to the graph, typically 1. Must be
 nonzero and not larger than INT_MAX.</p>
@@ -13610,8 +13428,6 @@ create new references.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13639,7 +13455,7 @@ information on user objects.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">CUgraph or cudaGraph_t</span></dt><dd><p>The graph that will release the reference</p>
 </dd>
-<dt><strong>object</strong><span class="classifier">Any</span></dt><dd><p>The user object to release a reference for</p>
+<dt><strong>object</strong><span class="classifier">cudaUserObject_t</span></dt><dd><p>The user object to release a reference for</p>
 </dd>
 <dt><strong>count</strong><span class="classifier">unsigned int</span></dt><dd><p>The number of references to release, typically 1. Must be nonzero
 and not larger than INT_MAX.</p>
@@ -13650,8 +13466,6 @@ and not larger than INT_MAX.</p>
 <dd class="field-even"><dl class="simple">
 <dt>cudaError_t</dt><dd><p>cudaSuccess
 cudaErrorInvalidValue</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -13722,7 +13536,7 @@ cudaErrorInvalidValue
 cudaErrorNotSupported
 cudaErrorSymbolNotFound</p>
 </dd>
-<dt><strong>funcPtr</strong><span class="classifier">int</span></dt><dd><p>Location to return the function pointer to the requested driver
+<dt><strong>funcPtr</strong><span class="classifier">Any</span></dt><dd><p>Location to return the function pointer to the requested driver
 function</p>
 </dd>
 </dl>

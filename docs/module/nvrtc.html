@@ -282,9 +282,9 @@ NVRTC API functions return nvrtcResult to indicate the call result.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>nvrtcResult</dt><dd><p>Message string for the given nvrtcResult code.</p>
+<dt>nvrtcResult.NVRTC_SUCCESS</dt><dd><p>nvrtcResult.NVRTC_SUCCESS</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
+<dt>bytes</dt><dd><p>Message string for the given nvrtcResult code.</p>
 </dd>
 </dl>
 </dd>
@@ -338,7 +338,7 @@ NVRTC_ERROR_INVALID_INPUT</p>
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_INVALID_INPUT</p>
 </dd>
-<dt><strong>supportedArchs</strong><span class="classifier">List[Int]</span></dt><dd><p>sorted array of supported architectures.</p>
+<dt><strong>supportedArchs</strong><span class="classifier">List[int]</span></dt><dd><p>sorted array of supported architectures.</p>
 </dd>
 </dl>
 </dd>
@@ -379,10 +379,10 @@ used when <cite>name</cite> is <cite>NULL</cite> or “”.</p>
 <dt><strong>numHeaders</strong><span class="classifier">int</span></dt><dd><p>Number of headers used. <cite>numHeaders</cite> must be greater than or equal
 to 0.</p>
 </dd>
-<dt><strong>headers</strong><span class="classifier">list</span></dt><dd><p>Sources of the headers. <cite>headers</cite> can be <cite>NULL</cite> when <cite>numHeaders</cite>
+<dt><strong>headers</strong><span class="classifier">List[bytes]</span></dt><dd><p>Sources of the headers. <cite>headers</cite> can be <cite>NULL</cite> when <cite>numHeaders</cite>
 is 0.</p>
 </dd>
-<dt><strong>includeNames</strong><span class="classifier">list</span></dt><dd><p>Name of each header by which they can be included in the CUDA
+<dt><strong>includeNames</strong><span class="classifier">List[bytes]</span></dt><dd><p>Name of each header by which they can be included in the CUDA
 program source. <cite>includeNames</cite> can be <cite>NULL</cite> when <cite>numHeaders</cite> is
 0.</p>
 </dd>
@@ -415,7 +415,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 </dl>
 </dd>
@@ -423,8 +423,6 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dd class="field-even"><dl class="simple">
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_INVALID_PROGRAM</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -443,11 +441,11 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 <dt><strong>numOptions</strong><span class="classifier">int</span></dt><dd><p>Number of compiler options passed.</p>
 </dd>
-<dt><strong>options</strong><span class="classifier">list</span></dt><dd><p>Compiler options in the form of C string array. <cite>options</cite> can be
+<dt><strong>options</strong><span class="classifier">List[bytes]</span></dt><dd><p>Compiler options in the form of C string array. <cite>options</cite> can be
 <cite>NULL</cite> when <cite>numOptions</cite> is 0.</p>
 </dd>
 </dl>
@@ -462,8 +460,6 @@ NVRTC_ERROR_INVALID_OPTION
 NVRTC_ERROR_COMPILATION
 NVRTC_ERROR_BUILTIN_OPERATION_FAILURE</p>
 </dd>
-<dt>None</dt><dd><p>None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -475,7 +471,7 @@ NVRTC_ERROR_BUILTIN_OPERATION_FAILURE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 </dl>
 </dd>
@@ -504,7 +500,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 <dt><strong>ptx</strong><span class="classifier">bytes</span></dt><dd><p>Compiled result.</p>
 </dd>
@@ -515,8 +511,6 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_INVALID_INPUT
 NVRTC_ERROR_INVALID_PROGRAM</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -535,7 +529,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 </dl>
 </dd>
@@ -564,7 +558,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 <dt><strong>cubin</strong><span class="classifier">bytes</span></dt><dd><p>Compiled and assembled result.</p>
 </dd>
@@ -575,8 +569,6 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_INVALID_INPUT
 NVRTC_ERROR_INVALID_PROGRAM</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -595,7 +587,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 </dl>
 </dd>
@@ -624,7 +616,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 <dt><strong>nvvm</strong><span class="classifier">bytes</span></dt><dd><p>Compiled result.</p>
 </dd>
@@ -635,8 +627,6 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_INVALID_INPUT
 NVRTC_ERROR_INVALID_PROGRAM</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -657,7 +647,7 @@ informative messages, even when the compilation of <cite>prog</cite> succeeds.</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 </dl>
 </dd>
@@ -686,7 +676,7 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 <dt><strong>log</strong><span class="classifier">bytes</span></dt><dd><p>Compilation log.</p>
 </dd>
@@ -697,8 +687,6 @@ NVRTC_ERROR_INVALID_PROGRAM</p>
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_INVALID_INPUT
 NVRTC_ERROR_INVALID_PROGRAM</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>
@@ -719,7 +707,7 @@ call to nvrtcGetLoweredName to extract the lowered name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>prog</strong><span class="classifier">Any</span></dt><dd><p>CUDA Runtime Compilation program.</p>
+<dt><strong>prog</strong><span class="classifier">nvrtcProgram</span></dt><dd><p>CUDA Runtime Compilation program.</p>
 </dd>
 <dt><strong>name_expression</strong><span class="classifier">bytes</span></dt><dd><p>constant expression denoting the address of a global function or
 device/__constant__ variable.</p>
@@ -730,8 +718,6 @@ device/__constant__ variable.</p>
 <dd class="field-even"><dl class="simple">
 <dt>nvrtcResult</dt><dd><p>NVRTC_SUCCESS
 NVRTC_ERROR_NO_NAME_EXPRESSIONS_AFTER_COMPILATION</p>
-</dd>
-<dt>None</dt><dd><p>None</p>
 </dd>
 </dl>
 </dd>

@@ -70,19 +70,12 @@ cdef class nvrtcProgram:
     """
     def __cinit__(self, void_ptr init_value = 0, void_ptr _ptr = 0):
         if _ptr == 0:
-            self._ptr_owner = True
-            self._ptr = <cnvrtc.nvrtcProgram *>calloc(1, sizeof(cnvrtc.nvrtcProgram))
-            if self._ptr is NULL:
-                raise MemoryError('Failed to allocate length x size memory: 1x' + str(sizeof(cnvrtc.nvrtcProgram)))
+            self._ptr = &self._val
             self._ptr[0] = <cnvrtc.nvrtcProgram>init_value
         else:
-            self._ptr_owner = False
             self._ptr = <cnvrtc.nvrtcProgram *>_ptr
     def __init__(self, *args, **kwargs):
         pass
-    def __dealloc__(self):
-        if self._ptr_owner is True and self._ptr is not NULL:
-            free(self._ptr)
     def __repr__(self):
         return '<nvrtcProgram ' + str(hex(self.__int__())) + '>'
     def __index__(self):
@@ -104,10 +97,10 @@ def nvrtcGetErrorString(result not None : nvrtcResult):
 
     Returns
     -------
-    nvrtcResult
+    nvrtcResult.NVRTC_SUCCESS
+        nvrtcResult.NVRTC_SUCCESS
+    bytes
         Message string for the given nvrtcResult code.
-    None
-        None
     """
     cdef cnvrtc.nvrtcResult cresult = result.value
     err = cnvrtc.nvrtcGetErrorString(cresult)
@@ -157,7 +150,7 @@ def nvrtcGetSupportedArchs():
     nvrtcResult
         NVRTC_SUCCESS
         NVRTC_ERROR_INVALID_INPUT
-    supportedArchs : List[Int]
+    supportedArchs : List[int]
         sorted array of supported architectures.
     """
     cdef vector[int] supportedArchs
@@ -180,10 +173,10 @@ def nvrtcCreateProgram(char* src, char* name, int numHeaders, list headers, list
     numHeaders : int
         Number of headers used. `numHeaders` must be greater than or equal
         to 0.
-    headers : list
+    headers : List[bytes]
         Sources of the headers. `headers` can be `NULL` when `numHeaders`
         is 0.
-    includeNames : list
+    includeNames : List[bytes]
         Name of each header by which they can be included in the CUDA
         program source. `includeNames` can be `NULL` when `numHeaders` is
         0.
@@ -217,7 +210,7 @@ def nvrtcDestroyProgram(prog):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
 
     Returns
@@ -225,8 +218,6 @@ def nvrtcDestroyProgram(prog):
     nvrtcResult
         NVRTC_SUCCESS
         NVRTC_ERROR_INVALID_PROGRAM
-    None
-        None
 
     See Also
     --------
@@ -252,11 +243,11 @@ def nvrtcCompileProgram(prog, int numOptions, list options):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
     numOptions : int
         Number of compiler options passed.
-    options : list
+    options : List[bytes]
         Compiler options in the form of C string array. `options` can be
         `NULL` when `numOptions` is 0.
 
@@ -270,8 +261,6 @@ def nvrtcCompileProgram(prog, int numOptions, list options):
         NVRTC_ERROR_INVALID_OPTION
         NVRTC_ERROR_COMPILATION
         NVRTC_ERROR_BUILTIN_OPERATION_FAILURE
-    None
-        None
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -294,7 +283,7 @@ def nvrtcGetPTXSize(prog):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
 
     Returns
@@ -330,7 +319,7 @@ def nvrtcGetPTX(prog, char* ptx):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
     ptx : bytes
         Compiled result.
@@ -341,8 +330,6 @@ def nvrtcGetPTX(prog, char* ptx):
         NVRTC_SUCCESS
         NVRTC_ERROR_INVALID_INPUT
         NVRTC_ERROR_INVALID_PROGRAM
-    None
-        None
 
     See Also
     --------
@@ -367,7 +354,7 @@ def nvrtcGetCUBINSize(prog):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
 
     Returns
@@ -403,7 +390,7 @@ def nvrtcGetCUBIN(prog, char* cubin):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
     cubin : bytes
         Compiled and assembled result.
@@ -414,8 +401,6 @@ def nvrtcGetCUBIN(prog, char* cubin):
         NVRTC_SUCCESS
         NVRTC_ERROR_INVALID_INPUT
         NVRTC_ERROR_INVALID_PROGRAM
-    None
-        None
 
     See Also
     --------
@@ -440,7 +425,7 @@ def nvrtcGetNVVMSize(prog):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
 
     Returns
@@ -476,7 +461,7 @@ def nvrtcGetNVVM(prog, char* nvvm):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
     nvvm : bytes
         Compiled result.
@@ -487,8 +472,6 @@ def nvrtcGetNVVM(prog, char* nvvm):
         NVRTC_SUCCESS
         NVRTC_ERROR_INVALID_INPUT
         NVRTC_ERROR_INVALID_PROGRAM
-    None
-        None
 
     See Also
     --------
@@ -516,7 +499,7 @@ def nvrtcGetProgramLogSize(prog):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
 
     Returns
@@ -552,7 +535,7 @@ def nvrtcGetProgramLog(prog, char* log):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
     log : bytes
         Compilation log.
@@ -563,8 +546,6 @@ def nvrtcGetProgramLog(prog, char* log):
         NVRTC_SUCCESS
         NVRTC_ERROR_INVALID_INPUT
         NVRTC_ERROR_INVALID_PROGRAM
-    None
-        None
 
     See Also
     --------
@@ -592,7 +573,7 @@ def nvrtcAddNameExpression(prog, char* name_expression):
 
     Parameters
     ----------
-    prog : Any
+    prog : nvrtcProgram
         CUDA Runtime Compilation program.
     name_expression : bytes
         constant expression denoting the address of a global function or
@@ -603,8 +584,6 @@ def nvrtcAddNameExpression(prog, char* name_expression):
     nvrtcResult
         NVRTC_SUCCESS
         NVRTC_ERROR_NO_NAME_EXPRESSIONS_AFTER_COMPILATION
-    None
-        None
 
     See Also
     --------
