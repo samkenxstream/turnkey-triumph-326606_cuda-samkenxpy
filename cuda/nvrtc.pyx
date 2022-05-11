@@ -13,6 +13,7 @@ from libc.stdlib cimport calloc, free
 from libc.string cimport memcpy
 from libc.stdint cimport int32_t, uint32_t, int64_t, uint64_t
 from libc.stddef cimport wchar_t
+from libc.limits cimport CHAR_MIN
 from libcpp.vector cimport vector
 from cpython.buffer cimport PyObject_CheckBuffer, PyObject_GetBuffer, PyBuffer_Release, PyBUF_SIMPLE, PyBUF_ANY_CONTIGUOUS
 from cpython.bytes cimport PyBytes_FromStringAndSize
@@ -39,7 +40,6 @@ ctypedef unsigned long long float_ptr
 ctypedef unsigned long long double_ptr
 ctypedef unsigned long long void_ptr
 
-
 class nvrtcResult(IntEnum):
     """
     The enumerated type nvrtcResult defines API call result codes.
@@ -59,8 +59,9 @@ class nvrtcResult(IntEnum):
     NVRTC_ERROR_INTERNAL_ERROR = cnvrtc.nvrtcResult.NVRTC_ERROR_INTERNAL_ERROR
 
 cdef class nvrtcProgram:
-    """
+    """ nvrtcProgram is the unit of compilation, and an opaque handle for a program.
 
+    To compile a CUDA program string, an instance of nvrtcProgram must be created first with nvrtcCreateProgram, then compiled with nvrtcCompileProgram.
 
     Methods
     -------
@@ -92,7 +93,7 @@ def nvrtcGetErrorString(result not None : nvrtcResult):
 
     Parameters
     ----------
-    result : nvrtcResult
+    result : :py:obj:`~.nvrtcResult`
         CUDA Runtime Compilation API result code.
 
     Returns
@@ -100,7 +101,7 @@ def nvrtcGetErrorString(result not None : nvrtcResult):
     nvrtcResult.NVRTC_SUCCESS
         nvrtcResult.NVRTC_SUCCESS
     bytes
-        Message string for the given nvrtcResult code.
+        Message string for the given :py:obj:`~.nvrtcResult` code.
     """
     cdef cnvrtc.nvrtcResult cresult = result.value
     err = cnvrtc.nvrtcGetErrorString(cresult)
@@ -113,8 +114,8 @@ def nvrtcVersion():
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
     major : int
         CUDA Runtime Compilation major version number.
     minor : int
@@ -127,13 +128,15 @@ def nvrtcVersion():
 
 @cython.embedsignature(True)
 def nvrtcGetNumSupportedArchs():
-    """ nvrtcGetNumSupportedArchs sets the output parameter `numArchs` with the number of architectures supported by NVRTC. This can then be used to pass an array to nvrtcGetSupportedArchs to get the supported architectures.
+    """ nvrtcGetNumSupportedArchs sets the output parameter `numArchs` with the number of architectures supported by NVRTC. This can then be used to pass an array to :py:obj:`~.nvrtcGetSupportedArchs` to get the supported architectures.
+
+    see :py:obj:`~.nvrtcGetSupportedArchs`
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
     numArchs : int
         number of supported architectures.
     """
@@ -143,13 +146,15 @@ def nvrtcGetNumSupportedArchs():
 
 @cython.embedsignature(True)
 def nvrtcGetSupportedArchs():
-    """ nvrtcGetSupportedArchs populates the array passed via the output parameter `supportedArchs` with the architectures supported by NVRTC. The array is sorted in the ascending order. The size of the array to be passed can be determined using nvrtcGetNumSupportedArchs.
+    """ nvrtcGetSupportedArchs populates the array passed via the output parameter `supportedArchs` with the architectures supported by NVRTC. The array is sorted in the ascending order. The size of the array to be passed can be determined using :py:obj:`~.nvrtcGetNumSupportedArchs`.
+
+    see :py:obj:`~.nvrtcGetNumSupportedArchs`
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
     supportedArchs : List[int]
         sorted array of supported architectures.
     """
@@ -168,33 +173,33 @@ def nvrtcCreateProgram(char* src, char* name, int numHeaders, list headers, list
     src : bytes
         CUDA program source.
     name : bytes
-        CUDA program name. `name` can be `NULL`; `"default_program"` is
+        CUDA program name.  `name` can be `NULL`; `"default_program"` is
         used when `name` is `NULL` or "".
     numHeaders : int
-        Number of headers used. `numHeaders` must be greater than or equal
+        Number of headers used.  `numHeaders` must be greater than or equal
         to 0.
     headers : List[bytes]
-        Sources of the headers. `headers` can be `NULL` when `numHeaders`
+        Sources of the headers.  `headers` can be `NULL` when `numHeaders`
         is 0.
     includeNames : List[bytes]
         Name of each header by which they can be included in the CUDA
-        program source. `includeNames` can be `NULL` when `numHeaders` is
+        program source.  `includeNames` can be `NULL` when `numHeaders` is
         0.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_OUT_OF_MEMORY
-        NVRTC_ERROR_PROGRAM_CREATION_FAILURE
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
-    prog : nvrtcProgram
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_OUT_OF_MEMORY`
+        - :py:obj:`~.NVRTC_ERROR_PROGRAM_CREATION_FAILURE`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
 
     See Also
     --------
-    nvrtcDestroyProgram
+    :py:obj:`~.nvrtcDestroyProgram`
     """
     cdef nvrtcProgram prog = nvrtcProgram()
     if numHeaders > len(headers): raise RuntimeError("List is too small: " + str(len(headers)) + " < " + str(numHeaders))
@@ -210,18 +215,18 @@ def nvrtcDestroyProgram(prog):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
 
     See Also
     --------
-    nvrtcCreateProgram
+    :py:obj:`~.nvrtcCreateProgram`
     """
     cdef cnvrtc.nvrtcProgram *cprog
     if prog is None:
@@ -241,26 +246,29 @@ def nvrtcDestroyProgram(prog):
 def nvrtcCompileProgram(prog, int numOptions, list options):
     """ nvrtcCompileProgram compiles the given program.
 
+    It supports compile options listed in :py:obj:`~.Supported Compile
+    Options`.
+
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
     numOptions : int
         Number of compiler options passed.
     options : List[bytes]
-        Compiler options in the form of C string array. `options` can be
+        Compiler options in the form of C string array.  `options` can be
         `NULL` when `numOptions` is 0.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_OUT_OF_MEMORY
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
-        NVRTC_ERROR_INVALID_OPTION
-        NVRTC_ERROR_COMPILATION
-        NVRTC_ERROR_BUILTIN_OPERATION_FAILURE
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_OUT_OF_MEMORY`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_OPTION`
+        - :py:obj:`~.NVRTC_ERROR_COMPILATION`
+        - :py:obj:`~.NVRTC_ERROR_BUILTIN_OPERATION_FAILURE`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -283,21 +291,21 @@ def nvrtcGetPTXSize(prog):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
     ptxSizeRet : int
         Size of the generated PTX (including the trailing `NULL`).
 
     See Also
     --------
-    nvrtcGetPTX
+    :py:obj:`~.nvrtcGetPTX`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -319,7 +327,7 @@ def nvrtcGetPTX(prog, char* ptx):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
     ptx : bytes
         Compiled result.
@@ -327,13 +335,13 @@ def nvrtcGetPTX(prog, char* ptx):
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
 
     See Also
     --------
-    nvrtcGetPTXSize
+    :py:obj:`~.nvrtcGetPTXSize`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -354,21 +362,21 @@ def nvrtcGetCUBINSize(prog):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
     cubinSizeRet : int
         Size of the generated cubin.
 
     See Also
     --------
-    nvrtcGetCUBIN
+    :py:obj:`~.nvrtcGetCUBIN`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -390,7 +398,7 @@ def nvrtcGetCUBIN(prog, char* cubin):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
     cubin : bytes
         Compiled and assembled result.
@@ -398,13 +406,13 @@ def nvrtcGetCUBIN(prog, char* cubin):
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
 
     See Also
     --------
-    nvrtcGetCUBINSize
+    :py:obj:`~.nvrtcGetCUBINSize`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -425,21 +433,21 @@ def nvrtcGetNVVMSize(prog):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
     nvvmSizeRet : int
         Size of the generated NVVM.
 
     See Also
     --------
-    nvrtcGetNVVM
+    :py:obj:`~.nvrtcGetNVVM`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -461,7 +469,7 @@ def nvrtcGetNVVM(prog, char* nvvm):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
     nvvm : bytes
         Compiled result.
@@ -469,13 +477,13 @@ def nvrtcGetNVVM(prog, char* nvvm):
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
 
     See Also
     --------
-    nvrtcGetNVVMSize
+    :py:obj:`~.nvrtcGetNVVMSize`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -499,21 +507,21 @@ def nvrtcGetProgramLogSize(prog):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
 
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
     logSizeRet : int
         Size of the compilation log (including the trailing `NULL`).
 
     See Also
     --------
-    nvrtcGetProgramLog
+    :py:obj:`~.nvrtcGetProgramLog`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -535,7 +543,7 @@ def nvrtcGetProgramLog(prog, char* log):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
     log : bytes
         Compilation log.
@@ -543,13 +551,13 @@ def nvrtcGetProgramLog(prog, char* log):
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_INVALID_INPUT
-        NVRTC_ERROR_INVALID_PROGRAM
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_INPUT`
+        - :py:obj:`~.NVRTC_ERROR_INVALID_PROGRAM`
 
     See Also
     --------
-    nvrtcGetProgramLogSize
+    :py:obj:`~.nvrtcGetProgramLogSize`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:
@@ -573,7 +581,7 @@ def nvrtcAddNameExpression(prog, char* name_expression):
 
     Parameters
     ----------
-    prog : nvrtcProgram
+    prog : :py:obj:`~.nvrtcProgram`
         CUDA Runtime Compilation program.
     name_expression : bytes
         constant expression denoting the address of a global function or
@@ -582,12 +590,12 @@ def nvrtcAddNameExpression(prog, char* name_expression):
     Returns
     -------
     nvrtcResult
-        NVRTC_SUCCESS
-        NVRTC_ERROR_NO_NAME_EXPRESSIONS_AFTER_COMPILATION
+        - :py:obj:`~.NVRTC_SUCCESS`
+        - :py:obj:`~.NVRTC_ERROR_NO_NAME_EXPRESSIONS_AFTER_COMPILATION`
 
     See Also
     --------
-    nvrtcGetLoweredName
+    :py:obj:`~.nvrtcGetLoweredName`
     """
     cdef cnvrtc.nvrtcProgram cprog
     if prog is None:

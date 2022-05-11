@@ -12,6 +12,7 @@ cimport cuda.cuda as cuda
 cdef class cudaArray_t:
     """
 
+    CUDA array
 
     Methods
     -------
@@ -25,6 +26,7 @@ cdef class cudaArray_t:
 cdef class cudaArray_const_t:
     """
 
+    CUDA array (as source copy argument)
 
     Methods
     -------
@@ -38,6 +40,7 @@ cdef class cudaArray_const_t:
 cdef class cudaMipmappedArray_t:
     """
 
+    CUDA mipmapped array
 
     Methods
     -------
@@ -51,6 +54,7 @@ cdef class cudaMipmappedArray_t:
 cdef class cudaMipmappedArray_const_t:
     """
 
+    CUDA mipmapped array (as source argument)
 
     Methods
     -------
@@ -64,6 +68,7 @@ cdef class cudaMipmappedArray_const_t:
 cdef class cudaGraphicsResource_t:
     """
 
+    CUDA graphics resource types
 
     Methods
     -------
@@ -77,6 +82,7 @@ cdef class cudaGraphicsResource_t:
 cdef class cudaExternalMemory_t:
     """
 
+    CUDA external memory
 
     Methods
     -------
@@ -90,6 +96,7 @@ cdef class cudaExternalMemory_t:
 cdef class cudaExternalSemaphore_t:
     """
 
+    CUDA external semaphore
 
     Methods
     -------
@@ -103,7 +110,6 @@ cdef class cudaExternalSemaphore_t:
 cdef class EGLImageKHR:
     """
 
-
     Methods
     -------
     getPtr()
@@ -115,7 +121,6 @@ cdef class EGLImageKHR:
 
 cdef class EGLStreamKHR:
     """
-
 
     Methods
     -------
@@ -129,7 +134,6 @@ cdef class EGLStreamKHR:
 cdef class EGLSyncKHR:
     """
 
-
     Methods
     -------
     getPtr()
@@ -142,7 +146,6 @@ cdef class EGLSyncKHR:
 cdef class cudaHostFn_t:
     """
 
-
     Methods
     -------
     getPtr()
@@ -154,7 +157,6 @@ cdef class cudaHostFn_t:
 
 cdef class cudaStreamCallback_t:
     """
-
 
     Methods
     -------
@@ -520,46 +522,6 @@ cdef class cudaHostNodeParams:
     cdef cudaHostFn_t _fn
     cdef utils.HelperInputVoidPtr _cuserData
 
-cdef class cudaStreamAttrValue:
-    """
-
-    Attributes
-    ----------
-    accessPolicyWindow : cudaAccessPolicyWindow
-
-    syncPolicy : cudaSynchronizationPolicy
-
-
-    Methods
-    -------
-    getPtr()
-        Get memory address of class instance
-
-    """
-    cdef ccudart.cudaStreamAttrValue  _val
-    cdef ccudart.cudaStreamAttrValue* _ptr
-    cdef cudaAccessPolicyWindow _accessPolicyWindow
-
-cdef class cudaKernelNodeAttrValue:
-    """
-
-    Attributes
-    ----------
-    accessPolicyWindow : cudaAccessPolicyWindow
-
-    cooperative : int
-
-
-    Methods
-    -------
-    getPtr()
-        Get memory address of class instance
-
-    """
-    cdef ccudart.cudaKernelNodeAttrValue  _val
-    cdef ccudart.cudaKernelNodeAttrValue* _ptr
-    cdef cudaAccessPolicyWindow _accessPolicyWindow
-
 cdef class _cudaResourceDesc_res_res_array_s:
     """
 
@@ -816,14 +778,14 @@ cdef class cudaFuncAttributes:
 cdef class cudaMemLocation:
     """
     Specifies a memory location.  To specify a gpu, set type =
-    ::cudaMemLocationTypeDevice and set id = the gpu's device ordinal.
+    cudaMemLocationTypeDevice and set id = the gpu's device ordinal.
 
     Attributes
     ----------
     type : cudaMemLocationType
         Specifies the location type, which modifies the meaning of id.
     id : int
-        identifier for a given this location's CUmemLocationType.
+        identifier for a given this location's ::CUmemLocationType.
 
     Methods
     -------
@@ -914,9 +876,9 @@ cdef class cudaMemAllocNodeParams:
     ----------
     poolProps : cudaMemPoolProps
         in: location where the allocation should reside (specified in
-        location). handleTypes must be cudaMemHandleTypeNone. IPC is not
-        supported. in: array of memory access descriptors. Used to describe
-        peer GPU access
+        ::location). ::handleTypes must be cudaMemHandleTypeNone. IPC is
+        not supported. in: array of memory access descriptors. Used to
+        describe peer GPU access
     accessDescs : cudaMemAccessDesc
         in: number of memory access descriptors. Must not exceed the number
         of GPUs.
@@ -1670,6 +1632,52 @@ cdef class cudaExternalSemaphoreWaitNodeParams:
     cdef size_t _paramsArray_length
     cdef ccudart.cudaExternalSemaphoreWaitParams* _paramsArray
 
+cdef class cudaStreamAttrValue:
+    """
+    Stream attributes union used with
+    cudaStreamSetAttribute/cudaStreamGetAttribute
+
+    Attributes
+    ----------
+    accessPolicyWindow : cudaAccessPolicyWindow
+
+    syncPolicy : cudaSynchronizationPolicy
+
+
+    Methods
+    -------
+    getPtr()
+        Get memory address of class instance
+
+    """
+    cdef ccudart.cudaStreamAttrValue  _val
+    cdef ccudart.cudaStreamAttrValue* _ptr
+    cdef cudaAccessPolicyWindow _accessPolicyWindow
+
+cdef class cudaKernelNodeAttrValue:
+    """
+    Graph kernel node attributes union, used with
+    cudaGraphKernelNodeSetAttribute/cudaGraphKernelNodeGetAttribute
+
+    Attributes
+    ----------
+    accessPolicyWindow : cudaAccessPolicyWindow
+        Attribute ::CUaccessPolicyWindow.
+    cooperative : int
+
+    priority : int
+
+
+    Methods
+    -------
+    getPtr()
+        Get memory address of class instance
+
+    """
+    cdef ccudart.cudaKernelNodeAttrValue  _val
+    cdef ccudart.cudaKernelNodeAttrValue* _ptr
+    cdef cudaAccessPolicyWindow _accessPolicyWindow
+
 cdef class cudaTextureDesc:
     """
     CUDA texture descriptor
@@ -1927,6 +1935,8 @@ cdef class cudaEglFrame(cudaEglFrame_st):
 cdef class cudaStream_t(cuda.CUstream):
     """
 
+    CUDA stream
+
 
     Methods
     -------
@@ -1938,6 +1948,8 @@ cdef class cudaStream_t(cuda.CUstream):
 
 cdef class cudaEvent_t(cuda.CUevent):
     """
+
+    CUDA event
 
 
     Methods
@@ -1951,6 +1963,8 @@ cdef class cudaEvent_t(cuda.CUevent):
 cdef class cudaGraph_t(cuda.CUgraph):
     """
 
+    CUDA graph
+
 
     Methods
     -------
@@ -1962,6 +1976,8 @@ cdef class cudaGraph_t(cuda.CUgraph):
 
 cdef class cudaGraphNode_t(cuda.CUgraphNode):
     """
+
+    CUDA graph node
 
 
     Methods
@@ -1975,6 +1991,8 @@ cdef class cudaGraphNode_t(cuda.CUgraphNode):
 cdef class cudaUserObject_t(cuda.CUuserObject):
     """
 
+    CUDA user object for graphs
+
 
     Methods
     -------
@@ -1986,6 +2004,8 @@ cdef class cudaUserObject_t(cuda.CUuserObject):
 
 cdef class cudaFunction_t(cuda.CUfunction):
     """
+
+    CUDA function
 
 
     Methods
@@ -1999,6 +2019,8 @@ cdef class cudaFunction_t(cuda.CUfunction):
 cdef class cudaMemPool_t(cuda.CUmemoryPool):
     """
 
+    CUDA memory pool
+
 
     Methods
     -------
@@ -2010,6 +2032,8 @@ cdef class cudaMemPool_t(cuda.CUmemoryPool):
 
 cdef class cudaGraphExec_t(cuda.CUgraphExec):
     """
+
+    CUDA executable graph
 
 
     Methods
@@ -2023,6 +2047,8 @@ cdef class cudaGraphExec_t(cuda.CUgraphExec):
 cdef class cudaEglStreamConnection(cuda.CUeglStreamConnection):
     """
 
+    CUDA EGLSream Connection
+
 
     Methods
     -------
@@ -2035,6 +2061,7 @@ cdef class cudaEglStreamConnection(cuda.CUeglStreamConnection):
 cdef class cudaSurfaceObject_t:
     """
 
+    An opaque value that represents a CUDA Surface object
 
     Methods
     -------
@@ -2048,6 +2075,7 @@ cdef class cudaSurfaceObject_t:
 cdef class cudaTextureObject_t:
     """
 
+    An opaque value that represents a CUDA texture object
 
     Methods
     -------
@@ -2061,7 +2089,6 @@ cdef class cudaTextureObject_t:
 cdef class GLenum:
     """
 
-
     Methods
     -------
     getPtr()
@@ -2073,7 +2100,6 @@ cdef class GLenum:
 
 cdef class GLuint:
     """
-
 
     Methods
     -------
@@ -2087,7 +2113,6 @@ cdef class GLuint:
 cdef class EGLint:
     """
 
-
     Methods
     -------
     getPtr()
@@ -2099,7 +2124,6 @@ cdef class EGLint:
 
 cdef class VdpDevice:
     """
-
 
     Methods
     -------
@@ -2113,7 +2137,6 @@ cdef class VdpDevice:
 cdef class VdpGetProcAddress:
     """
 
-
     Methods
     -------
     getPtr()
@@ -2126,7 +2149,6 @@ cdef class VdpGetProcAddress:
 cdef class VdpVideoSurface:
     """
 
-
     Methods
     -------
     getPtr()
@@ -2138,7 +2160,6 @@ cdef class VdpVideoSurface:
 
 cdef class VdpOutputSurface:
     """
-
 
     Methods
     -------

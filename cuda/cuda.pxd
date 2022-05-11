@@ -11,6 +11,7 @@ cimport cuda._lib.utils as utils
 cdef class CUcontext:
     """
 
+    CUDA context
 
     Methods
     -------
@@ -24,6 +25,7 @@ cdef class CUcontext:
 cdef class CUmodule:
     """
 
+    CUDA module
 
     Methods
     -------
@@ -37,6 +39,7 @@ cdef class CUmodule:
 cdef class CUfunction:
     """
 
+    CUDA function
 
     Methods
     -------
@@ -50,6 +53,7 @@ cdef class CUfunction:
 cdef class CUarray:
     """
 
+    CUDA array
 
     Methods
     -------
@@ -63,6 +67,7 @@ cdef class CUarray:
 cdef class CUmipmappedArray:
     """
 
+    CUDA mipmapped array
 
     Methods
     -------
@@ -76,6 +81,7 @@ cdef class CUmipmappedArray:
 cdef class CUtexref:
     """
 
+    CUDA texture reference
 
     Methods
     -------
@@ -89,6 +95,7 @@ cdef class CUtexref:
 cdef class CUsurfref:
     """
 
+    CUDA surface reference
 
     Methods
     -------
@@ -102,6 +109,7 @@ cdef class CUsurfref:
 cdef class CUevent:
     """
 
+    CUDA event
 
     Methods
     -------
@@ -115,6 +123,7 @@ cdef class CUevent:
 cdef class CUstream:
     """
 
+    CUDA stream
 
     Methods
     -------
@@ -128,6 +137,7 @@ cdef class CUstream:
 cdef class CUgraphicsResource:
     """
 
+    CUDA graphics interop resource
 
     Methods
     -------
@@ -141,6 +151,7 @@ cdef class CUgraphicsResource:
 cdef class CUexternalMemory:
     """
 
+    CUDA external memory
 
     Methods
     -------
@@ -154,6 +165,7 @@ cdef class CUexternalMemory:
 cdef class CUexternalSemaphore:
     """
 
+    CUDA external semaphore
 
     Methods
     -------
@@ -167,6 +179,7 @@ cdef class CUexternalSemaphore:
 cdef class CUgraph:
     """
 
+    CUDA graph
 
     Methods
     -------
@@ -180,6 +193,7 @@ cdef class CUgraph:
 cdef class CUgraphNode:
     """
 
+    CUDA graph node
 
     Methods
     -------
@@ -193,6 +207,7 @@ cdef class CUgraphNode:
 cdef class CUgraphExec:
     """
 
+    CUDA executable graph
 
     Methods
     -------
@@ -206,6 +221,7 @@ cdef class CUgraphExec:
 cdef class CUmemoryPool:
     """
 
+    CUDA memory pool
 
     Methods
     -------
@@ -219,6 +235,7 @@ cdef class CUmemoryPool:
 cdef class CUuserObject:
     """
 
+    CUDA user object for graphs
 
     Methods
     -------
@@ -231,7 +248,6 @@ cdef class CUuserObject:
 
 cdef class CUlinkState:
     """
-
 
     Methods
     -------
@@ -246,7 +262,6 @@ cdef class CUlinkState:
 cdef class EGLImageKHR:
     """
 
-
     Methods
     -------
     getPtr()
@@ -258,7 +273,6 @@ cdef class EGLImageKHR:
 
 cdef class EGLStreamKHR:
     """
-
 
     Methods
     -------
@@ -272,7 +286,6 @@ cdef class EGLStreamKHR:
 cdef class EGLSyncKHR:
     """
 
-
     Methods
     -------
     getPtr()
@@ -285,6 +298,7 @@ cdef class EGLSyncKHR:
 cdef class CUeglStreamConnection:
     """
 
+    CUDA EGLSream Connection
 
     Methods
     -------
@@ -298,7 +312,6 @@ cdef class CUeglStreamConnection:
 cdef class CUhostFn:
     """
 
-
     Methods
     -------
     getPtr()
@@ -311,7 +324,6 @@ cdef class CUhostFn:
 cdef class CUstreamCallback:
     """
 
-
     Methods
     -------
     getPtr()
@@ -323,7 +335,6 @@ cdef class CUstreamCallback:
 
 cdef class CUoccupancyB2DSize:
     """
-
 
     Methods
     -------
@@ -462,8 +473,28 @@ cdef class CUstreamMemOpFlushRemoteWritesParams_st:
     cdef ccuda.CUstreamMemOpFlushRemoteWritesParams_st  _val
     cdef ccuda.CUstreamMemOpFlushRemoteWritesParams_st* _ptr
 
+cdef class CUstreamMemOpMemoryBarrierParams_st:
+    """
+
+    Attributes
+    ----------
+    operation : CUstreamBatchMemOpType
+        < Only supported in the _v2 API
+    flags : unsigned int
+
+
+    Methods
+    -------
+    getPtr()
+        Get memory address of class instance
+
+    """
+    cdef ccuda.CUstreamMemOpMemoryBarrierParams_st  _val
+    cdef ccuda.CUstreamMemOpMemoryBarrierParams_st* _ptr
+
 cdef class CUstreamBatchMemOpParams_union:
     """
+    Per-operation parameters for cuStreamBatchMemOp
 
     Attributes
     ----------
@@ -474,6 +505,8 @@ cdef class CUstreamBatchMemOpParams_union:
     writeValue : CUstreamMemOpWriteValueParams_st
 
     flushRemoteWrites : CUstreamMemOpFlushRemoteWritesParams_st
+
+    memoryBarrier : CUstreamMemOpMemoryBarrierParams_st
 
     pad : List[cuuint64_t]
 
@@ -489,6 +522,33 @@ cdef class CUstreamBatchMemOpParams_union:
     cdef CUstreamMemOpWaitValueParams_st _waitValue
     cdef CUstreamMemOpWriteValueParams_st _writeValue
     cdef CUstreamMemOpFlushRemoteWritesParams_st _flushRemoteWrites
+    cdef CUstreamMemOpMemoryBarrierParams_st _memoryBarrier
+
+cdef class CUDA_BATCH_MEM_OP_NODE_PARAMS_st:
+    """
+
+    Attributes
+    ----------
+    ctx : CUcontext
+
+    count : unsigned int
+
+    paramArray : CUstreamBatchMemOpParams
+
+    flags : unsigned int
+
+
+    Methods
+    -------
+    getPtr()
+        Get memory address of class instance
+
+    """
+    cdef ccuda.CUDA_BATCH_MEM_OP_NODE_PARAMS_st  _val
+    cdef ccuda.CUDA_BATCH_MEM_OP_NODE_PARAMS_st* _ptr
+    cdef CUcontext _ctx
+    cdef size_t _paramArray_length
+    cdef ccuda.CUstreamBatchMemOpParams* _paramArray
 
 cdef class CUdevprop_st:
     """
@@ -656,13 +716,18 @@ cdef class CUDA_HOST_NODE_PARAMS_st:
 
 cdef class CUkernelNodeAttrValue_union:
     """
+    Graph kernel node attributes union, used with
+    ::cuKernelNodeSetAttribute/::cuKernelNodeGetAttribute
 
     Attributes
     ----------
     accessPolicyWindow : CUaccessPolicyWindow
-
+        Attribute ::CUaccessPolicyWindow.
     cooperative : int
-
+        Nonzero indicates a cooperative kernel (see
+        cuLaunchCooperativeKernel).
+    priority : int
+        Execution priority of the kernel.
 
     Methods
     -------
@@ -676,13 +741,15 @@ cdef class CUkernelNodeAttrValue_union:
 
 cdef class CUstreamAttrValue_union:
     """
+    Stream attributes union, used with
+    cuStreamSetAttribute/cuStreamGetAttribute
 
     Attributes
     ----------
     accessPolicyWindow : CUaccessPolicyWindow
-
+        Attribute ::CUaccessPolicyWindow.
     syncPolicy : CUsynchronizationPolicy
-
+        Value for CU_STREAM_ATTRIBUTE_SYNCHRONIZATION_POLICY.
 
     Methods
     -------
@@ -1629,8 +1696,8 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st:
     params : _CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st_params_s
 
     flags : unsigned int
-        Only when CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS is used to signal a
-        CUexternalSemaphore of type
+        Only when ::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS is used to signal
+        a CUexternalSemaphore of type
         CU_EXTERNAL_SEMAPHORE_HANDLE_TYPE_NVSCISYNC, the valid flag is
         CUDA_EXTERNAL_SEMAPHORE_SIGNAL_SKIP_NVSCIBUF_MEMSYNC which
         indicates that while signaling the CUexternalSemaphore, no memory
@@ -1737,8 +1804,8 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st:
     params : _CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st_params_s
 
     flags : unsigned int
-        Only when CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS is used to wait on a
-        CUexternalSemaphore of type
+        Only when ::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS is used to wait on
+        a CUexternalSemaphore of type
         CU_EXTERNAL_SEMAPHORE_HANDLE_TYPE_NVSCISYNC, the valid flag is
         CUDA_EXTERNAL_SEMAPHORE_WAIT_SKIP_NVSCIBUF_MEMSYNC which indicates
         that while waiting for the CUexternalSemaphore, no memory
@@ -2116,8 +2183,8 @@ cdef class CUDA_MEM_ALLOC_NODE_PARAMS_st:
     ----------
     poolProps : CUmemPoolProps
         in: location where the allocation should reside (specified in
-        location). handleTypes must be CU_MEM_HANDLE_TYPE_NONE. IPC is not
-        supported.
+        ::location). ::handleTypes must be CU_MEM_HANDLE_TYPE_NONE. IPC is
+        not supported.
     accessDescs : CUmemAccessDesc
         in: array of memory access descriptors. Used to describe peer GPU
         access
@@ -2285,6 +2352,7 @@ cdef class CUipcMemHandle(CUipcMemHandle_st):
 
 cdef class CUstreamBatchMemOpParams_v1(CUstreamBatchMemOpParams_union):
     """
+    Per-operation parameters for cuStreamBatchMemOp
 
     Attributes
     ----------
@@ -2295,6 +2363,8 @@ cdef class CUstreamBatchMemOpParams_v1(CUstreamBatchMemOpParams_union):
     writeValue : CUstreamMemOpWriteValueParams_st
 
     flushRemoteWrites : CUstreamMemOpFlushRemoteWritesParams_st
+
+    memoryBarrier : CUstreamMemOpMemoryBarrierParams_st
 
     pad : List[cuuint64_t]
 
@@ -2309,6 +2379,7 @@ cdef class CUstreamBatchMemOpParams_v1(CUstreamBatchMemOpParams_union):
 
 cdef class CUstreamBatchMemOpParams(CUstreamBatchMemOpParams_union):
     """
+    Per-operation parameters for cuStreamBatchMemOp
 
     Attributes
     ----------
@@ -2320,7 +2391,31 @@ cdef class CUstreamBatchMemOpParams(CUstreamBatchMemOpParams_union):
 
     flushRemoteWrites : CUstreamMemOpFlushRemoteWritesParams_st
 
+    memoryBarrier : CUstreamMemOpMemoryBarrierParams_st
+
     pad : List[cuuint64_t]
+
+
+    Methods
+    -------
+    getPtr()
+        Get memory address of class instance
+
+    """
+    pass
+
+cdef class CUDA_BATCH_MEM_OP_NODE_PARAMS(CUDA_BATCH_MEM_OP_NODE_PARAMS_st):
+    """
+
+    Attributes
+    ----------
+    ctx : CUcontext
+
+    count : unsigned int
+
+    paramArray : CUstreamBatchMemOpParams
+
+    flags : unsigned int
 
 
     Methods
@@ -2639,13 +2734,18 @@ cdef class CUDA_HOST_NODE_PARAMS(CUDA_HOST_NODE_PARAMS_st):
 
 cdef class CUkernelNodeAttrValue_v1(CUkernelNodeAttrValue_union):
     """
+    Graph kernel node attributes union, used with
+    ::cuKernelNodeSetAttribute/::cuKernelNodeGetAttribute
 
     Attributes
     ----------
     accessPolicyWindow : CUaccessPolicyWindow
-
+        Attribute ::CUaccessPolicyWindow.
     cooperative : int
-
+        Nonzero indicates a cooperative kernel (see
+        cuLaunchCooperativeKernel).
+    priority : int
+        Execution priority of the kernel.
 
     Methods
     -------
@@ -2657,13 +2757,18 @@ cdef class CUkernelNodeAttrValue_v1(CUkernelNodeAttrValue_union):
 
 cdef class CUkernelNodeAttrValue(CUkernelNodeAttrValue_union):
     """
+    Graph kernel node attributes union, used with
+    ::cuKernelNodeSetAttribute/::cuKernelNodeGetAttribute
 
     Attributes
     ----------
     accessPolicyWindow : CUaccessPolicyWindow
-
+        Attribute ::CUaccessPolicyWindow.
     cooperative : int
-
+        Nonzero indicates a cooperative kernel (see
+        cuLaunchCooperativeKernel).
+    priority : int
+        Execution priority of the kernel.
 
     Methods
     -------
@@ -2675,13 +2780,15 @@ cdef class CUkernelNodeAttrValue(CUkernelNodeAttrValue_union):
 
 cdef class CUstreamAttrValue_v1(CUstreamAttrValue_union):
     """
+    Stream attributes union, used with
+    cuStreamSetAttribute/cuStreamGetAttribute
 
     Attributes
     ----------
     accessPolicyWindow : CUaccessPolicyWindow
-
+        Attribute ::CUaccessPolicyWindow.
     syncPolicy : CUsynchronizationPolicy
-
+        Value for CU_STREAM_ATTRIBUTE_SYNCHRONIZATION_POLICY.
 
     Methods
     -------
@@ -2693,13 +2800,15 @@ cdef class CUstreamAttrValue_v1(CUstreamAttrValue_union):
 
 cdef class CUstreamAttrValue(CUstreamAttrValue_union):
     """
+    Stream attributes union, used with
+    cuStreamSetAttribute/cuStreamGetAttribute
 
     Attributes
     ----------
     accessPolicyWindow : CUaccessPolicyWindow
-
+        Attribute ::CUaccessPolicyWindow.
     syncPolicy : CUsynchronizationPolicy
-
+        Value for CU_STREAM_ATTRIBUTE_SYNCHRONIZATION_POLICY.
 
     Methods
     -------
@@ -3820,8 +3929,8 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1(CUDA_EXTERNAL_SEMAPHORE_SIGN
     params : _CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st_params_s
 
     flags : unsigned int
-        Only when CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS is used to signal a
-        CUexternalSemaphore of type
+        Only when ::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS is used to signal
+        a CUexternalSemaphore of type
         CU_EXTERNAL_SEMAPHORE_HANDLE_TYPE_NVSCISYNC, the valid flag is
         CUDA_EXTERNAL_SEMAPHORE_SIGNAL_SKIP_NVSCIBUF_MEMSYNC which
         indicates that while signaling the CUexternalSemaphore, no memory
@@ -3848,8 +3957,8 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS(CUDA_EXTERNAL_SEMAPHORE_SIGNAL_
     params : _CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st_params_s
 
     flags : unsigned int
-        Only when CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS is used to signal a
-        CUexternalSemaphore of type
+        Only when ::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS is used to signal
+        a CUexternalSemaphore of type
         CU_EXTERNAL_SEMAPHORE_HANDLE_TYPE_NVSCISYNC, the valid flag is
         CUDA_EXTERNAL_SEMAPHORE_SIGNAL_SKIP_NVSCIBUF_MEMSYNC which
         indicates that while signaling the CUexternalSemaphore, no memory
@@ -3876,8 +3985,8 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1(CUDA_EXTERNAL_SEMAPHORE_WAIT_P
     params : _CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st_params_s
 
     flags : unsigned int
-        Only when CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS is used to wait on a
-        CUexternalSemaphore of type
+        Only when ::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS is used to wait on
+        a CUexternalSemaphore of type
         CU_EXTERNAL_SEMAPHORE_HANDLE_TYPE_NVSCISYNC, the valid flag is
         CUDA_EXTERNAL_SEMAPHORE_WAIT_SKIP_NVSCIBUF_MEMSYNC which indicates
         that while waiting for the CUexternalSemaphore, no memory
@@ -3904,8 +4013,8 @@ cdef class CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS(CUDA_EXTERNAL_SEMAPHORE_WAIT_PARA
     params : _CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1_CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st_params_s
 
     flags : unsigned int
-        Only when CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS is used to wait on a
-        CUexternalSemaphore of type
+        Only when ::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS is used to wait on
+        a CUexternalSemaphore of type
         CU_EXTERNAL_SEMAPHORE_HANDLE_TYPE_NVSCISYNC, the valid flag is
         CUDA_EXTERNAL_SEMAPHORE_WAIT_SKIP_NVSCIBUF_MEMSYNC which indicates
         that while waiting for the CUexternalSemaphore, no memory
@@ -4323,8 +4432,8 @@ cdef class CUDA_MEM_ALLOC_NODE_PARAMS(CUDA_MEM_ALLOC_NODE_PARAMS_st):
     ----------
     poolProps : CUmemPoolProps
         in: location where the allocation should reside (specified in
-        location). handleTypes must be CU_MEM_HANDLE_TYPE_NONE. IPC is not
-        supported.
+        ::location). ::handleTypes must be CU_MEM_HANDLE_TYPE_NONE. IPC is
+        not supported.
     accessDescs : CUmemAccessDesc
         in: array of memory access descriptors. Used to describe peer GPU
         access
@@ -4421,7 +4530,6 @@ cdef class CUeglFrame(CUeglFrame_st):
 cdef class cuuint32_t:
     """
 
-
     Methods
     -------
     getPtr()
@@ -4433,7 +4541,6 @@ cdef class cuuint32_t:
 
 cdef class cuuint64_t:
     """
-
 
     Methods
     -------
@@ -4447,6 +4554,7 @@ cdef class cuuint64_t:
 cdef class CUdeviceptr_v2:
     """
 
+    CUDA device pointer CUdeviceptr is defined as an unsigned integer type whose size matches the size of a pointer on the target platform.
 
     Methods
     -------
@@ -4460,6 +4568,7 @@ cdef class CUdeviceptr_v2:
 cdef class CUdeviceptr:
     """
 
+    CUDA device pointer
 
     Methods
     -------
@@ -4473,6 +4582,7 @@ cdef class CUdeviceptr:
 cdef class CUdevice_v1:
     """
 
+    CUDA device
 
     Methods
     -------
@@ -4486,6 +4596,7 @@ cdef class CUdevice_v1:
 cdef class CUdevice:
     """
 
+    CUDA device
 
     Methods
     -------
@@ -4499,6 +4610,7 @@ cdef class CUdevice:
 cdef class CUtexObject_v1:
     """
 
+    An opaque value that represents a CUDA texture object
 
     Methods
     -------
@@ -4512,6 +4624,7 @@ cdef class CUtexObject_v1:
 cdef class CUtexObject:
     """
 
+    An opaque value that represents a CUDA texture object
 
     Methods
     -------
@@ -4525,6 +4638,7 @@ cdef class CUtexObject:
 cdef class CUsurfObject_v1:
     """
 
+    An opaque value that represents a CUDA surface object
 
     Methods
     -------
@@ -4538,6 +4652,7 @@ cdef class CUsurfObject_v1:
 cdef class CUsurfObject:
     """
 
+    An opaque value that represents a CUDA surface object
 
     Methods
     -------
@@ -4551,7 +4666,6 @@ cdef class CUsurfObject:
 cdef class CUmemGenericAllocationHandle_v1:
     """
 
-
     Methods
     -------
     getPtr()
@@ -4563,7 +4677,6 @@ cdef class CUmemGenericAllocationHandle_v1:
 
 cdef class CUmemGenericAllocationHandle:
     """
-
 
     Methods
     -------
@@ -4577,7 +4690,6 @@ cdef class CUmemGenericAllocationHandle:
 cdef class GLenum:
     """
 
-
     Methods
     -------
     getPtr()
@@ -4589,7 +4701,6 @@ cdef class GLenum:
 
 cdef class GLuint:
     """
-
 
     Methods
     -------
@@ -4603,7 +4714,6 @@ cdef class GLuint:
 cdef class EGLint:
     """
 
-
     Methods
     -------
     getPtr()
@@ -4615,7 +4725,6 @@ cdef class EGLint:
 
 cdef class VdpDevice:
     """
-
 
     Methods
     -------
@@ -4629,7 +4738,6 @@ cdef class VdpDevice:
 cdef class VdpGetProcAddress:
     """
 
-
     Methods
     -------
     getPtr()
@@ -4642,7 +4750,6 @@ cdef class VdpGetProcAddress:
 cdef class VdpVideoSurface:
     """
 
-
     Methods
     -------
     getPtr()
@@ -4654,7 +4761,6 @@ cdef class VdpVideoSurface:
 
 cdef class VdpOutputSurface:
     """
-
 
     Methods
     -------
